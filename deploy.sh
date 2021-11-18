@@ -13,7 +13,7 @@ cd dist
 git init
 git add .
 git commit -m 'New deployment'
-git push -f git@github.com:khanhngg/csc642-842-fall21-team05.git main:gh-pages
+git push -f git@github.com:khanhngg/csc642-842-fall21-team05.git master:gh-pages
 
 # Return to previous directory
 cd -
