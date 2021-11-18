@@ -1,10 +1,10 @@
 <template>
-  <div :key="car.id" v-for="car in cars" class="card" style="width: 18rem;">
+  <div :key="car.id" v-for="car in cars" class="card" style="width: 18rem">
     <div class="card-body">
       <h5 class="card-title">Car model:</h5>
       <p class="card-text">{{ car.model }}</p>
       <a href="#" class="btn btn-primary my-btn">Go somewhere</a>
-      <my-button/>
+      <my-button />
     </div>
   </div>
 </template>
@@ -18,27 +18,27 @@ export default {
       cars: [
         {
           id: 1,
-          model: "Honda"
+          model: "Honda",
         },
         {
           id: 2,
-          model: "Subaru"
+          model: "Subaru",
         },
         {
           id: 3,
-          model: "Jeep"
+          model: "Jeep",
         },
         {
           id: 4,
-          model: "Tesla"
+          model: "Tesla",
         },
-      ]
-    }
+      ],
+    };
   },
   components: {
-    MyButton
-  }
-}
+    MyButton,
+  },
+};
 </script>
 
 <style scoped>
