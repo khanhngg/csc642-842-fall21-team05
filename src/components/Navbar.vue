@@ -19,10 +19,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
+            <router-link class="nav-link" :to="{ name: 'About'}">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">Reservations</router-link>
+            <router-link class="nav-link" :to="{ name: 'About'}">Reservations</router-link>
           </li>
 
           <li class="nav-item dropdown">
@@ -53,7 +53,7 @@
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <router-link :to="{ name: 'Search'}" tag="button" class="btn btn-outline-success" type="submit">Search</router-link>
         </form>
       </div>
     </div>
