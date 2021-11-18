@@ -7,10 +7,8 @@
 <script>
 export default {
   name: "Home",
-  components: {
-  },
+  components: {},
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
