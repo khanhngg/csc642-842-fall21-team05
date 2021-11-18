@@ -31,7 +31,7 @@
         </ul>
 
         <!-- Search Bar -->
-        <form class="d-flex">
+        <form v-if="hasSearch" class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -42,7 +42,12 @@
 
 <script>
 export default {
-
+  props: {
+    hasSearch: {
+      type: Boolean,
+      default: true,
+    }
+  }
 }
 </script>
 

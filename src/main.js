@@ -4,4 +4,11 @@ import router from "./router";
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-createApp(App).use(router).mount("#app");
+import DefaultLayout from './layouts/DefaultLayout.vue'
+import NoSearchbarLayout from './layouts/NoSearchbarLayout.vue'
+
+createApp(App)
+  .use(router)
+  .component('default-layout', DefaultLayout)
+  .component('no-searchbar-layout', NoSearchbarLayout)
+  .mount("#app");
