@@ -1,16 +1,19 @@
 <template>
-  <navbar id="nav"/>
-  <router-view />
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
+const defaultLayout = 'default'
 
 export default {
   name: "Home",
-  components: {
-    Navbar,
-  },
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || defaultLayout) + '-layout'
+    }
+  }
 };
 </script>
 
