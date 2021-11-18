@@ -34,3 +34,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Credits/Attributions
+- Solutions to hashmode for SPA when deploying onto GitHub Pages: [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages)
