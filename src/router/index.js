@@ -7,6 +7,9 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    meta: {
+      layout: "no-searchbar",
+    },
     component: Home,
   },
   {
