@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
     <div class="container-fluid">
       <!-- Logo -->
       <router-link class="navbar-brand" to="/">CarToGo</router-link>
