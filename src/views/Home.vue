@@ -83,6 +83,7 @@
       <h3 class="fw-bold">Why CarToGo?</h3>
       <div class="row gx-5">
         <div class="col">
+          <i class="fas fa-car fa-3x"></i>
         </div>
       </div>
     </section>
