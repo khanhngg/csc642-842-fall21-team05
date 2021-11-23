@@ -22,7 +22,7 @@
           <button type="button" class="btn btn-primary-theme fw-bold">How it works</button>
         </div>
         <div class="col-12 col-md-6">
-          <img src="../assets/hero-image.jpg" class="img-fluid" alt="hero image">
+          <img src="../assets/hero-image.jpg" class="img-fluid rounded" alt="hero image">
         </div>
       </div>
     </section>
@@ -31,7 +31,7 @@
     <section class="mb-5">
       <h3 class="fw-bold">Check out our deals today</h3>
       <div class="row gx-5">
-        <div class="col">
+        <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
             <div class="card-body">
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
             <div class="card-body">
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
             <div class="card-body">
@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
             <div class="card-body">
@@ -81,9 +81,33 @@
     <!-- Why section -->
     <section class="mb-5">
       <h3 class="fw-bold">Why CarToGo?</h3>
-      <div class="row gx-5">
-        <div class="col">
-          <i class="fas fa-car fa-3x"></i>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="d-inline-block icon-container text-center">
+            <i class="fas fa-car fa-3x"></i>
+          </div>
+          <div class="d-inline-block ms-3">
+            <p class="fw-bold lh-1 mb-0">Free Cancellation</p>
+            <small class="fw-light fs-small text-muted">within the first 48hrs</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="d-inline-block icon-container text-center">
+            <i class="fas fa-award fa-3x"></i>
+          </div>
+          <div class="d-inline-block ms-3">
+            <p class="fw-bold lh-1 mb-0">Our Price Guaranteed</p>
+            <small class="fw-light fs-small text-muted">best prices for your budget</small>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-2">
+          <div class="d-inline-block icon-container text-center">
+            <i class="fas fa-hand-sparkles fa-3x"></i>
+          </div>
+          <div class="d-inline-block ms-3">
+            <p class="fw-bold lh-1 mb-0">Cleaning Protocol</p>
+            <small class="fw-light fs-small text-muted">FDA compliant to ensure your safety</small>
+          </div>
         </div>
       </div>
     </section>
@@ -98,5 +122,12 @@ export default {
 </script>
 
 <style scoped>
+.fs-small {
+  font-size: .75em;
+}
 
+.icon-container {
+  width: 60px;
+  height: 60px;
+}
 </style>
