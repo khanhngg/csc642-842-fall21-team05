@@ -33,10 +33,14 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'About'}">About</router-link>
+            <router-link class="nav-link" :to="{ name: 'About' }"
+              >About</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'About'}">Reservations</router-link>
+            <router-link class="nav-link" :to="{ name: 'About' }"
+              >Reservations</router-link
+            >
           </li>
         </ul>
       </div>
