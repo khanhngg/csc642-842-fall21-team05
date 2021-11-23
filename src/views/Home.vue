@@ -1,16 +1,7 @@
 <template>
   <div class="home">
-    <!-- Pickup/Delivery option -->
-    <div class="mb-2">
-      <button type="button" class="btn btn-primary-theme">RENT</button>
-      <button type="button" class="btn">DELIVERY</button>
-    </div>
-
     <!-- Search bar -->
-    <form class="d-flex mb-5">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-primary-theme" type="submit">Search</button>
-    </form>
+    <Searchbar />
 
     <!-- How it works section -->
     <section class="mb-5">
@@ -115,9 +106,13 @@
 </template>
 
 <script>
+import Searchbar from '@/components/Searchbar'
+
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Searchbar,
+  },
 };
 </script>
 

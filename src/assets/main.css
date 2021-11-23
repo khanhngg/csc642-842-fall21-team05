@@ -1,7 +1,8 @@
 :root {
   --main-theme-color: #7678ED; /* purple */
   --dark-purple: #5F61CE;
-  --secondary-theme-color: #2c3e50; /* dark grey */
+  --shadow-color: 0 0 0 0.25rem rgb(118 120 237 / 25%); /* light purple shadow */
+  --secondary-theme-color: #7e868f; /* dark grey */
   --medium-grey: #C4C4C4;
   --orange-red: #FA5926;
   --white: #fff;
