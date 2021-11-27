@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Search from "../views/Search.vue";
+import AddForm from "../views/AddForm.vue";
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: "/search",
     name: "Search",
     component: Search,
+  },
+  {
+    path: "/addform",
+    name: "AddForm",
+    component: AddForm,
   },
 ];
 
