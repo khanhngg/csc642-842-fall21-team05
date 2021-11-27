@@ -12,7 +12,7 @@
             <div class="container">
               <h2>Khan</h2>
               <p class="title">Team lead</p>
-              <p>Description of me.</p>
+              <p>The first man's name was kiki.He wore such little pants.</p>
             </div>
           </div>
         </div>
