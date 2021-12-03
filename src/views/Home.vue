@@ -7,10 +7,14 @@
     <section class="mb-5">
       <div class="row">
         <div class="col-12 col-md-6 mb-3">
-          <h1>Rent a car today, <br>
-            so you can travel more <br>
-            & worry less</h1>
-          <button type="button" class="btn btn-primary-theme fw-bold">How it works</button>
+          <h1>
+            Rent a car today, <br />
+            so you can travel more <br />
+            & worry less
+          </h1>
+          <button type="button" class="btn btn-primary-theme fw-bold">
+            How it works
+          </button>
         </div>
         <div class="col-12 col-md-6">
           <img src="../assets/hero-image.jpg" class="img-fluid rounded" alt="hero image">
@@ -24,44 +28,76 @@
       <div class="row gx-5">
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
-            <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
+            <img
+              src="../assets/deal-image-1.jpg"
+              class="card-img-top"
+              alt="deal image 1"
+            />
             <div class="card-body">
               <h5 class="card-title fw-bold">Subaru Outback</h5>
-              <p class="card-text fs-2 text-accent fw-bold">$30/day
-                <span class="fs-6 fw-normal text-muted text-decoration-line-through">$40/day</span>
+              <p class="card-text fs-2 text-accent fw-bold">
+                $30/day
+                <span
+                  class="fs-6 fw-normal text-muted text-decoration-line-through"
+                  >$40/day</span
+                >
               </p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
-            <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
+            <img
+              src="../assets/deal-image-1.jpg"
+              class="card-img-top"
+              alt="deal image 1"
+            />
             <div class="card-body">
               <h5 class="card-title fw-bold">Subaru Outback</h5>
-              <p class="card-text fs-2 text-accent fw-bold">$30/day
-                <span class="fs-6 fw-normal text-muted text-decoration-line-through">$40/day</span>
+              <p class="card-text fs-2 text-accent fw-bold">
+                $30/day
+                <span
+                  class="fs-6 fw-normal text-muted text-decoration-line-through"
+                  >$40/day</span
+                >
               </p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
-            <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
+            <img
+              src="../assets/deal-image-1.jpg"
+              class="card-img-top"
+              alt="deal image 1"
+            />
             <div class="card-body">
               <h5 class="card-title fw-bold">Subaru Outback</h5>
-              <p class="card-text fs-2 text-accent fw-bold">$30/day
-                <span class="fs-6 fw-normal text-muted text-decoration-line-through">$40/day</span>
+              <p class="card-text fs-2 text-accent fw-bold">
+                $30/day
+                <span
+                  class="fs-6 fw-normal text-muted text-decoration-line-through"
+                  >$40/day</span
+                >
               </p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
-            <img src="../assets/deal-image-1.jpg" class="card-img-top" alt="deal image 1">
+            <img
+              src="../assets/deal-image-1.jpg"
+              class="card-img-top"
+              alt="deal image 1"
+            />
             <div class="card-body">
               <h5 class="card-title fw-bold">Subaru Outback</h5>
-              <p class="card-text fs-2 text-accent fw-bold">$30/day
-                <span class="fs-6 fw-normal text-muted text-decoration-line-through">$40/day</span>
+              <p class="card-text fs-2 text-accent fw-bold">
+                $30/day
+                <span
+                  class="fs-6 fw-normal text-muted text-decoration-line-through"
+                  >$40/day</span
+                >
               </p>
             </div>
           </div>
