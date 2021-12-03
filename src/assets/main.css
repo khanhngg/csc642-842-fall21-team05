@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 :root {
   --main-theme-color: #7678ED; /* purple */
   --dark-purple: #5F61CE;
@@ -7,6 +9,10 @@
   --orange-red: #FA5926;
   --white: #fff;
   --black: #000;
+}
+
+body {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
 
 .main {
