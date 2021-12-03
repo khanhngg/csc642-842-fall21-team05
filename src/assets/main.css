@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&display=swap');
 
 :root {
   --main-theme-color: #7678ED; /* purple */
@@ -37,4 +37,12 @@ body {
 
 .text-accent {
   color: var(--orange-red);
+}
+
+.fw-extra-light {
+  font-weight: 200;
+}
+
+.fw-medium {
+  font-weight: 500;
 }
