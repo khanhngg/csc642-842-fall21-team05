@@ -2,11 +2,16 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Search from "../views/Search.vue";
+<<<<<<< HEAD
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
+=======
+import PaymentForm from "../views/PaymentForm.vue";
+import NotFound from '../views/NotFound.vue'
+>>>>>>> 1935d14 (First Commit: working on Update Payment form, almost done with fields n stuff, need to work on styling)
 
 const routes = [
   {
@@ -52,6 +57,19 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
   },
+  //Update Payment Form
+  {
+    path: "/paymentform",
+    name: "PaymentForm",
+    component: PaymentForm,
+  },
+
+  //404 page
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  }
 ];
 
 const router = createRouter({
