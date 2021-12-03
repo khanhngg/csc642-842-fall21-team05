@@ -44,6 +44,7 @@
       <div class="mb-3 text-center">
         <p class="create-account">
           Need an account?
+          <!-- ADD ROUTE TO SIGN UP PAGE -->
           <router-link :to="{ name: 'Home' }">Create an Account</router-link>
         </p>
       </div>
