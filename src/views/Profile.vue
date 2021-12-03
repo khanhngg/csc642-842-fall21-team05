@@ -1,86 +1,110 @@
 <template>
-  
-</template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>
-
-
-<form>
-      <h3>Log In</h3>
-
-      <div class="col-md-6 mx-auto">
-        <label for="email" class="form-label text-left">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="Enter email address"
-        />
+  <!-- Profile Container -->
+  <div class="container profile-container border border-dark">
+    <div class="row">
+      <div class="col">
+        <i class="fas fa-user-circle" style="font-size: 345px"></i>
       </div>
-
-      <div class="col-sm-8">
-        <label for="password" class="form-label text-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Enter password"
-        />
+      <div class="col-sm-12 col-md-4 text-end mt-3">
+        <button class="btn btn-primary-theme" type="submit">EDIT</button>
       </div>
-
-      <div class="col-12">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="inlineFormCheck"
-          />
-          <label class="form-check-label" for="inlineFormCheck"
-            >Remember me</label
-          >
+    </div>
+    <!-- Name -->
+    <div :key="info.id" v-for="info in userInfo" class="info">
+      <div class="row g-2 mt-5 mb-3 fs-1">
+        <div class="col">
+          <label for="name" class="info-label">Name:</label>
+        </div>
+        <div class="col">
+          <p class="info-name">{{ info.firstName }} {{ info.lastName }}</p>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="email">Email address:</label>
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Enter email"
-          id="email"
-        />
+    </div>
+    <!-- Phone -->
+    <div :key="info.id" v-for="info in userInfo" class="info">
+      <div class="row g-2 mb-3 fs-1">
+        <div class="col-6">
+          <label for="phone" class="info-label">Phone Number:</label>
+        </div>
+        <div class="col-6">
+          <p class="info-phone">{{ info.phone }}</p>
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Enter password"
-          id="pwd"
-        />
+    </div>
+    <!-- Email -->
+    <div :key="info.id" v-for="info in userInfo" class="info">
+      <div class="row g-2 mb-3 fs-1">
+        <div class="col-4">
+          <label for="email" class="info-label">Email:</label>
+        </div>
+        <div class="col-">
+          <p class="info-email">{{ info.email }}</p>
+        </div>
       </div>
-
-      <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-primary">Log In</button>
+    </div>
+    <!-- Password -->
+    <div :key="info.id" v-for="info in userInfo" class="info">
+      <div class="row g-2 mb-3 fs-1">
+        <div class="col">
+          <label for="password" class="info-label">Password:</label>
+        </div>
+        <div class="col">
+          <p class="info-password">{{ info.password }}</p>
+        </div>
       </div>
+    </div>
+    <!-- Age -->
+    <div :key="info.id" v-for="info in userInfo" class="info">
+      <div class="row g-2 mb-3 fs-1">
+        <div class="col">
+          <label for="age" class="info-label">Age:</label>
+        </div>
+        <div class="col">
+          <p class="info-age">{{ info.age }}</p>
+        </div>
+      </div>
+    </div>
 
-      <p class="forgot-password">
-        Forgot
-        <router-link :to="{ name: 'Home' }">password?</router-link>
-      </p>
-
-      <p class="create-account">
-        Need an account? 
-        <router-link :to="{ name: 'Register' }">Create an Account</router-link>
-      </p>
-
-    </form>
+  </div>
+  
+</template>
+<script>
+export default {
+  name: "Profile",
+  components: {},
+  data() {
+    return {
+      userInfo: [
+        {
+          id: 1,
+          firstName: "Joe",
+          lastName: "Doe",
+          phone: "123-456-7890",
+          email: "joedoe@email.com",
+          password: "**********",
+          age: "28",
+        },
+      ],
+    };
+  },
+};
+</script>
+<style scoped>
+.profile-container {
+  max-width: 1235px;
+  height: 1019px;
+  border-radius: 20px;
+  margin-top: 200px;
+  margin-bottom: 50px;
+  padding: 45px 40px 40px;
+}
+.btn {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 200px;
+}
+.info-label {
+  font-weight: bolder;
+}
+</style>
