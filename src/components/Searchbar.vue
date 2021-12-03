@@ -24,6 +24,17 @@ export default {
   props: {
 
   },
+  data() {
+    return {
+      searchQuery: {
+        location: {
+          from: "",
+          to: "",
+        },
+
+      },
+    }
+  },
   methods: {
     handleSubmit() {
 
