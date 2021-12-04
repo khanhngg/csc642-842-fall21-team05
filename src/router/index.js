@@ -4,6 +4,9 @@ import About from "../views/About.vue";
 import Search from "../views/Search.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
+import AddForm from "../views/AddForm.vue";
+import AddSummary from "../views/AddSummary.vue";
+import Dashboard from "../views/Dashboard.vue";
 
 const routes = [
   {
@@ -33,6 +36,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/addform",
+    name: "AddForm",
+    component: AddForm,
   },
   {
     path: "/addsummary",
