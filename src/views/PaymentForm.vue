@@ -9,36 +9,42 @@
           <label class="hint-text">Astriks(*) - Input in Field is Required</label><br/>
           <h2>
           
-          <span class = "section-title">* Name On Card </span><br/>
-          <input v-model="name" placeholder="Enter Name" id="name" required/>
-          <br />
-          <div class="error-messages" v-if="nameError">{{nameError}}</div><br/>
+          <span class = "section-title"> Personal Information </span><br/>
+          <div class="row mb-3">
+            <span class = "field-title">* Name:</span><br/>
+            <div class="col-sm-10">
+              <input v-model="name" placeholder="Enter Name" id="name" required/>
+            </div>
+            <div class="error-messages" v-if="nameError">{{nameError}}</div><br/>
+          </div>
           </h2>
         
           <h2>
             <span class = "section-title">* Billing Address </span><br/>
+            <span class = "field-title">* Street Address:</span><br/>
             <input v-model="userStreet" placeholder="Enter bulding number and street" id="user-street" class="address" required />
             <div class="error-messages" v-if="streetError">{{streetError}}</div><br/>
-
-            <input v-model="userAptNum" placeholder="Optional: Enter Apt number " id="user-aptNum" class="address" />
+            <span class = "field-title"> Apt/Suite Number:</span><br/>
+            <input v-model="userAptNum" placeholder="Enter Apt number " id="user-aptNum" class="address" />
             <div class="error-messages" v-if="aptNumError">{{aptNumError}}</div><br/>
-            
+            <span class = "field-title">* City:</span><br/>
             <input v-model="userCity" placeholder="Enter City" id="user-city" class="address" required />
             <div class="error-messages" v-if="cityError">{{cityError}}</div><br/>
-            
+            <span class = "field-title">* State:</span><br/>
             <input v-model="userState" placeholder="Enter State" id="user-state" class="address" required/>
             <div class="error-messages" v-if="stateError">{{stateError}}</div><br/>
-      
+            <span class = "field-title">* ZipCode:</span><br/>
             <input v-model="userZipCode" placeholder="Enter ZipCode" id="user-zipcode" class="address" required/>
             <div class="error-messages" v-if="zipcodeError">{{zipcodeError}}</div><br/>
             <br/>
           </h2>
+
           <h2>
-            <span class = "section-title">* Payment Information </span><br/>
-            <span> Card Number: </span><br/>
+            <span class = "section-title"> Payment Information </span><br/>
+            <span class = "field-title">* Card Number: </span><br/>
             <input v-model="cardNum" placeholder="Enter card number" id="user-card" class="payment" required />
             <br/>
-            <span class = "section-title"> Expiration Date: </span><br/>
+            <span class = "field-title">* Expiration Date: </span><br/>
             <select v-model="cardMonth" id="card-month" class = "expiration">
               <option disabled value=""> Month </option>
               <option> 01</option>
@@ -72,15 +78,13 @@
               <option>2032</option>
             </select>
             <br/><br/>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class = "terms">
-              <input type="checkbox" v-model="terms" required>
-              <label class = "checkboxText"> Accept terms and Conditions </label>
+            <div class="col-12">
+            <span class = "field-title">* Security Code:</span><br/>
+            <input v-model="cardCode" placeholder="Enter 3 Digit Security Code" required/>
+            <br/>
+            
+              <input type="checkbox" v-model="defaultPay">
+              <label class = "checkboxText"> Set as Default Payment </label>
               <div class="error-messages" v-if="termsError">{{termsError}}</div><br/>
           </div>   
           </h2>
@@ -91,8 +95,10 @@
     <div class = "submit">
        <button class="btn btn-primary-theme" type="submit" v-on:click="submitButton()">Submit</button>
     </div>
-    <button class="btn btn-primary-theme" type="back" id="backBtn" v-on:click="goBackButton()">Back</button>
-    <div class="error-messages" v-if="overallError">{{overallError}}</div><br/>
+    <div class="col-12">
+      <button class="btn btn-primary-theme" type="back" id="backBtn" v-on:click="goBackButton()">Back</button>
+      <div class="error-messages" v-if="overallError">{{overallError}}</div><br/>
+    </div>
   </h1>
   </div>
 </template>
@@ -134,6 +140,8 @@ export default {
       cardNum: "",
       cardMonth: "",
       cardYear: "",
+      cardCode: "",
+      defaultPay: "",
 
       //ERROR MESSAGES
       nameError: "",
@@ -245,30 +253,23 @@ export default {
     goBackButton(){
       this.$router.go(-1);
     },
-    toResult(){
-      
-    },
     persist(){
-      localStorage.lastName = this.lastName;
-      localStorage.firstName = this.firstName;
-      localStorage.userTitle = this.userTitle;
-      localStorage.userPhone = this.userPhone;
-
-      localStorage.userFeet = this.userFeet;
-      localStorage.userInches = this.userInches;
-
+      localStorage.name = this.name;
+      
       localStorage.userStreet = this.userStreet;
       localStorage.userAptNum = this.userAptNum;
       localStorage.userCity = this.userCity;
       localStorage.userState = this.userState;
       localStorage.userZipCode = this.userZipCode;
 
-      
-      localStorage.additional = this.additional;
-      localStorage.userBudget = this.userBudget;
-      localStorage.userEmail = this.userEmail;
+      localStorage.cardNum = this.cardNum;
+      localStorage.cardMonth = this.cardMonth;
+      localStorage.cardYear = this.cardYear;
+      localStorage.cardCode = this.cardCode;
 
-      this.toResult();
+      localStorage.defaultPay = this.defaultPay;
+
+      this.$router.push({name: 'PaymentFormResult'});
     },
     submitButton: function() {
       var allValid;
@@ -391,6 +392,9 @@ h2 {
   border-color: black;
 }
 /*Class Styles*/
+.field-title{
+  font-size: 75%;
+}
 .section-title{
   font-size: 100%;
 }
@@ -403,6 +407,7 @@ h2 {
 .hint-text{
   font-size: 14px;
   color: rgb(95, 95, 95);
+  
 }
 
 .form {

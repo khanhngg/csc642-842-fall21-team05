@@ -10,6 +10,7 @@ import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
 =======
 import PaymentForm from "../views/PaymentForm.vue";
+import PaymentFormResult from '../views/PaymentFormResult.vue'
 import NotFound from '../views/NotFound.vue'
 >>>>>>> 1935d14 (First Commit: working on Update Payment form, almost done with fields n stuff, need to work on styling)
 
@@ -62,6 +63,13 @@ const routes = [
     path: "/paymentform",
     name: "PaymentForm",
     component: PaymentForm,
+  },
+  
+  //Result of Payment Form
+  {
+    path: '/paymentformresult',
+    name: 'PaymentFormResult',
+    component: PaymentFormResult
   },
 
   //404 page
