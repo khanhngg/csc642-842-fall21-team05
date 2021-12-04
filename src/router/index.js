@@ -34,6 +34,16 @@ const routes = [
     name: "Profile",
     component: Profile,
   },
+  {
+    path: "/addsummary",
+    name: "AddSummary",
+    component: AddSummary,
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: Dashboard,
+  },
 ];
 
 const router = createRouter({
