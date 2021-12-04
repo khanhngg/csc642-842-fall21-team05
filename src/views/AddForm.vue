@@ -32,7 +32,7 @@
                     <div class="col-4">
                         <label class="form-label">Model *</label>
                         <select class="form-select" :disabled="isDisabled" v-model="car.model" :class="{ 'invalid-field': v$.car.model.$error }" required>
-                            <option v-for="option in setModels" :key="option.value" :value="option.val">{{option.text}}</option>
+                            <option v-for="option in setModels" :key="option.val" :value="option.val">{{option.text}}</option>
                         </select>
                         <div v-if="v$.car.model.$error">
                             <p
@@ -284,7 +284,7 @@
                 </div>
                     
                 <div class="ms-auto p-2 bd-highlight">
-                    <button class="btn btn-outline-dark" @click="onClear">Clear</button>
+                    <button class="btn btn-outline-dark" @click.prevent="onClear">Clear</button>
                 </div>
             </div>
 
@@ -429,7 +429,7 @@ export default {
             this.car.image = "";
             this.car.price = "";
             this.car.description = "";
-            this.$nextTick(() => { this.$v.$reset() })
+            this.$nextTick(() => { this.v$.$reset() })
         },
         async onSubmit() {
             await this.v$.$touch();

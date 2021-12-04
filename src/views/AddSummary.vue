@@ -36,6 +36,16 @@
                     <p>{{ this.car.description }}</p>
                 </div>
             </div>
+
+            <div class="d-flex bd-highlight mb-3">
+                <div class="ms-auto p-2 bd-highlight">
+                    <button class="btn btn-outline-dark" @click="onDash">GO TO DASHBOARD</button>
+                </div>
+                    
+                <div class="ms-auto p-2 bd-highlight">
+                    <button class="btn btn-primary" @click="onAdd">ADD ANOTHER CAR</button>
+                </div>
+            </div>
         </section>
     </div>
 </template>
@@ -118,7 +128,7 @@ export default {
     computed: {
         getModel() {
             return this.model.find(
-                (model) => model.name === this.car.title
+                (model) => model.name === this.car.model
             )?.value;
         },
         getAddon() {
@@ -130,6 +140,12 @@ export default {
     methods: {
         onEdit: function () {
             this.$router.push("addform");
+        },
+        onAdd: function () {
+            this.$router.push("addform");
+        },
+        onDash: function () {
+            this.$router.push("dashboard");
         },
     },
     async mounted() {
