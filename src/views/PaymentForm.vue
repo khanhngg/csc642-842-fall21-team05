@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable */ 
 <template>
   <div class="form">
     <h1>
@@ -14,7 +14,7 @@
           <br />
           <div class="error-messages" v-if="nameError">{{nameError}}</div><br/>
           </h2>
-
+        
           <h2>
             <span class = "section-title">* Billing Address </span><br/>
             <input v-model="userStreet" placeholder="Enter bulding number and street" id="user-street" class="address" required />
@@ -72,6 +72,17 @@
               <option>2032</option>
             </select>
             <br/><br/>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+            <div class = "terms">
+              <input type="checkbox" v-model="terms" required>
+              <label class = "checkboxText"> Accept terms and Conditions </label>
+              <div class="error-messages" v-if="termsError">{{termsError}}</div><br/>
+          </div>   
           </h2>
 
         </div>
@@ -79,9 +90,6 @@
       
     <div class = "submit">
        <button class="btn btn-primary-theme" type="submit" v-on:click="submitButton()">Submit</button>
-    </div>
-    <div class = "reset">
-    <button class="btn btn-primary-theme" type="clear" id="clearBtn" v-on:click="clearButton()" >Clear</button>
     </div>
     <button class="btn btn-primary-theme" type="back" id="backBtn" v-on:click="goBackButton()">Back</button>
     <div class="error-messages" v-if="overallError">{{overallError}}</div><br/>
@@ -103,7 +111,8 @@
 
           @keypress = "atPressed"
 */
-import { createApp } from 'vue'
+
+
 
 
 export default {
@@ -283,21 +292,6 @@ export default {
       }
     },
 
-    clearButton: function () {
-
-      //Data Field var
-      this.name = "";
-      this.userStreet = "",
-      this.userCity = "",
-      this.userState = "",
-      this.userZipCode = "",
-
-      //Error Messages
-      this.nameError = "",
-      
-      //Data Field Border color
-      document.getElementById('name').style.borderColor = 'black';
-    }, 
   },
   components: {
    
@@ -331,10 +325,6 @@ input{
   transition: background-color 0.5s ease-out;
 }
 
-input:focus:invalid {
-  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
-  background-size: 25px;
-}
 
 input[id = 'user-street']{
   width: 375px;
@@ -347,6 +337,7 @@ input[class = 'phone']{
   text-align: center;
   padding: 3px; 
 }
+
 .checkboxText{
   font-size: 80%; 
 }
@@ -381,13 +372,10 @@ body > div {
   width: 90%;
   margin: 0 auto;
 }
-h1 {
-  background-color: rgb(240, 239, 239);
-  border-radius: 2%;
-  padding: 77px 30px;
-}
+
 h2 {
   background-color: white;
+  border: 1px solid black;
   border-radius: 2%;
   margin-left: 15%;
   margin-right: 15%;
