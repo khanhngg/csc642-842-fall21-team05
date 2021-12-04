@@ -11,8 +11,24 @@
         border-top
       "
     >
-      <p class="col-md-4 mb-0 text-muted">CarToGo, SFSU CSC 642-842</p>
-      <ul class="nav col justify-content-end">
+      <p class="col-md-4 mb-0 fw-bold">CarToGo, SFSU CSC 642-842</p>
+      <div class="d-none d-md-inline">
+        <ul class="nav col justify-content-end">
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">How It Works</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">Terms & Conditions</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <ul class="nav col-12 d-block d-md-none">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">How It Works</a>
         </li>
