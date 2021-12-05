@@ -7,6 +7,9 @@ import Profile from "../views/Profile.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
+import PaymentForm from "../views/PaymentForm.vue";
+import PaymentFormResult from "../views/PaymentFormResult.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [
   {
@@ -51,6 +54,24 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+  },
+  //Update Payment Form
+  {
+    path: "/paymentform",
+    name: "PaymentForm",
+    component: PaymentForm,
+  },
+  //Result of Payment Form
+  {
+    path: "/paymentformresult",
+    name: "PaymentFormResult",
+    component: PaymentFormResult,
+  },
+  //404 page
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 

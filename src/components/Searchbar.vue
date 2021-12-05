@@ -7,13 +7,18 @@
 
   <!-- Search bar -->
   <form class="d-flex" @submit.prevent="handleSubmit">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
     <button class="btn btn-primary-theme" type="submit">Search</button>
   </form>
 
   <!-- Toggle switch -->
   <div class="form-check form-switch mt-2 mb-5">
-    <input class="form-check-input" type="checkbox" role="switch" checked>
+    <input class="form-check-input" type="checkbox" role="switch" checked />
     <label class="form-check-label">Same pickup & return location</label>
   </div>
 </template>
@@ -21,9 +26,7 @@
 <script>
 export default {
   name: "Searchbar",
-  props: {
-
-  },
+  props: {},
   data() {
     return {
       searchQuery: {
@@ -31,16 +34,13 @@ export default {
           from: "",
           to: "",
         },
-
       },
-    }
+    };
   },
   methods: {
-    handleSubmit() {
-
-    }
+    handleSubmit() {},
   },
-}
+};
 </script>
 
 <style scoped>

@@ -12,7 +12,13 @@
           placeholder="Search"
           aria-label="Search"
         />
-        <router-link :to="{ name: 'Search'}" tag="button" class="btn btn-outline-success" type="submit">Search</router-link>
+        <router-link
+          :to="{ name: 'Search' }"
+          tag="button"
+          class="btn btn-outline-success"
+          type="submit"
+          >Search</router-link
+        >
       </form>
 
       <!-- Hamburger menu on mobile -->
@@ -30,7 +36,10 @@
 
       <!-- TODO - move this to opens up under LOGO on mobile -->
       <!-- Nav links -->
-      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
         <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'About' }"
@@ -47,14 +56,26 @@
 
       <!-- User dropdown -->
       <div v-if="isLoggedIn" class="btn-group">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+        <a
+          href="#"
+          class="d-block link-dark text-decoration-none dropdown-toggle"
+          id="dropdownUser2"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://github.com/mdo.png"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><a class="dropdown-item" href="#">Payments</a></li>
           <li><a class="dropdown-item" href="#">My Rentals</a></li>
-          <li><hr class="dropdown-divider"></li>
+          <li><hr class="dropdown-divider" /></li>
           <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
@@ -73,7 +94,7 @@ export default {
       type: Boolean,
       default: true,
     },
-},
+  },
 };
 </script>
 
@@ -85,5 +106,4 @@ export default {
 .logo-text:hover {
   color: var(--dark-purple);
 }
-
 </style>
