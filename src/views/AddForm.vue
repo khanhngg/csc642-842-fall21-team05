@@ -242,8 +242,12 @@
                             <input class="form-control" type="file" @change="onFileChange" id="formFile">
                         </div>
                         <div v-else>
-                            <img :src="car.image" />
-                            <button @click="removeImage">Remove image</button>
+                            <div>
+                                <img class="img-max"  :src="car.image" />
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-dark" @click="removeImage">Remove image</button>
+                            </div>
                         </div>
                     </div>
 
@@ -276,7 +280,7 @@
             
             <div class="d-flex bd-highlight mb-3">
                 <div class="p-2 bd-highlight">
-                    <button class="btn btn-outline-dark" @click="onCancel">Cancel</button>
+                    <button class="btn btn-outline-dark" @click.prevent="onCancel">Cancel</button>
                 </div>
 
                 <div class="p-2 bd-highlight" >
@@ -412,7 +416,10 @@ export default {
     },
     methods: {
         onCancel: function () {
-            this.$router.push("dashboard");
+            if(confirm("Your page is not saved. Do you really want to leave?")){
+                this.$nextTick(() => { this.v$.$reset() })
+                this.$router.push("dashboard");
+            } 
         },
         onClear: function () {
             this.car.id = "";
@@ -483,12 +490,6 @@ export default {
 .form-label {
   font-weight: 600;
 }
-.img {
-  width: 30%;
-  margin: auto;
-  display: block;
-  margin-bottom: 10px;
-}
 .invalid-message {
   margin-top: 0.25rem;
   font-size: 0.875em;
@@ -502,5 +503,9 @@ export default {
 .invalid-field:focus {
   border-color: #dc3545;
   box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
+}
+.img-max {
+  max-width: 300px;
+  width:100%;
 }
 </style>
