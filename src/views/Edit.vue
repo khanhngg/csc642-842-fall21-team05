@@ -1,12 +1,12 @@
 <template>
   <div class="container form-container">
-    <h1 class="text-center fw-bold text-uppercase">Add a car</h1>
-    <p class="form-text fw-bold mb-4">* Required to add a car</p>
+    <h1 class="text-center fw-bold text-uppercase">Edit a car</h1>
+    <p class="form-text fw-bold mb-4">* Required to edit a car</p>
     <form class="g-3" novalidate>
       <section class="row form-section mb-4">
         <h4 class="fw-bold">CAR DETAILS</h4>
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Make *</label>
             <select
               v-model="car.make"
@@ -29,14 +29,14 @@
                 {{ error.$message }}
               </p>
             </div>
-            <p class="form-text mb-0">
+            <p class="form-text mb-4">
               <strong>Make:</strong> The brand of the vehicle e.g. Honda
             </p>
           </div>
         </div>
 
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Model *</label>
             <select
               class="form-select"
@@ -62,14 +62,14 @@
                 {{ error.$message }}
               </p>
             </div>
-            <p class="form-text mb-0">
+            <p class="form-text mb-4">
               <strong>Model:</strong> The name of a car product e.g. Civic
             </p>
           </div>
         </div>
 
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Year *</label>
             <select
               class="form-select"
@@ -78,11 +78,7 @@
               required
             >
               <option disabled value="">Select vehicle year</option>
-              <option
-                v-for="year in years.slice().reverse()"
-                :key="year"
-                :value="year"
-              >
+              <option v-for="year in years" :key="year" :value="year">
                 {{ year }}
               </option>
             </select>
@@ -95,7 +91,7 @@
                 {{ error.$message }}
               </p>
             </div>
-            <p class="form-text mb-0">
+            <p class="form-text mb-4">
               <strong>Year:</strong> Year of manufacture
             </p>
           </div>
@@ -177,7 +173,7 @@
         </div>
 
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Fuel Type *</label>
             <select
               class="form-select"
@@ -207,7 +203,7 @@
         </div>
 
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">MPG *</label>
             <input
               type="number"
@@ -233,7 +229,7 @@
       <section class="row form-section mb-4">
         <h4 class="fw-bold">CAR FEATURES</h4>
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Door No *</label>
             <select
               class="form-select"
@@ -258,7 +254,7 @@
         </div>
 
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Seat No *</label>
             <select
               class="form-select"
@@ -288,7 +284,7 @@
         </div>
 
         <div class="col-12 mb-3">
-          <div class="col-12 col-md-6">
+          <div class="col-4">
             <label class="form-label">Suitcase No *</label>
             <select
               class="form-select"
@@ -311,7 +307,7 @@
                 {{ error.$message }}
               </p>
             </div>
-            <p class="form-text mb-0">
+            <p class="form-text mb-4">
               <strong>Suitcase No:</strong> Numbers of suitcases fit in a car
             </p>
           </div>
@@ -372,6 +368,7 @@
 
         <div class="col-12 mb-3">
           <label for="formFile" class="form-label">Add Pictures of car</label>
+
           <div v-if="!car.image">
             <p>Select an image</p>
             <input
@@ -386,7 +383,7 @@
               <img class="img-max" :src="car.image" />
             </div>
             <div>
-              <button class="btn btn-secondary-theme" @click="removeImage">
+              <button class="btn btn-outline-dark" @click="removeImage">
                 Remove image
               </button>
             </div>
@@ -469,12 +466,12 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, minValue } from "@vuelidate/validators";
-import carsData from "../data/carsData.json";
 
 export default {
   data() {
     return {
       v$: useVuelidate(),
+      id: this.$route.params.id,
       car: {
         id: "",
         make: "",
@@ -487,11 +484,11 @@ export default {
         seat: "",
         suitcase: "",
         addon: [],
-        image: "", //generate random image in assets
+        image: "",
         price: "",
         description: "",
       },
-      cars: carsData,
+      cars: [],
     };
   },
 
@@ -534,10 +531,10 @@ export default {
     };
   },
   computed: {
-    isDisabled() {
+    isDisabled: function () {
       return !this.car.make;
     },
-    setModels() {
+    setModels: function () {
       var options = null;
       if (this.car.make === "Toyota") {
         options = [
@@ -566,7 +563,7 @@ export default {
       }
       return options;
     },
-    years() {
+    years: function () {
       const year = new Date().getFullYear();
       return Array.from(
         { length: year - 2009 },
@@ -574,16 +571,8 @@ export default {
       );
     },
   },
-  created() {
-    var cars = JSON.parse(localStorage.getItem("cars"));
-    if (cars) {
-      this.cars = cars;
-    } else {
-      localStorage.setItem("cars", JSON.stringify(this.cars));
-    }
-  },
   methods: {
-    onCancel() {
+    onCancel: function () {
       if (confirm("Your page is not saved. Are you sure you want to leave?")) {
         this.$nextTick(() => {
           this.v$.$reset();
@@ -591,7 +580,7 @@ export default {
         this.$router.push({ name: "Dashboard" });
       }
     },
-    onClear() {
+    onClear: function () {
       this.car.id = "";
       this.car.make = "";
       this.car.model = "";
@@ -613,16 +602,10 @@ export default {
     async onSubmit() {
       await this.v$.$touch();
       if (!this.v$.$invalid) {
-        if (this.cars.length > 0) {
-          var lastCar = this.cars[this.cars.length - 1];
-          this.car.id = lastCar.id + 1;
-        } else {
-          this.card.id = 0;
-        }
-        this.cars.push(this.car);
+        this.cars[this.cars.indexOf(this.car)] = this.car;
         localStorage.setItem("cars", JSON.stringify(this.cars));
 
-        this.$router.push({ name: "AddSummary" });
+        this.$router.push({ name: "EditSummary" });
       } else {
         return;
       }
@@ -631,6 +614,8 @@ export default {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
       this.createImage(files[0]);
+      this.car.image = files[0].name;
+      console.log(files[0].name);
     },
     createImage(file) {
       var reader = new FileReader();
@@ -645,6 +630,17 @@ export default {
       this.car.image = "";
     },
   },
+  async created() {
+    // parse local storage to get form data
+    if (localStorage.getItem("cars")) {
+      try {
+        this.cars = JSON.parse(localStorage.getItem("cars"));
+        this.car = this.cars.find((car) => car.id == this.id);
+      } catch (e) {
+        localStorage.removeItem("cars");
+      }
+    }
+  },
 };
 </script>
 
@@ -658,7 +654,12 @@ export default {
   border: solid #dee2e6;
   border-width: 1px;
 }
-
+.form-container {
+  max-width: 820px;
+}
+.form-label {
+  font-weight: 600;
+}
 .invalid-message {
   margin-top: 0.25rem;
   font-size: 0.875em;
@@ -673,7 +674,6 @@ export default {
   border-color: #dc3545;
   box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
 }
-
 .img-max {
   max-width: 300px;
   width: 100%;
