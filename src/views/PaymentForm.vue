@@ -1,70 +1,120 @@
-/* eslint-disable */ 
+/* eslint-disable */
 <template>
   <div class="form">
     <h1>
       &emsp;{{ title }}
-      <form >        
+      <form>
         <div id="v-model-select" class="form">
-          
-          <label class="hint-text">Astriks(*) - Input in Field is Required</label><br/>
+          <label class="hint-text"
+            >Astriks(*) - Input in Field is Required</label
+          ><br />
           <h2>
-          
-          <span class = "section-title"> Personal Information </span><br/>
-          <div class="row mb-3">
-            <span class = "field-title">* Name:</span><br/>
-            <div class="col-sm-10">
-              <input v-model="name" placeholder="Enter Name" id="name" required/>
+            <span class="section-title"> Personal Information </span><br />
+            <div class="row mb-3">
+              <span class="field-title">* Name:</span><br />
+              <div class="col-sm-10">
+                <input
+                  v-model="name"
+                  placeholder="Enter Name"
+                  id="name"
+                  required
+                />
+              </div>
+              <div class="error-messages" v-if="nameError">{{ nameError }}</div>
+              <br />
             </div>
-            <div class="error-messages" v-if="nameError">{{nameError}}</div><br/>
-          </div>
-          </h2>
-        
-          <h2>
-            <span class = "section-title">* Billing Address </span><br/>
-            <span class = "field-title">* Street Address:</span><br/>
-            <input v-model="userStreet" placeholder="Enter bulding number and street" id="user-street" class="address" required />
-            <div class="error-messages" v-if="streetError">{{streetError}}</div><br/>
-            <span class = "field-title"> Apt/Suite Number:</span><br/>
-            <input v-model="userAptNum" placeholder="Enter Apt number " id="user-aptNum" class="address" />
-            <div class="error-messages" v-if="aptNumError">{{aptNumError}}</div><br/>
-            <span class = "field-title">* City:</span><br/>
-            <input v-model="userCity" placeholder="Enter City" id="user-city" class="address" required />
-            <div class="error-messages" v-if="cityError">{{cityError}}</div><br/>
-            <span class = "field-title">* State:</span><br/>
-            <input v-model="userState" placeholder="Enter State" id="user-state" class="address" required/>
-            <div class="error-messages" v-if="stateError">{{stateError}}</div><br/>
-            <span class = "field-title">* ZipCode:</span><br/>
-            <input v-model="userZipCode" placeholder="Enter ZipCode" id="user-zipcode" class="address" required/>
-            <div class="error-messages" v-if="zipcodeError">{{zipcodeError}}</div><br/>
-            <br/>
           </h2>
 
           <h2>
-            <span class = "section-title"> Payment Information </span><br/>
-            <span class = "field-title">* Card Number: </span><br/>
-            <input v-model="cardNum" placeholder="Enter card number" id="user-card" class="payment" required />
-            <br/>
-            <span class = "field-title">* Expiration Date: </span><br/>
-            <select v-model="cardMonth" id="card-month" class = "expiration">
-              <option disabled value=""> Month </option>
-              <option> 01</option>
-              <option> 02 </option>
-              <option> 03 </option>
-              <option> 04 </option>
-              <option> 05 </option>
-              <option> 06 </option>
-              <option> 07</option>
-              <option> 08 </option>
-              <option> 09 </option>
-              <option> 10 </option>
-              <option> 11 </option>
-              <option> 12 </option>
-        
+            <span class="section-title">* Billing Address </span><br />
+            <span class="field-title">* Street Address:</span><br />
+            <input
+              v-model="userStreet"
+              placeholder="Enter bulding number and street"
+              id="user-street"
+              class="address"
+              required
+            />
+            <div class="error-messages" v-if="streetError">
+              {{ streetError }}
+            </div>
+            <br />
+            <span class="field-title"> Apt/Suite Number:</span><br />
+            <input
+              v-model="userAptNum"
+              placeholder="Enter Apt number "
+              id="user-aptNum"
+              class="address"
+            />
+            <div class="error-messages" v-if="aptNumError">
+              {{ aptNumError }}
+            </div>
+            <br />
+            <span class="field-title">* City:</span><br />
+            <input
+              v-model="userCity"
+              placeholder="Enter City"
+              id="user-city"
+              class="address"
+              required
+            />
+            <div class="error-messages" v-if="cityError">{{ cityError }}</div>
+            <br />
+            <span class="field-title">* State:</span><br />
+            <input
+              v-model="userState"
+              placeholder="Enter State"
+              id="user-state"
+              class="address"
+              required
+            />
+            <div class="error-messages" v-if="stateError">{{ stateError }}</div>
+            <br />
+            <span class="field-title">* ZipCode:</span><br />
+            <input
+              v-model="userZipCode"
+              placeholder="Enter ZipCode"
+              id="user-zipcode"
+              class="address"
+              required
+            />
+            <div class="error-messages" v-if="zipcodeError">
+              {{ zipcodeError }}
+            </div>
+            <br />
+            <br />
+          </h2>
 
+          <h2>
+            <span class="section-title"> Payment Information </span><br />
+            <span class="field-title">* Card Number: </span><br />
+            <input
+              v-model="cardNum"
+              placeholder="Enter card number"
+              id="user-card"
+              class="payment"
+              required
+            />
+            <br />
+            <span class="field-title">* Expiration Date: </span><br />
+            <select v-model="cardMonth" id="card-month" class="expiration">
+              <option disabled value="">Month</option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
             </select>
-            <span>  </span>
-            <select v-model="cardYear" id="card-year"  class = "expiration">
-              <option disabled value=""> Year </option>
+            <span> </span>
+            <select v-model="cardYear" id="card-year" class="expiration">
+              <option disabled value="">Year</option>
               <option>2022</option>
               <option>2023</option>
               <option>2024</option>
@@ -77,34 +127,53 @@
               <option>2031</option>
               <option>2032</option>
             </select>
-            <br/><br/>
+            <br /><br />
             <div class="col-12">
-            <span class = "field-title">* Security Code:</span><br/>
-            <input v-model="cardCode" placeholder="Enter 3 Digit Security Code" required/>
-            <br/>
-            
-              <input type="checkbox" v-model="defaultPay">
-              <label class = "checkboxText"> Set as Default Payment </label>
-              <div class="error-messages" v-if="termsError">{{termsError}}</div><br/>
-          </div>   
-          </h2>
+              <span class="field-title">* Security Code:</span><br />
+              <input
+                v-model="cardCode"
+                placeholder="Enter 3 Digit Security Code"
+                required
+              />
+              <br />
 
+              <input type="checkbox" v-model="defaultPay" />
+              <label class="checkboxText"> Set as Default Payment </label>
+              <div class="error-messages" v-if="termsError">
+                {{ termsError }}
+              </div>
+              <br />
+            </div>
+          </h2>
         </div>
       </form>
-      
-    <div class = "submit">
-       <button class="btn btn-primary-theme" type="submit" v-on:click="submitButton()">Submit</button>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary-theme" type="back" id="backBtn" v-on:click="goBackButton()">Back</button>
-      <div class="error-messages" v-if="overallError">{{overallError}}</div><br/>
-    </div>
-  </h1>
+
+      <div class="submit">
+        <button
+          class="btn btn-primary-theme"
+          type="submit"
+          v-on:click="submitButton()"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="col-12">
+        <button
+          class="btn btn-primary-theme"
+          type="back"
+          id="backBtn"
+          v-on:click="goBackButton()"
+        >
+          Back
+        </button>
+        <div class="error-messages" v-if="overallError">{{ overallError }}</div>
+        <br />
+      </div>
+    </h1>
   </div>
 </template>
 
 <script>
-
 // @ is an alias to /src
 //<label class="form-label">Contact Information: </label><br/><br/>
 //<label class="form-label">Additional Information: </label><br/><br/>
@@ -118,13 +187,10 @@
           @keypress = "atPressed"
 */
 
-
-
-
 export default {
-  name: 'PaymentForm',
-  data(){
-    return{
+  name: "PaymentForm",
+  data() {
+    return {
       //Page Variables
       title: "Update Payment Form",
 
@@ -153,109 +219,111 @@ export default {
       zipcodeError: "",
 
       cardNumError: "",
- 
-    }
+    };
   },
   methods: {
-
-    nameValidation: function(){
+    nameValidation: function () {
       var name = this.name;
 
-      if(name == '' || name.length > 40){
-        document.getElementById('firstname').style.borderColor = 'red';
-        this.nameError = name == "" ? 
-        "You must enter your name displayed on the card!" : "Name is too long, must be 40 characters or less"
+      if (name == "" || name.length > 40) {
+        document.getElementById("firstname").style.borderColor = "red";
+        this.nameError =
+          name == ""
+            ? "You must enter your name displayed on the card!"
+            : "Name is too long, must be 40 characters or less";
         return false;
       }
-  
+
       this.nameError = "";
-      document.getElementById('name').style.borderColor = 'black';
-      return true; 
+      document.getElementById("name").style.borderColor = "black";
+      return true;
     },
-     addressValidation: function(){
-        var street = this.userStreet;
-        var aptNum = this.userAptNum;
-        var city = this.userCity;
-        var state = this.userState;
-        var zip = this.userZipCode;
-        var invalid = 0;
+    addressValidation: function () {
+      var street = this.userStreet;
+      var aptNum = this.userAptNum;
+      var city = this.userCity;
+      var state = this.userState;
+      var zip = this.userZipCode;
+      var invalid = 0;
 
-        if(street.length > 40 || street.length == 0 ){
-          document.getElementById('user-street').style.borderColor = 'red';
-          this.streetError = street.length > 40 ? 
-          "Street address too long, must to be less than 40 characters!" : "You must fill out the street address!";
-          invalid = 1;
-        }
-        else{
-           this.streetError = "";
-            document.getElementById('user-street').style.borderColor = 'black';
-        }
-
-        if(aptNum.length > 40){
-          document.getElementById('user-aptNum').style.borderColor = 'red';
-          this.aptNumError = "Apt Number is too long, must to be less than 40 characters!";
-          invalid = 1;
-        }
-        else{
-           this.aptNumError = "";
-            document.getElementById('user-aptNum').style.borderColor = 'black';
-        }
-        if(city.length > 40 || city.length == 0){
-          document.getElementById('user-city').style.borderColor = 'red';
-          this.cityError = city.length > 40 ? 
-          "City input too long, must to be less than 40 characters!" : "You must fill out the City textbox!";
-          invalid = 1;
-        }
-        else{
-            this.cityError = "";
-           document.getElementById('user-city').style.borderColor = 'black';
-        }
-        if(state.length > 40 || state.length == 0){
-          document.getElementById('user-state').style.borderColor = 'red';
-          this.stateError = state.length > 40 ? 
-          "State entry too long, must to be less than 40 characters!" : "You must fill out the State textbox!";
-          invalid = 1;
-        }
-        else{
-            this.stateError = "";
-             document.getElementById('user-state').style.borderColor = 'black';
-        }
-
-        if((/[a-zA-Z]/).test(this.userZipCode)){
-          document.getElementById('user-zipcode').style.borderColor = 'red';
-          this.zipcodeError = "The ZipCode cannot contain letter/s!"
-        }
-        else if(zip.length > 5 || zip.length == 0){
-          document.getElementById('user-zipcode').style.borderColor = 'red';
-          this.zipcodeError = zip.length > 5 ? 
-          "ZipCode entry too long, must to be 5 characters!" : "You must fill out the ZipCode textbox!";
-          invalid = 1;
-        }
-        else{
-            this.zipcodeError = "";
-            document.getElementById('user-zipcode').style.borderColor = 'black';
-        }
-
-        if(invalid == 1){
-          return false;
-        }
-      
+      if (street.length > 40 || street.length == 0) {
+        document.getElementById("user-street").style.borderColor = "red";
+        this.streetError =
+          street.length > 40
+            ? "Street address too long, must to be less than 40 characters!"
+            : "You must fill out the street address!";
+        invalid = 1;
+      } else {
         this.streetError = "";
-        this.cityError = "";
-      
-        this.zipcodeError = "";
+        document.getElementById("user-street").style.borderColor = "black";
+      }
 
-        document.getElementById('user-street').style.borderColor = 'black';
-      
-        return true;
-        
-     },
-    goBackButton(){
+      if (aptNum.length > 40) {
+        document.getElementById("user-aptNum").style.borderColor = "red";
+        this.aptNumError =
+          "Apt Number is too long, must to be less than 40 characters!";
+        invalid = 1;
+      } else {
+        this.aptNumError = "";
+        document.getElementById("user-aptNum").style.borderColor = "black";
+      }
+      if (city.length > 40 || city.length == 0) {
+        document.getElementById("user-city").style.borderColor = "red";
+        this.cityError =
+          city.length > 40
+            ? "City input too long, must to be less than 40 characters!"
+            : "You must fill out the City textbox!";
+        invalid = 1;
+      } else {
+        this.cityError = "";
+        document.getElementById("user-city").style.borderColor = "black";
+      }
+      if (state.length > 40 || state.length == 0) {
+        document.getElementById("user-state").style.borderColor = "red";
+        this.stateError =
+          state.length > 40
+            ? "State entry too long, must to be less than 40 characters!"
+            : "You must fill out the State textbox!";
+        invalid = 1;
+      } else {
+        this.stateError = "";
+        document.getElementById("user-state").style.borderColor = "black";
+      }
+
+      if (/[a-zA-Z]/.test(this.userZipCode)) {
+        document.getElementById("user-zipcode").style.borderColor = "red";
+        this.zipcodeError = "The ZipCode cannot contain letter/s!";
+      } else if (zip.length > 5 || zip.length == 0) {
+        document.getElementById("user-zipcode").style.borderColor = "red";
+        this.zipcodeError =
+          zip.length > 5
+            ? "ZipCode entry too long, must to be 5 characters!"
+            : "You must fill out the ZipCode textbox!";
+        invalid = 1;
+      } else {
+        this.zipcodeError = "";
+        document.getElementById("user-zipcode").style.borderColor = "black";
+      }
+
+      if (invalid == 1) {
+        return false;
+      }
+
+      this.streetError = "";
+      this.cityError = "";
+
+      this.zipcodeError = "";
+
+      document.getElementById("user-street").style.borderColor = "black";
+
+      return true;
+    },
+    goBackButton() {
       this.$router.go(-1);
     },
-    persist(){
+    persist() {
       localStorage.name = this.name;
-      
+
       localStorage.userStreet = this.userStreet;
       localStorage.userAptNum = this.userAptNum;
       localStorage.userCity = this.userCity;
@@ -269,41 +337,35 @@ export default {
 
       localStorage.defaultPay = this.defaultPay;
 
-      this.$router.push({name: 'PaymentFormResult'});
+      this.$router.push({ name: "PaymentFormResult" });
     },
-    submitButton: function() {
+    submitButton: function () {
       var allValid;
       var goAhead = 0;
       alert("CLICKED");
       allValid = this.nameValidation();
-      if(allValid == false){
+      if (allValid == false) {
         goAhead = 1;
       }
       allValid = this.addressValidation();
-      if(allValid == false){
+      if (allValid == false) {
         goAhead = 1;
       }
 
-      if(goAhead === 0){
+      if (goAhead === 0) {
         this.overallError = "";
         this.persist();
-      }
-      else{
-        this.overallError = "You must fix the highlighted fields before continuing!";
+      } else {
+        this.overallError =
+          "You must fix the highlighted fields before continuing!";
       }
     },
-
   },
-  components: {
-   
-  },
-  
-}
-
+  components: {},
+};
 </script>
 
 <style scoped>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -313,10 +375,10 @@ export default {
   margin-top: 60px;
   border-color: white;
 }
-@import'~bootstrap/dist/css/bootstrap.css';
+@import "~bootstrap/dist/css/bootstrap.css";
 
 /*Input styles*/
-input{
+input {
   border: 2px solid;
   border-radius: 4px;
   background-color: rgb(250, 248, 248);
@@ -326,26 +388,25 @@ input{
   transition: background-color 0.5s ease-out;
 }
 
-
-input[id = 'user-street']{
+input[id="user-street"] {
   width: 375px;
 }
-input[id = 'user-city']{
+input[id="user-city"] {
   width: 250px;
 }
-input[class = 'phone']{
+input[class="phone"] {
   width: 20%;
   text-align: center;
-  padding: 3px; 
+  padding: 3px;
 }
 
-.checkboxText{
-  font-size: 80%; 
+.checkboxText {
+  font-size: 80%;
 }
-input[id = 'agree']{
+input[id="agree"] {
   margin-right: 60%;
 }
-input[type = 'checkbox']{
+input[type="checkbox"] {
   cursor: pointer;
 }
 select {
@@ -359,13 +420,12 @@ select {
   transition: background-color 0.5s ease-out;
 }
 
-
 /*Page style*/
 body {
   height: 100%;
   width: 100%;
   margin: 0;
-  background-color: #7678ED;
+  background-color: #7678ed;
   text-align: center;
 }
 body > div {
@@ -383,31 +443,30 @@ h2 {
   text-align: left;
   padding: 3%;
 }
-#clearBtn{
+#clearBtn {
   background-color: grey;
 }
-#backBtn{
+#backBtn {
   color: black;
   background-color: white;
   border-color: black;
 }
 /*Class Styles*/
-.field-title{
+.field-title {
   font-size: 75%;
 }
-.section-title{
+.section-title {
   font-size: 100%;
 }
 
-.terms-agree{
+.terms-agree {
   font-size: 16px;
   text-align: left;
 }
 
-.hint-text{
+.hint-text {
   font-size: 14px;
   color: rgb(95, 95, 95);
-  
 }
 
 .form {
@@ -420,17 +479,16 @@ h2 {
   overflow-x: auto;
 }
 
-.error-messages{
+.error-messages {
   font-size: 16px;
-  color: rgb(180, 12, 12)
+  color: rgb(180, 12, 12);
 }
 
 .btn-primary-theme {
   float: right;
   margin-right: 20%;
- 
-  width: 10%;
 
+  width: 10%;
 }
 
 .clear-button {
@@ -552,5 +610,3 @@ h2 {
           </div> 
 */
 </style>
-
- 

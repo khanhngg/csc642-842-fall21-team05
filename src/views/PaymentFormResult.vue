@@ -2,69 +2,73 @@
 
 <template>
   <div class="PaymentResult">
+    <h2 class="col-8">
+      <label class="col-6"> Payment Updated </label><br />
 
-      <h2 class = "col-8">
-      <label class = "col-6"> Payment Updated </label><br/>
-      
-      <div class="field-title" > 
-        <label class = "input-title">  Name: </label>
-        <label class = "input">&nbsp;{{name}}</label>
-        </div><br/>
+      <div class="field-title">
+        <label class="input-title"> Name: </label>
+        <label class="input">&nbsp;{{ name }}</label>
+      </div>
+      <br />
 
-      
+      <div class="field-title" v-if="userStreet">
+        <label class="input-title">Address: </label>
 
-      <div class="field-title" v-if="userStreet"> 
-        <label class = "input-title">Address: </label>
-       
-        <label class = "input"> &nbsp;{{userStreet}} </label>
-      
-        <label class = "input"> &nbsp;{{userAptNum }} </label>
-        
-        <label class = "input"> &nbsp;{{userCity }} </label>
-          
-        <label class = "input"> &nbsp;{{userState}}</label>
-        
-        <label class = "input"> &nbsp;{{userZipCode}}</label>
+        <label class="input"> &nbsp;{{ userStreet }} </label>
+
+        <label class="input"> &nbsp;{{ userAptNum }} </label>
+
+        <label class="input"> &nbsp;{{ userCity }} </label>
+
+        <label class="input"> &nbsp;{{ userState }}</label>
+
+        <label class="input"> &nbsp;{{ userZipCode }}</label>
       </div>
 
-     
-        <label class = "input-title">Card Information: </label><br/>
-       
-        <label class = "input"> &nbsp; Card Number: {{cardNum}} </label><br/>
-      
-        <label class = "input"> &nbsp; Expiration Date: {{cardMonth }} / {{cardYear }} </label><br/>
-          
-        <label class = "input"> &nbsp; Security Code: ***</label><br/>
-        
-        <div class="field-title" v-if="defaultPay"> 
-        <label class = "input"> Set as Default Payment</label><br/>
-        </div>
-     
-    
-     
+      <label class="input-title">Card Information: </label><br />
+
+      <label class="input"> &nbsp; Card Number: {{ cardNum }} </label><br />
+
+      <label class="input">
+        &nbsp; Expiration Date: {{ cardMonth }} / {{ cardYear }} </label
+      ><br />
+
+      <label class="input"> &nbsp; Security Code: ***</label><br />
+
+      <div class="field-title" v-if="defaultPay">
+        <label class="input"> Set as Default Payment</label><br />
+      </div>
     </h2>
     <div class="row">
       <div class="col-md-10 offset-md-9">
-        <button class="btn btn-primary-theme" type="submit">Back To Payments</button>
+        <button class="btn btn-primary-theme" type="submit">
+          Back To Payments
+        </button>
       </div>
       <div class="col align-self-start">
-        <button class="btn btn-primary-theme" type="back" id="backBtn" v-on:click="goBackButton()">Back</button>
-        <div class="error-messages" v-if="overallError">{{overallError}}</div><br/>
-    </div>
+        <button
+          class="btn btn-primary-theme"
+          type="back"
+          id="backBtn"
+          v-on:click="goBackButton()"
+        >
+          Back
+        </button>
+        <div class="error-messages" v-if="overallError">{{ overallError }}</div>
+        <br />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  
   name: "Update Payment Form Result",
   data() {
     return {
       title: "Update Payment Form",
-     
-      name: '',
+
+      name: "",
 
       userStreet: "",
       userAptNum: "",
@@ -77,10 +81,10 @@ export default {
       cardYear: "",
       cardCode: "",
       defaultPay: "",
-    }
+    };
   },
   methods: {
-    goBackButton(){
+    goBackButton() {
       this.$router.go(-1);
     },
   },
@@ -105,7 +109,6 @@ export default {
       this.userZipCode = localStorage.userZipCode;
     }
 
-
     if (localStorage.cardNum) {
       this.cardNum = localStorage.cardNum;
     }
@@ -121,18 +124,17 @@ export default {
     if (localStorage.defaultPay) {
       this.defaultPay = localStorage.defaultPay;
     }
-   
   },
 };
 </script>
 
 <style scoped>
-#backBtn{
+#backBtn {
   color: black;
   background-color: white;
   border-color: black;
 }
-.page-title{
+.page-title {
   font-size: 125%;
   margin-left: 35%;
   padding: 10px 5px;
@@ -148,22 +150,21 @@ h2 {
   text-align: left;
   padding: 3%;
 }
-.input-title{
+.input-title {
   font-size: 100%;
   font-weight: 600;
 }
-.sub-input-title{
+.sub-input-title {
   font-style: italic;
   font-size: 100%;
   font-weight: 500;
 }
-.input{
+.input {
   font-weight: 300;
   font-style: normal;
-   font-size: 95%;
+  font-size: 95%;
 }
 .vue-map-container {
   height: 20rem;
 }
-
 </style>

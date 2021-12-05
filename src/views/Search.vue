@@ -2,7 +2,6 @@
   <!-- Search bar -->
   <Searchbar />
 
-
   <!-- Search Results count -->
   <h6 class="fw-bold text-uppercase">Showing 1-10 out of 50 cars</h6>
 
@@ -17,22 +16,31 @@
           <div class="mb-3 py-3 border-bottom">
             <h6 class="fw-bold">Car Types</h6>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="sedan" id="sedan">
-              <label class="form-check-label" for="sedan">
-                Sedan
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="sedan"
+                id="sedan"
+              />
+              <label class="form-check-label" for="sedan"> Sedan </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="suv" id="suv">
-              <label class="form-check-label" for="suv">
-                SUV
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="suv"
+                id="suv"
+              />
+              <label class="form-check-label" for="suv"> SUV </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="truck" id="truck">
-              <label class="form-check-label" for="truck">
-                Truck
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="truck"
+                id="truck"
+              />
+              <label class="form-check-label" for="truck"> Truck </label>
             </div>
           </div>
 
@@ -40,28 +48,40 @@
           <div class="mb-3 pb-3 border-bottom">
             <h6 class="fw-bold">Capacity</h6>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="moreThan2" id="moreThan2">
-              <label class="form-check-label" for="moreThan2">
-                2+
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="moreThan2"
+                id="moreThan2"
+              />
+              <label class="form-check-label" for="moreThan2"> 2+ </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="moreThan4" id="moreThan4">
-              <label class="form-check-label" for="moreThan4">
-                4+
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="moreThan4"
+                id="moreThan4"
+              />
+              <label class="form-check-label" for="moreThan4"> 4+ </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="moreThan6" id="moreThan6">
-              <label class="form-check-label" for="moreThan6">
-                6+
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="moreThan6"
+                id="moreThan6"
+              />
+              <label class="form-check-label" for="moreThan6"> 6+ </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="moreThan8" id="moreThan8">
-              <label class="form-check-label" for="moreThan8">
-                8+
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="moreThan8"
+                id="moreThan8"
+              />
+              <label class="form-check-label" for="moreThan8"> 8+ </label>
             </div>
           </div>
 
@@ -70,13 +90,24 @@
             <h6 class="fw-bold">Price Range</h6>
             TODO - slider
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
               <label class="form-check-label" for="flexCheckDefault">
                 Default checkbox
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckChecked"
+                checked
+              />
               <label class="form-check-label" for="flexCheckChecked">
                 Checked checkbox
               </label>
@@ -90,34 +121,58 @@
         <div v-for="car in cars" :key="car.id" class="card mb-3">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="../assets/hero-image.jpg" class="img-fluid rounded-start" alt="Car Image">
+              <img
+                src="../assets/hero-image.jpg"
+                class="img-fluid rounded-start"
+                alt="Car Image"
+              />
             </div>
             <div class="col-md-5">
               <div class="card-body">
                 <p class="card-title fw-bold fs-6">{{ car.type }}</p>
-                <p class="card-title text-uppercase fw-medium fs-5">{{ car.make }} {{ car.model }}</p>
-                <p class="">{{ car.seats }} seats <i class="mx-2 fas fa-circle" style="font-size: 7px"></i> {{ car.suitcases }} suitcases</p>
-                <hr style="max-width:45px">
-                <p class="card-text"><small class="text-muted">{{ car.description }}</small></p>
+                <p class="card-title text-uppercase fw-medium fs-5">
+                  {{ car.make }} {{ car.model }}
+                </p>
+                <p class="">
+                  {{ car.seats }} seats
+                  <i class="mx-2 fas fa-circle" style="font-size: 7px"></i>
+                  {{ car.suitcases }} suitcases
+                </p>
+                <hr style="max-width: 45px" />
+                <p class="card-text">
+                  <small class="text-muted">{{ car.description }}</small>
+                </p>
               </div>
             </div>
             <div class="col-md-3">
               <div class="card-body ps-5">
                 <p class="text-end fs-3 fw-bold mb-0">${{ car.price }} / day</p>
-                <p class="text-end"><small>${{getTotalPrice(car.id)}} total</small></p>
-                <button type="button" class="mt-4 w-100 btn btn-primary-theme fw-bold text-uppercase">Rent</button>
+                <p class="text-end">
+                  <small>${{ getTotalPrice(car.id) }} total</small>
+                </p>
+                <button
+                  type="button"
+                  class="
+                    mt-4
+                    w-100
+                    btn btn-primary-theme
+                    fw-bold
+                    text-uppercase
+                  "
+                >
+                  Rent
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-
   </section>
 </template>
 
 <script>
-import Searchbar from '@/components/Searchbar'
+import Searchbar from "@/components/Searchbar";
 
 export default {
   components: {
@@ -133,10 +188,11 @@ export default {
           make: "Honda",
           model: "Civic",
           seats: 5,
-          suitcases:2,
-          description: "An excellent mix of price and performance, our eco class is the way to go.",
+          suitcases: 2,
+          description:
+            "An excellent mix of price and performance, our eco class is the way to go.",
           price: 40,
-          duration: 7
+          duration: 7,
         },
         {
           id: 2,
@@ -144,10 +200,11 @@ export default {
           make: "Honda",
           model: "Civic",
           seats: 5,
-          suitcases:2,
-          description: "An excellent mix of price and performance, our eco class is the way to go.",
+          suitcases: 2,
+          description:
+            "An excellent mix of price and performance, our eco class is the way to go.",
           price: 40,
-          duration: 7
+          duration: 7,
         },
         {
           id: 3,
@@ -155,10 +212,11 @@ export default {
           make: "Honda",
           model: "Civic",
           seats: 5,
-          suitcases:2,
-          description: "An excellent mix of price and performance, our eco class is the way to go.",
+          suitcases: 2,
+          description:
+            "An excellent mix of price and performance, our eco class is the way to go.",
           price: 40,
-          duration: 7
+          duration: 7,
         },
         {
           id: 4,
@@ -166,10 +224,11 @@ export default {
           make: "Honda",
           model: "Civic",
           seats: 5,
-          suitcases:2,
-          description: "An excellent mix of price and performance, our eco class is the way to go.",
+          suitcases: 2,
+          description:
+            "An excellent mix of price and performance, our eco class is the way to go.",
           price: 40,
-          duration: 7
+          duration: 7,
         },
         {
           id: 5,
@@ -177,10 +236,11 @@ export default {
           make: "Honda",
           model: "Civic",
           seats: 5,
-          suitcases:2,
-          description: "An excellent mix of price and performance, our eco class is the way to go.",
+          suitcases: 2,
+          description:
+            "An excellent mix of price and performance, our eco class is the way to go.",
           price: 40,
-          duration: 7
+          duration: 7,
         },
         {
           id: 6,
@@ -188,22 +248,22 @@ export default {
           make: "Honda",
           model: "Civic",
           seats: 5,
-          suitcases:2,
-          description: "An excellent mix of price and performance, our eco class is the way to go.",
+          suitcases: 2,
+          description:
+            "An excellent mix of price and performance, our eco class is the way to go.",
           price: 40,
-          duration: 7
+          duration: 7,
         },
       ],
     };
   },
   methods: {
     getTotalPrice(carId) {
-      let car = this.cars.find(car => car.id == carId)
+      let car = this.cars.find((car) => car.id == carId);
       return car.price * car.duration;
-    }
+    },
   },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
