@@ -17,7 +17,11 @@
           </button>
         </div>
         <div class="col-12 col-md-6">
-          <img src="../assets/hero-image.jpg" class="img-fluid rounded" alt="hero image">
+          <img
+            src="../assets/hero-image.jpg"
+            class="img-fluid rounded"
+            alt="hero image"
+          />
         </div>
       </div>
     </section>
@@ -115,7 +119,9 @@
           </div>
           <div class="d-inline-block ms-3">
             <p class="fw-bold lh-1 mb-0">Free Cancellation</p>
-            <small class="fw-light fs-small text-muted">within the first 48hrs</small>
+            <small class="fw-light fs-small text-muted"
+              >within the first 48hrs</small
+            >
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-2">
@@ -124,7 +130,9 @@
           </div>
           <div class="d-inline-block ms-3">
             <p class="fw-bold lh-1 mb-0">Our Price Guaranteed</p>
-            <small class="fw-light fs-small text-muted">best prices for your budget</small>
+            <small class="fw-light fs-small text-muted"
+              >best prices for your budget</small
+            >
           </div>
         </div>
         <div class="col-12 col-lg-4 mb-2">
@@ -133,7 +141,9 @@
           </div>
           <div class="d-inline-block ms-3">
             <p class="fw-bold lh-1 mb-0">Cleaning Protocol</p>
-            <small class="fw-light fs-small text-muted">FDA compliant to ensure your safety</small>
+            <small class="fw-light fs-small text-muted"
+              >FDA compliant to ensure your safety</small
+            >
           </div>
         </div>
       </div>
@@ -142,7 +152,7 @@
 </template>
 
 <script>
-import Searchbar from '@/components/Searchbar'
+import Searchbar from "@/components/Searchbar";
 
 export default {
   name: "Home",
@@ -154,7 +164,7 @@ export default {
 
 <style scoped>
 .fs-small {
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
 .icon-container {

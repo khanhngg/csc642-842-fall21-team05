@@ -8,7 +8,13 @@
       <div class="col-sm-12 col-md-2 text-end mt-3">
         <!-- TODO -->
         <!-- route link to Edit Profile Page -->
-        <button class="btn btn-primary-theme btn-lg" type="submit" @click="$router.push('/')">EDIT</button>
+        <button
+          class="btn btn-primary-theme btn-lg"
+          type="submit"
+          @click="$router.push('/')"
+        >
+          EDIT
+        </button>
       </div>
     </div>
     <!-- Name -->
