@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="form">
     <h1>
@@ -195,20 +194,22 @@ export default {
       title: "Update Payment Form",
 
       //Data field variables
-      name: "",
+      userEmail: {
+        name: "",
 
-      userStreet: "",
-      userAptNum: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
+        userStreet: "",
+        userAptNum: "",
+        userCity: "",
+        userState: "",
+        userZipCode: "",
 
-      cardNum: "",
-      cardMonth: "",
-      cardYear: "",
-      cardCode: "",
-      defaultPay: "",
-
+        cardNum: "",
+        cardMonth: "",
+        cardYear: "",
+        cardCode: "",
+        defaultPay: "",
+      }
+      ,
       //ERROR MESSAGES
       nameError: "",
 
@@ -366,16 +367,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  border-color: white;
-}
-@import "~bootstrap/dist/css/bootstrap.css";
 
 /*Input styles*/
 input {
