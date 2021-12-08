@@ -134,9 +134,9 @@
                   {{ car.make }} {{ car.model }}
                 </p>
                 <p class="">
-                  {{ car.seats }} seats
+                  {{ car.seat }} seats
                   <i class="mx-2 fas fa-circle" style="font-size: 7px"></i>
-                  {{ car.suitcases }} suitcases
+                  {{ car.suitcase }} suitcases
                 </p>
                 <hr style="max-width: 45px" />
                 <p class="card-text">
@@ -173,94 +173,26 @@
 
 <script>
 import Searchbar from "@/components/Searchbar";
+import carsData from "../data/carsData.json";
 
 export default {
   components: {
     Searchbar,
   },
-  // TODO - get from static .json
   data() {
     return {
-      cars: [
-        {
-          id: 1,
-          type: "Sedan",
-          make: "Honda",
-          model: "Civic",
-          seats: 5,
-          suitcases: 2,
-          description:
-            "An excellent mix of price and performance, our eco class is the way to go.",
-          price: 40,
-          duration: 7,
-        },
-        {
-          id: 2,
-          type: "Sedan",
-          make: "Honda",
-          model: "Civic",
-          seats: 5,
-          suitcases: 2,
-          description:
-            "An excellent mix of price and performance, our eco class is the way to go.",
-          price: 40,
-          duration: 7,
-        },
-        {
-          id: 3,
-          type: "Sedan",
-          make: "Honda",
-          model: "Civic",
-          seats: 5,
-          suitcases: 2,
-          description:
-            "An excellent mix of price and performance, our eco class is the way to go.",
-          price: 40,
-          duration: 7,
-        },
-        {
-          id: 4,
-          type: "Sedan",
-          make: "Honda",
-          model: "Civic",
-          seats: 5,
-          suitcases: 2,
-          description:
-            "An excellent mix of price and performance, our eco class is the way to go.",
-          price: 40,
-          duration: 7,
-        },
-        {
-          id: 5,
-          type: "Sedan",
-          make: "Honda",
-          model: "Civic",
-          seats: 5,
-          suitcases: 2,
-          description:
-            "An excellent mix of price and performance, our eco class is the way to go.",
-          price: 40,
-          duration: 7,
-        },
-        {
-          id: 6,
-          type: "Sedan",
-          make: "Honda",
-          model: "Civic",
-          seats: 5,
-          suitcases: 2,
-          description:
-            "An excellent mix of price and performance, our eco class is the way to go.",
-          price: 40,
-          duration: 7,
-        },
-      ],
+      cars: carsData,
+      // TODO - get from searchbar
+      duration: 7
     };
+  },
+  created() {
+    // TODO
   },
   methods: {
     getTotalPrice(carId) {
       let car = this.cars.find((car) => car.id == carId);
-      return car.price * car.duration;
+      return car.price * this.duration;
     },
   },
 };
