@@ -1,34 +1,95 @@
 <template>
-  <div class="PaymentResult">
-    <h2 class="col-8">
-      <label class="col-6">Account Created</label><br />
+  <div class="container form-container">
+    <h1 class="text-center fw-bold">Create an Account</h1>
+    <h4 class="text-center fw-bold">Account Created!</h4>
 
-      <div class="field-title">
-        <label class="input-title">Name:</label>
-        <label class="input"
-          >{{ signUpUser.firstName }} {{ signUpUser.lastName }}</label
-        >
+    <!-- Personal Info -->
+    <section class="mb-4 form-section">
+      <div class="mb-3">
+        <p class="form-label">
+          Full Name:
+          <span class="fw-normal"
+            >{{ this.signUpUser.firstName }}
+            {{ this.signUpUser.lastName }}</span
+          >
+        </p>
+        <p class="form-label">
+          Date of Birth:
+          <span class="fw-normal"
+            >{{ this.signUpUser.dateOfBirth.month }}/{{
+              this.signUpUser.dateOfBirth.day
+            }}/{{ this.signUpUser.dateOfBirth.year }}</span
+          >
+        </p>
+        <p class="form-label">
+          Email Address:
+          <span class="fw-normal">{{ this.signUpUser.email }}</span>
+        </p>
+        <p class="form-label">
+          Phone: <span class="fw-normal">{{ this.signUpUser.phone }}</span>
+        </p>
+        <p class="form-label">
+          Billing Address:
+          <span class="fw-normal">
+            {{ this.signUpUser.address.streetAddress }},
+            <span v-if="signUpUser.address.apartmentNumber"
+              >{{ this.signUpUser.address.apartmentNumber }}, </span
+            >{{ this.signUpUser.address.city }},
+            {{ this.signUpUser.address.state }}
+            {{ this.signUpUser.address.zip }}
+          </span>
+        </p>
+        <p class="form-label">Card Information:</p>
+        <ul>
+          <li>
+            <p class="form-label">
+              Card Number:
+              <span class="fw-normal">{{ this.cardInfo.cardNumber }}</span>
+            </p>
+          </li>
+          <li>
+            <p class="form-label">
+              Expiration Date:
+              <span class="fw-normal"
+                >{{ this.cardInfo.expiration.month }}/{{
+                  this.cardInfo.expiration.year
+                }}</span
+              >
+            </p>
+          </li>
+        </ul>
       </div>
-      <br />
-    </h2>
-    <div class="row">
-      <div class="col-md-10 offset-md-9">
-        <button class="btn btn-primary-theme" @click.prevent="onGoToHomepage">
-          Go to Homepage
-        </button>
-      </div>
-      <div class="col align-self-start">
-        <button
-          class="btn btn-primary-theme"
-          type="back"
-          id="backBtn"
-          v-on:click="goBackButton()"
-        >
-          Back
-        </button>
-        <div class="error-messages" v-if="overallError">{{ overallError }}</div>
-        <br />
-      </div>
+    </section>
+
+    <!-- Button -->
+    <div class="mb-5 text-center">
+      <button
+        class="
+          d-none d-md-block
+          w-25
+          btn btn-primary-theme
+          fw-bold
+          text-uppercase
+          right-align-item
+        "
+        type="button"
+        @click.prevent="onGoToHomepage"
+      >
+        Go to Homepage
+      </button>
+      <button
+        class="
+          d-block d-md-none
+          w-100
+          btn btn-primary-theme
+          fw-bold
+          text-uppercase
+        "
+        type="button"
+        @click.prevent="onGoToHomepage"
+      >
+        Go to Homepage
+      </button>
     </div>
   </div>
 </template>
@@ -38,8 +99,6 @@ export default {
   name: "SignUpResult",
   data() {
     return {
-      title: "Create an Account",
-
       signUpUser: {
         userType: "",
         firstName: "",
@@ -52,6 +111,7 @@ export default {
         email: "",
         phone: "",
         password: "",
+        censoredPassword: "",
         address: {
           streetAddress: "",
           apartmentNumber: "",
@@ -60,6 +120,7 @@ export default {
           zip: "",
         },
         payments: [],
+        skip: false,
       },
       cardInfo: {
         cardNumber: "",
@@ -73,11 +134,16 @@ export default {
     };
   },
   methods: {
-    goBackButton() {
-      this.$router.go(-1);
-    },
     onGoToHomepage() {
       this.$router.push({ name: "Home" });
+    },
+    formatPassword() {
+      var password = this.signUpUser.password;
+      var passLength = password.length;
+      for (let i = 0; i < passLength; i++) {
+        this.censoredPassword += "*";
+      }
+      return true;
     },
   },
   created() {
@@ -92,39 +158,21 @@ export default {
 </script>
 
 <style scoped>
-#backBtn {
-  color: black;
-  background-color: white;
-  border-color: black;
-}
-.page-title {
-  font-size: 125%;
-  margin-left: 35%;
-  padding: 10px 5px;
-  font-weight: 800;
-  border-bottom: 3px solid rgb(197, 195, 195);
-}
-h2 {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 2%;
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: left;
-  padding: 3%;
-}
-.input-title {
-  font-size: 100%;
+.form-label {
   font-weight: 600;
 }
-.sub-input-title {
-  font-style: italic;
-  font-size: 100%;
-  font-weight: 500;
+
+.form-section {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  border: solid #dee2e6;
+  border-width: 1px;
 }
-.input {
-  font-weight: 300;
-  font-style: normal;
-  font-size: 95%;
+
+.right-align-item {
+  margin-left: auto;
 }
 </style>

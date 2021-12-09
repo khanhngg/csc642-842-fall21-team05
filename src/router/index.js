@@ -19,6 +19,7 @@ import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
 import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
 import ReservationReview from "../views/ReservationReview.vue";
 import ReservationResult from "../views/ReservationResult.vue";
+import Payments from "../views/PaymentTab.vue";
 
 const routes = [
   {
@@ -127,6 +128,11 @@ const routes = [
     path: "/reservation/result",
     name: "ReservationResult",
     component: ReservationResult,
+  },
+  {
+    path: "/payments",
+    name: "Payments",
+    component: Payments,
   },
 ];
 
