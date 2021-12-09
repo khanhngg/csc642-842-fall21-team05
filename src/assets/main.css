@@ -24,6 +24,12 @@ body {
   background-color: var(--main-theme-color);
 }
 
+.btn-primary-theme:focus {
+  border-color: var(--main-theme-color);
+  outline: 0;
+  box-shadow: var(--shadow-color);
+}
+
 .btn-primary-theme:hover {
   color: var(--white);
   background-color: var(--dark-purple);
@@ -33,6 +39,12 @@ body {
   color: var(--secondary-theme-color);
   background-color: var(--white);
   border-color: var(--medium-grey);
+}
+
+.btn-secondary-theme:hover {
+  color: var(--main-theme-color);
+  background-color: var(--white);
+  border-color: var(--main-theme-color);
 }
 
 .text-accent {

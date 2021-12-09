@@ -114,31 +114,8 @@ export default {
       );
 
       if (user) {
-        // if match, check if admin/delivery/user
         this.loggedInUser = user;
-        var { email } = this.loggedInUser;
-
-        // check which user type based on email
-        if (email.startsWith("admin")) {
-          this.loggedInUser.userType = "admin";
-          localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(this.loggedInUser)
-          );
-        } else if (email.startsWith("delivery")) {
-          this.loggedInUser.userType = "delivery";
-          localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(this.loggedInUser)
-          );
-        } else {
-          this.loggedInUser.userType = "user";
-          localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(this.loggedInUser)
-          );
-        }
-
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
         // Go to profile
         this.$router.go(); // refresh page to update navbar user icon
         this.$router.push({ name: "Profile" });
