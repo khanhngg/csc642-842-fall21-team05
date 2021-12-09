@@ -2,100 +2,37 @@
   <div class="form">
     <h1>
       &emsp;{{ title }}
+      <br/>
+      <label class="hint-text"> &nbsp; * Required Fields </label><br />
       <form>
         <div id="v-model-select" class="form">
-          <label class="hint-text"
-            >Astriks(*) - Input in Field is Required</label
-          ><br />
+          
           <h2>
             <span class="section-title"> Personal Information </span><br />
             <div class="row mb-3">
-              <span class="field-title">* Name:</span><br />
+              <span class="field-title">* First Name: &nbsp;  * Last Name:</span>
               <div class="col-sm-10">
                 <input
-                  v-model="name"
-                  placeholder="Enter Name"
-                  id="name"
+                  v-model="Firstname"
+                  placeholder="Enter First Name"
+                  id="firstName"
+                  required
+                />
+             
+                <input
+                  v-model="lastName"
+                  placeholder="Enter Last Name"
+                  id="lastName"
                   required
                 />
               </div>
               <div class="error-messages" v-if="nameError">{{ nameError }}</div>
               <br />
-            </div>
-          </h2>
+              <br/>
 
-          <h2>
-            <span class="section-title"> Billing Address </span><br />
-            <span class="field-title">* Street Address:</span><br />
-            <input
-              v-model="userStreet"
-              placeholder="Enter bulding number and street"
-              id="user-street"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="streetError">
-              {{ streetError }}
-            </div>
-            <br />
-            <span class="field-title"> Apt/Suite Number:</span><br />
-            <input
-              v-model="userAptNum"
-              placeholder="Enter Apt number "
-              id="user-aptNum"
-              class="address"
-            />
-            <div class="error-messages" v-if="aptNumError">
-              {{ aptNumError }}
-            </div>
-            <br />
-            <span class="field-title">* City:</span><br />
-            <input
-              v-model="userCity"
-              placeholder="Enter City"
-              id="user-city"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="cityError">{{ cityError }}</div>
-            <br />
-            <label for="state" class="field-title">State *</label><br/>
-            <select v-model="userState" id="user-state" class="address">
-              <option value="">Select State</option>
-              <option v-for ="state in states" :key="state" :value="state"> {{state}} </option>
-             
-            </select>
-            <div class="error-messages" v-if="stateError">{{ stateError }}</div>
-            <br />
-            <span class="field-title">* ZipCode:</span><br />
-            <input
-              v-model="userZipCode"
-              placeholder="Enter ZipCode"
-              id="user-zipcode"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="zipcodeError">
-              {{ zipcodeError }}
-            </div>
-            <br />
-            <br />
-          </h2>
-
-          <h2>
-            <span class="section-title"> Payment Information </span><br />
-            <span class="field-title">* Card Number: </span><br />
-            <input
-              v-model="cardNum"
-              placeholder="Enter card number"
-              id="user-card"
-              class="payment"
-              required
-            />
-            <br />
-            <span class="field-title">* Expiration Date: </span><br />
-            <select v-model="cardMonth" id="card-month" class="expiration">
-              <option disabled value="">Month</option>
+              <span class="field-title">* Date of Birth </span><br />
+              <select v-model="dateOfBirth.month" id="birth-month" class="expiration" >
+              <option disabled value="">Enter Month</option>
               <option>01</option>
               <option>02</option>
               <option>03</option>
@@ -109,39 +46,43 @@
               <option>11</option>
               <option>12</option>
             </select>
-            <span> </span>
-            <select v-model="cardYear" id="card-year" class="expiration">
-              <option disabled value="">Year</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              <option>2026</option>
-              <option>2027</option>
-              <option>2028</option>
-              <option>2029</option>
-              <option>2030</option>
-              <option>2031</option>
-              <option>2032</option>
+            <select v-model="dateOfBirth.day" id="birth-day" class="expiration">
+              <option value="">Enter Day</option>
+              <option v-for ="day in days" :key="day" :value="day">{{day}}</option>
+              
             </select>
-            <br /><br />
-            <div class="col-12">
-              <span class="field-title">* Security Code:</span><br />
-              <input
-                v-model="cardCode"
-                placeholder="Enter 3 Digit Security Code"
-                required
-              />
-              <br />
-
-              <input type="checkbox" v-model="defaultPay" />
-              <label class="checkboxText"> Set as Default Payment </label>
-              <div class="error-messages" v-if="termsError">
-                {{ termsError }}
-              </div>
-              <br />
+            <select v-model="dateOfBirth.year" id="birth-year" class="expiration">
+              <option value="">Enter Year</option>
+              <option v-for ="year in years" :key="year" :value="state">{{year}}</option>
+              
+            </select>
+            
             </div>
           </h2>
+          <h2>
+            <span class="section-title"> Contact Information </span><br />
+
+            <span class = "field-title">* Email: </span><br/>
+            <input v-model="userEmail" placeholder="Enter Email" id="user-email" required/>
+            <div class="error-messages" v-if="emailError">{{emailError}}</div><br/>
+            <br />
+
+            <span class = "field-title">Phone Number: </span><br/>
+            <label class="hint-text">Please don't use letters</label><br/>
+            <input v-model="userPhone" placeholder="123" id="user-phone" class="phone" /> 
+            <span> - </span>
+            <input v-model="userPhone_2" placeholder="567" id="user-phone_2" class="phone"/>
+            <span> - </span>
+            <input v-model="userPhone_3" placeholder="8912" id="user-phone_3" class="phone"/>
+            <div class="error-messages" v-if="phoneError">{{phoneError}}</div><br/>
+            <br/>
+          </h2>
+          <h2>
+          <span class="section-title"> Account Information </span><br />
+          <label class="hint-text"> Note: Your username will be the same as your email</label>
+          </h2>
+
+
         </div>
       </form>
 
@@ -151,29 +92,17 @@
           type="submit"
           v-on:click="submitButton()"
         >
-          Submit
+          Continue
         </button>
       </div>
-      <div class="col-12">
-        <button
-          class="btn btn-primary-theme"
-          type="back"
-          id="backBtn"
-          v-on:click="goBackButton()"
-        >
-          Back
-        </button>
+
         <div class="error-messages" v-if="overallError">{{ overallError }}</div>
         <br />
-      </div>
     </h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-//<label class="form-label">Contact Information: </label><br/><br/>
-//<label class="form-label">Additional Information: </label><br/><br/>
 /*
           <span> - </span>
 
@@ -189,74 +118,119 @@ export default {
   data() {
     return {
       //Page Variables
-      title: "Update Payment Form",
+      title: "Create a Account",
 
       //Data field variables
-      name: "",
+     //userEmail: {
+        firstName: "",
+        lastName: "",
 
-      userStreet: "",
-      userAptNum: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        }, 
+      //},
 
-      cardNum: "",
-      cardMonth: "",
-      cardYear: "",
-      cardCode: "",
-      defaultPay: "",
-      states: [
-        "Alabama",
-        "Alaska",
-        "Arizona",
-        "Arkansas",
-        "California",
-        "Colorado",
-        "Connecticut",
-        "Delaware",
-        "Florida",
-        "Georgia",
-        "Hawaii",
-        "Idaho",
-        "Illinois",
-        "Indiana",
-        "Iowa",
-        "Kansas",
-        "Kentucky",
-        "Louisiana",
-        "Maine",
-        "Maryland",
-        "Massachusetts",
-        "Michigan",
-        "Minnesota",
-        "Mississippi",
-        "Missouri",
-        "Montana",
-        "Nebraska",
-        "Nevada",
-        "New Hampshire",
-        "New Jersey",
-        "New Mexico",
-        "New York",
-        "North Carolina",
-        "North Dakota",
-        "Ohio",
-        "Oklahoma",
-        "Oregon",
-        "Pennsylvania",
-        "Rhode Island",
-        "South Carolina",
-        "South Dakota",
-        "Tennessee",
-        "Texas",
-        "Utah",
-        "Vermont",
-        "Virginia",
-        "Washington",
-        "West Virginia",
-        "Wisconsin",
-        "Wyoming",
+      //Date Of Birth Select Values
+      years: [
+        "1960",
+        "1961",
+        "1962",
+        "1963",
+        "1964",
+        "1965",
+        "1966",
+        "1967",
+        "1968",
+        "1969",
+        "1970",
+        "1971",
+        "1972",
+        "1973",
+        "1974",
+        "1975",
+        "1976",
+        "1977",
+        "1978",
+        "1979",
+        "1980",
+        "1981",
+        "1982",
+        "1983",
+        "1984",
+        "1985",
+        "1986",
+        "1987",
+        "1988",
+        "1989",
+        "1990",
+        "1991",
+        "1992",
+        "1993",
+        "1994",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
       ],
+      days: [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+      ],
+
       //ERROR MESSAGES
       nameError: "",
 
@@ -270,135 +244,101 @@ export default {
     };
   },
   methods: {
-    nameValidation: function () {
-      var name = this.name;
-
-      if (name == "" || name.length > 40) {
-        document.getElementById("firstname").style.borderColor = "red";
-        this.nameError =
-          name == ""
-            ? "You must enter your name displayed on the card!"
-            : "Name is too long, must be 40 characters or less";
+   firstNameValidation: function(){
+      var first = this.firstName;
+     
+      if(first == '' || first.length > 40){
+        document.getElementById('firstName').style.borderColor = 'red';
+        this.firstNameError = first == "" ? 
+        "You must enter your first name!" : "First name is too long, must be 40 characters or less"
         return false;
       }
-
-      this.nameError = "";
-      document.getElementById("name").style.borderColor = "black";
-      return true;
+  
+      this.firstNameError = "";
+      document.getElementById('firstName').style.borderColor = 'black';
+      return true; 
     },
-    addressValidation: function () {
-      var street = this.userStreet;
-      var aptNum = this.userAptNum;
-      var city = this.userCity;
-      var state = this.userState;
-      var zip = this.userZipCode;
-      var invalid = 0;
-
-      if (street.length > 40 || street.length == 0) {
-        document.getElementById("user-street").style.borderColor = "red";
-        this.streetError =
-          street.length > 40
-            ? "Street address too long, must to be less than 40 characters!"
-            : "You must fill out the street address!";
-        invalid = 1;
-      } else {
-        this.streetError = "";
-        document.getElementById("user-street").style.borderColor = "black";
-      }
-
-      if (aptNum.length > 40) {
-        document.getElementById("user-aptNum").style.borderColor = "red";
-        this.aptNumError =
-          "Apt Number is too long, must to be less than 40 characters!";
-        invalid = 1;
-      } else {
-        this.aptNumError = "";
-        document.getElementById("user-aptNum").style.borderColor = "black";
-      }
-      if (city.length > 40 || city.length == 0) {
-        document.getElementById("user-city").style.borderColor = "red";
-        this.cityError =
-          city.length > 40
-            ? "City input too long, must to be less than 40 characters!"
-            : "You must fill out the City textbox!";
-        invalid = 1;
-      } else {
-        this.cityError = "";
-        document.getElementById("user-city").style.borderColor = "black";
-      }
-      if (state.length > 40 || state.length == 0) {
-        document.getElementById("user-state").style.borderColor = "red";
-        this.stateError =
-          state.length > 40
-            ? "State entry too long, must to be less than 40 characters!"
-            : "You must fill out the State textbox!";
-        invalid = 1;
-      } else {
-        this.stateError = "";
-        document.getElementById("user-state").style.borderColor = "black";
-      }
-
-      if (/[a-zA-Z]/.test(this.userZipCode)) {
-        document.getElementById("user-zipcode").style.borderColor = "red";
-        this.zipcodeError = "The ZipCode cannot contain letter/s!";
-      } else if (zip.length > 5 || zip.length == 0) {
-        document.getElementById("user-zipcode").style.borderColor = "red";
-        this.zipcodeError =
-          zip.length > 5
-            ? "ZipCode entry too long, must to be 5 characters!"
-            : "You must fill out the ZipCode textbox!";
-        invalid = 1;
-      } else {
-        this.zipcodeError = "";
-        document.getElementById("user-zipcode").style.borderColor = "black";
-      }
-
-      if (invalid == 1) {
+    lastNameValidation: function(){
+      var last = this.lastName;
+      
+      if(last == '' || last.length > 40){
+        document.getElementById('lastName').style.borderColor = 'red';
+        this.lastNameError = last == "" ? 
+        "You must enter your last name!" : "Last name is too long, must be 40 characters or less"
         return false;
       }
+      this.lastNameError = "";
+      document.getElementById('lastName').style.borderColor = 'black';
+      return true;
+      
+    },
 
-      this.streetError = "";
-      this.cityError = "";
+    phoneNumberValid: function(){
+        if((/[a-zA-Z]/).test(this.userPhone)){
+          document.getElementById('user-phone').style.borderColor = 'red';
+          this.phoneError = "Phone Number Invalid: You cant use letters!";
+          return false;
+        }
+        if(this.userPhone.length > this.maxLength){
+          document.getElementById('user-phone').style.borderColor = 'red';
+          this.phoneError = "Phone number Invalid: format is incorrect or the number entered is longer than 11 numbers";
+          return false;
+        }
+        this.phoneError=  "",
+        document.getElementById('user-phone').style.borderColor = 'black';
+        return true;
+    },
 
-      this.zipcodeError = "";
-
-      document.getElementById("user-street").style.borderColor = "black";
-
+     emailValidation: function(){
+      if(this.userEmail == ''){
+        document.getElementById('user-email').style.borderColor = 'red';
+        this.emailError = "It is required to enter your email!";
+        return false;
+      }
+      if(this.userEmail.search("@") === -1 || this.userEmail.search(".") === -1){
+        document.getElementById('user-email').style.borderColor = 'red';
+        this.emailError = "You must enter a valid email!";
+        return false;
+      }
+      this.emailError = "";
+      document.getElementById('user-email').style.borderColor = 'black';
+        
       return true;
     },
+
     goBackButton() {
       this.$router.go(-1);
     },
     persist() {
-      localStorage.name = this.name;
+      localStorage.name = this.firstName;
+      localStorage.name = this.lastName;
 
-      localStorage.userStreet = this.userStreet;
-      localStorage.userAptNum = this.userAptNum;
-      localStorage.userCity = this.userCity;
-      localStorage.userState = this.userState;
-      localStorage.userZipCode = this.userZipCode;
-
-      localStorage.cardNum = this.cardNum;
-      localStorage.cardMonth = this.cardMonth;
-      localStorage.cardYear = this.cardYear;
-      localStorage.cardCode = this.cardCode;
-
-      localStorage.defaultPay = this.defaultPay;
-
-      this.$router.push({ name: "PaymentFormResult" });
+      this.$router.push({ name: "SignUpForm_2" });
     },
     submitButton: function () {
       var allValid;
       var goAhead = 0;
       alert("CLICKED");
-      allValid = this.nameValidation();
+
+      //allValid = this.firstNameValidation(); //FIX LATER
       if (allValid == false) {
         goAhead = 1;
       }
-      allValid = this.addressValidation();
+      allValid = this.lastNameValidation();
       if (allValid == false) {
         goAhead = 1;
       }
+
+      allValid = this.phoneNumberValid();
+      if (allValid == false) {
+        goAhead = 1;
+      }
+      allValid = this.emailValidation();
+      if (allValid == false) {
+        goAhead = 1;
+      }
+
+
 
       if (goAhead === 0) {
         this.overallError = "";
@@ -414,6 +354,7 @@ export default {
 </script>
 
 <style scoped>
+
 /*Input styles*/
 input {
   border: 2px solid;
@@ -446,6 +387,7 @@ input[id="agree"] {
 input[type="checkbox"] {
   cursor: pointer;
 }
+
 select {
   border: 2px solid;
   border-radius: 4px;

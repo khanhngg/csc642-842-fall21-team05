@@ -7,22 +7,6 @@
           <label class="hint-text"
             >Astriks(*) - Input in Field is Required</label
           ><br />
-          <h2>
-            <span class="section-title"> Personal Information </span><br />
-            <div class="row mb-3">
-              <span class="field-title">* Name:</span><br />
-              <div class="col-sm-10">
-                <input
-                  v-model="name"
-                  placeholder="Enter Name"
-                  id="name"
-                  required
-                />
-              </div>
-              <div class="error-messages" v-if="nameError">{{ nameError }}</div>
-              <br />
-            </div>
-          </h2>
 
           <h2>
             <span class="section-title"> Billing Address </span><br />
@@ -59,10 +43,10 @@
             />
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
-            <label for="state" class="field-title">State *</label><br/>
+            <label for="state" class="field-title">*State:</label><br/>
             <select v-model="userState" id="user-state" class="address">
               <option value="">Select State</option>
-              <option v-for ="state in states" :key="state" :value="state"> {{state}} </option>
+              <option v-for ="userState in states" :key="userState" :value="userState"> {{userState}} </option>
              
             </select>
             <div class="error-messages" v-if="stateError">{{ stateError }}</div>
@@ -189,22 +173,24 @@ export default {
   data() {
     return {
       //Page Variables
-      title: "Update Payment Form",
+      title: "Create a Account",
 
       //Data field variables
-      name: "",
+      //userEmail: {
+        name: "",
 
-      userStreet: "",
-      userAptNum: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
+        userStreet: "",
+        userAptNum: "",
+        userCity: "",
+        userState: "",
+        userZipCode: "",
 
-      cardNum: "",
-      cardMonth: "",
-      cardYear: "",
-      cardCode: "",
-      defaultPay: "",
+        cardNum: "",
+        cardMonth: "",
+        cardYear: "",
+        cardCode: "",
+        defaultPay: "",
+      //},
       states: [
         "Alabama",
         "Alaska",
@@ -270,22 +256,6 @@ export default {
     };
   },
   methods: {
-    nameValidation: function () {
-      var name = this.name;
-
-      if (name == "" || name.length > 40) {
-        document.getElementById("firstname").style.borderColor = "red";
-        this.nameError =
-          name == ""
-            ? "You must enter your name displayed on the card!"
-            : "Name is too long, must be 40 characters or less";
-        return false;
-      }
-
-      this.nameError = "";
-      document.getElementById("name").style.borderColor = "black";
-      return true;
-    },
     addressValidation: function () {
       var street = this.userStreet;
       var aptNum = this.userAptNum;
@@ -370,8 +340,6 @@ export default {
       this.$router.go(-1);
     },
     persist() {
-      localStorage.name = this.name;
-
       localStorage.userStreet = this.userStreet;
       localStorage.userAptNum = this.userAptNum;
       localStorage.userCity = this.userCity;
@@ -391,10 +359,6 @@ export default {
       var allValid;
       var goAhead = 0;
       alert("CLICKED");
-      allValid = this.nameValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
       allValid = this.addressValidation();
       if (allValid == false) {
         goAhead = 1;
@@ -414,6 +378,7 @@ export default {
 </script>
 
 <style scoped>
+
 /*Input styles*/
 input {
   border: 2px solid;
