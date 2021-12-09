@@ -208,8 +208,7 @@ export default {
         cardYear: "",
         cardCode: "",
         defaultPay: "",
-      }
-      ,
+      },
       //ERROR MESSAGES
       nameError: "",
 
@@ -367,7 +366,6 @@ export default {
 </script>
 
 <style scoped>
-
 /*Input styles*/
 input {
   border: 2px solid;

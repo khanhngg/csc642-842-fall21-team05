@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "make": "Toyota",
+    "model": "camry",
+    "year": 2020,
+    "type": "Sedan",
+    "fuel": "Gasoline",
+    "mpg": 800,
+    "door": 4,
+    "seat": 5,
+    "suitcase": 2,
+    "addon": ["Air-Condition"],
+    "image": "../assets/logo.png",
+    "price": 300,
+    "description": "An excellent mix of price and performance, our eco class is the way to go."
+  },
+  {
+    "id": 2,
+    "make": "Tesla",
+    "model": "X",
+    "year": 2020,
+    "type": "Sedan",
+    "fuel": "Electric",
+    "mpg": 800,
+    "door": 4,
+    "seat": 5,
+    "suitcase": 2,
+    "addon": ["Air-Condition"],
+    "image": "../assets/logo.png",
+    "price": 500,
+    "description": "An excellent mix of price and performance, our eco class is the way to go."
+  },
+  {
+    "id": 3,
+    "make": "Subaru",
+    "model": "Outback",
+    "year": 2020,
+    "type": "SUV",
+    "fuel": "Gasoline",
+    "mpg": 800,
+    "door": 4,
+    "seat": 7,
+    "suitcase": 4,
+    "addon": ["Air-Condition"],
+    "image": "../assets/logo.png",
+    "price": 450,
+    "description": "An excellent mix of price and performance, our eco class is the way to go."
+  }
+]
