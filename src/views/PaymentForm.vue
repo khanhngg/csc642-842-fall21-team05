@@ -193,10 +193,6 @@ export default {
       title: "Update Payment Form",
 
       //Data field variables
-<<<<<<< HEAD
-=======
-      //userEmail: {
->>>>>>> Pushing what i have for the signup
       name: "",
 
       userStreet: "",
@@ -210,10 +206,6 @@ export default {
       cardYear: "",
       cardCode: "",
       defaultPay: "",
-<<<<<<< HEAD
-=======
-      //},
->>>>>>> Pushing what i have for the signup
       states: [
         "Alabama",
         "Alaska",
