@@ -94,7 +94,6 @@
               id="user-phone"
               class="phone"
             />
-
             <div class="error-messages" v-if="phoneError">{{ phoneError }}</div>
             <br />
             <br />

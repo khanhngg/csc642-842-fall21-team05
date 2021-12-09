@@ -44,11 +44,15 @@
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
             <label for="state" class="field-title">*State:</label><br />
+<<<<<<< HEAD
             <select
               v-model="signUpUser.address.state"
               id="user-state"
               class="address"
             >
+=======
+            <select v-model="userState" id="user-state" class="address">
+>>>>>>> 738b492 (Pushing what i have for the signup)
               <option value="">Select State</option>
               <option
                 v-for="userState in states"
