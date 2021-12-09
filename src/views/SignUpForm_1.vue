@@ -14,7 +14,7 @@
               <label class="field-title">First Name * </label>
 
               <input
-                v-model="Firstname"
+                v-model="signUpUser.firstName"
                 placeholder="Enter First Name"
                 id="firstName"
                 required
@@ -23,19 +23,17 @@
             <div class="col-sm-6 mb-3">
               <label class="field-title">Last Name * </label>
               <input
-                v-model="lastName"
+                v-model="signUpUser.lastName"
                 placeholder="Enter Last Name"
                 id="lastName"
                 required
               />
             </div>
             <div class="error-messages" v-if="nameError">{{ nameError }}</div>
-            
-      
 
             <span class="field-title">* Date of Birth </span><br />
             <select
-              v-model="dateOfBirth.month"
+              v-model="signUpUser.dateOfBirth.month"
               id="birth-month"
               class="expiration"
             >
@@ -53,19 +51,23 @@
               <option>11</option>
               <option>12</option>
             </select>
-            <select v-model="dateOfBirth.day" id="birth-day" class="expiration">
+            <select
+              v-model="signUpUser.dateOfBirth.day"
+              id="birth-day"
+              class="expiration"
+            >
               <option value="">Enter Day</option>
               <option v-for="day in days" :key="day" :value="day">
                 {{ day }}
               </option>
             </select>
             <select
-              v-model="dateOfBirth.year"
+              v-model="signUpUser.dateOfBirth.year"
               id="birth-year"
               class="expiration"
             >
               <option value="">Enter Year</option>
-              <option v-for="year in years" :key="year" :value="state">
+              <option v-for="year in years" :key="year" :value="year">
                 {{ year }}
               </option>
             </select>
@@ -75,7 +77,7 @@
 
             <span class="field-title">* Email: </span><br />
             <input
-              v-model="userEmail"
+              v-model="signUpUser.email"
               placeholder="Enter Email"
               id="user-email"
               required
@@ -87,12 +89,12 @@
             <span class="field-title">Phone Number: </span><br />
             <label class="hint-text">Please don't use letters</label><br />
             <input
-              v-model="userPhone"
+              v-model="signUpUser.phone"
               placeholder="000 - 000 - 0000"
               id="user-phone"
               class="phone"
             />
-            
+
             <div class="error-messages" v-if="phoneError">{{ phoneError }}</div>
             <br />
             <br />
@@ -102,6 +104,8 @@
             <label class="hint-text">
               Note: Your username will be the same as your email</label
             >
+            <label class="form-label">Password</label>
+            <input type="password" v-model="signUpUser.password" />
           </h2>
         </div>
       </form>
@@ -139,20 +143,36 @@ export default {
   data() {
     return {
       //Page Variables
-      title: "Create a Account",
-
-      //Data field variables
-      //userEmail: {
-      firstName: "",
-      lastName: "",
-
-      dateOfBirth: {
-        month: "",
-        day: "",
-        year: "",
+      title: "Create an Account",
+      signUpUser: {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        },
+        email: "",
+        phone: "",
+        password: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        payments: [],
       },
-      //},
-
+      cardInfo: {
+        cardNumber: "",
+        expiration: {
+          month: "",
+          year: "",
+        },
+        securityCode: "",
+        isDefault: false,
+      },
       //Date Of Birth Select Values
       years: [
         "1960",
@@ -264,6 +284,13 @@ export default {
       cardNumError: "",
     };
   },
+  created() {
+    // parse local storage to get sign up user data
+    var user = JSON.parse(localStorage.getItem("signUpUser"));
+    if (user) {
+      this.signUpUser = user;
+    }
+  },
   methods: {
     firstNameValidation: function () {
       var first = this.firstName;
@@ -338,30 +365,28 @@ export default {
       this.$router.go(-1);
     },
     persist() {
-      localStorage.name = this.firstName;
-      localStorage.name = this.lastName;
-
+      // write to localStorage to be used in next step in signup flow
+      localStorage.setItem("signUpUser", JSON.stringify(this.signUpUser));
       this.$router.push({ name: "SignUpForm_2" });
     },
     submitButton: function () {
       var allValid;
       var goAhead = 0;
-      alert("CLICKED");
 
       //allValid = this.firstNameValidation(); //FIX LATER
       if (allValid == false) {
         goAhead = 1;
       }
-      allValid = this.lastNameValidation();
+      // allValid = this.lastNameValidation();
       if (allValid == false) {
         goAhead = 1;
       }
 
-      allValid = this.phoneNumberValid();
+      // allValid = this.phoneNumberValid();
       if (allValid == false) {
         goAhead = 1;
       }
-      allValid = this.emailValidation();
+      // allValid = this.emailValidation();
       if (allValid == false) {
         goAhead = 1;
       }
@@ -476,7 +501,6 @@ h2 {
 }
 
 .form {
-  font-family: sans-serif;
   font-size: 37%;
   padding: 20px 30px;
   margin-top: 1em;
@@ -512,5 +536,4 @@ h2 {
   cursor: pointer;
   text-align: center;
 }
-
 </style>

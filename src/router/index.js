@@ -11,6 +11,7 @@ import PaymentForm from "../views/PaymentForm.vue";
 import PaymentFormResult from "../views/PaymentFormResult.vue";
 import SignUpForm_1 from "../views/SignUpForm_1.vue";
 import SignUpForm_2 from "../views/SignUpForm_2.vue";
+import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
 
 const routes = [
@@ -70,14 +71,19 @@ const routes = [
     component: PaymentFormResult,
   },
   {
-    path: "/signupform_1",
+    path: "/signup/info",
     name: "SignUpForm_1",
     component: SignUpForm_1,
   },
   {
-    path: "/signupform_2",
+    path: "/signup/payments",
     name: "SignUpForm_2",
     component: SignUpForm_2,
+  },
+  {
+    path: "/signup/result",
+    name: "SignUpResult",
+    component: SignUpResult,
   },
   //404 page
   {

@@ -79,6 +79,11 @@
           <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
+      <div v-else>
+        <button class="btn btn-primary-theme" @click.prevent="onLogIn">
+          Log In
+        </button>
+      </div>
     </div>
   </nav>
 </template>
@@ -90,9 +95,52 @@ export default {
       type: Boolean,
       default: true,
     },
-    isLoggedIn: {
-      type: Boolean,
-      default: true,
+  },
+  data() {
+    return {
+      isLoggedIn: false,
+      loggedInUser: {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        },
+        email: "",
+        phone: "",
+        password: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        cardInfo: {
+          cardNumber: "",
+          expiration: {
+            month: "",
+            year: "",
+          },
+          securityCode: "",
+          isDefault: false,
+        },
+      },
+    };
+  },
+  created() {
+    var user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      this.loggedInUser = user;
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+  },
+  methods: {
+    onLogIn() {
+      this.$router.push({ name: "Login" });
     },
   },
 };

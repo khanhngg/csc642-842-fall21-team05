@@ -183,7 +183,7 @@ export default {
     return {
       cars: carsData,
       // TODO - get from searchbar
-      duration: 7
+      duration: 7,
     };
   },
   created() {
