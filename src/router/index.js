@@ -15,6 +15,7 @@ import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
 import DeliveryReport from "../views/DeliveryReport.vue";
 
+
 const routes = [
   {
     path: "/",
