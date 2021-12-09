@@ -12,7 +12,7 @@
             <span class="section-title"> Billing Address </span><br />
             <span class="field-title">* Street Address:</span><br />
             <input
-              v-model="userStreet"
+              v-model="signUpUser.address.streetAddress"
               placeholder="Enter bulding number and street"
               id="user-street"
               class="address"
@@ -24,7 +24,7 @@
             <br />
             <span class="field-title"> Apt/Suite Number:</span><br />
             <input
-              v-model="userAptNum"
+              v-model="signUpUser.address.apartmentNumber"
               placeholder="Enter Apt number "
               id="user-aptNum"
               class="address"
@@ -35,7 +35,7 @@
             <br />
             <span class="field-title">* City:</span><br />
             <input
-              v-model="userCity"
+              v-model="signUpUser.address.city"
               placeholder="Enter City"
               id="user-city"
               class="address"
@@ -44,7 +44,11 @@
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
             <label for="state" class="field-title">*State:</label><br />
-            <select v-model="userState" id="user-state" class="address">
+            <select
+              v-model="signUpUser.address.state"
+              id="user-state"
+              class="address"
+            >
               <option value="">Select State</option>
               <option
                 v-for="userState in states"
@@ -58,7 +62,7 @@
             <br />
             <span class="field-title">* ZipCode:</span><br />
             <input
-              v-model="userZipCode"
+              v-model="signUpUser.address.zip"
               placeholder="Enter ZipCode"
               id="user-zipcode"
               class="address"
@@ -75,7 +79,7 @@
             <span class="section-title"> Payment Information </span><br />
             <span class="field-title">* Card Number: </span><br />
             <input
-              v-model="cardNum"
+              v-model="cardInfo.cardNumber"
               placeholder="Enter card number"
               id="user-card"
               class="payment"
@@ -83,7 +87,11 @@
             />
             <br />
             <span class="field-title">* Expiration Date: </span><br />
-            <select v-model="cardMonth" id="card-month" class="expiration">
+            <select
+              v-model="cardInfo.expiration.month"
+              id="card-month"
+              class="expiration"
+            >
               <option disabled value="">Month</option>
               <option>01</option>
               <option>02</option>
@@ -99,7 +107,11 @@
               <option>12</option>
             </select>
             <span> </span>
-            <select v-model="cardYear" id="card-year" class="expiration">
+            <select
+              v-model="cardInfo.expiration.year"
+              id="card-year"
+              class="expiration"
+            >
               <option disabled value="">Year</option>
               <option>2022</option>
               <option>2023</option>
@@ -117,13 +129,13 @@
             <div class="col-12">
               <span class="field-title">* Security Code:</span><br />
               <input
-                v-model="cardCode"
+                v-model="cardInfo.securityCode"
                 placeholder="Enter 3 Digit Security Code"
                 required
               />
               <br />
 
-              <input type="checkbox" v-model="defaultPay" />
+              <input type="checkbox" v-model="cardInfo.isDefault" />
               <label class="checkboxText"> Set as Default Payment </label>
               <div class="error-messages" v-if="termsError">
                 {{ termsError }}
@@ -138,7 +150,7 @@
         <button
           class="btn btn-primary-theme"
           type="submit"
-          v-on:click="submitButton()"
+          v-on:click="onSubmit()"
         >
           Submit
         </button>
@@ -178,8 +190,37 @@ export default {
   data() {
     return {
       //Page Variables
-      title: "Create a Account",
+      title: "Create an Account",
 
+      signUpUser: {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        },
+        email: "",
+        phone: "",
+        password: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        payments: [],
+      },
+      cardInfo: {
+        cardNumber: "",
+        expiration: {
+          month: "",
+          year: "",
+        },
+        securityCode: "",
+        isDefault: false,
+      },
       //Data field variables
       //userEmail: {
       name: "",
@@ -259,6 +300,13 @@ export default {
 
       cardNumError: "",
     };
+  },
+  created() {
+    // parse local storage to get sign up user data
+    var user = JSON.parse(localStorage.getItem("signUpUser"));
+    if (user) {
+      this.signUpUser = user;
+    }
   },
   methods: {
     addressValidation: function () {
@@ -345,26 +393,32 @@ export default {
       this.$router.go(-1);
     },
     persist() {
-      localStorage.userStreet = this.userStreet;
-      localStorage.userAptNum = this.userAptNum;
-      localStorage.userCity = this.userCity;
-      localStorage.userState = this.userState;
-      localStorage.userZipCode = this.userZipCode;
+      // check if list of users exist, if not create
+      var users = JSON.parse(localStorage.getItem("users"));
+      if (!users) {
+        users = [];
+      }
 
-      localStorage.cardNum = this.cardNum;
-      localStorage.cardMonth = this.cardMonth;
-      localStorage.cardYear = this.cardYear;
-      localStorage.cardCode = this.cardCode;
+      // add this new sign up user
+      this.signUpUser.payments.push(this.cardInfo);
+      users.push(this.signUpUser);
 
-      localStorage.defaultPay = this.defaultPay;
+      // write list of users to localStorage
+      localStorage.setItem("users", JSON.stringify(users));
 
-      this.$router.push({ name: "PaymentFormResult" });
+      // set logged in user
+      localStorage.setItem("loggedInUser", JSON.stringify(this.signUpUser));
+
+      // remove the sign up user
+      localStorage.removeItem("signUpUser");
+
+      // go to result page
+      this.$router.push({ name: "SignUpResult" });
     },
-    submitButton: function () {
+    onSubmit() {
       var allValid;
       var goAhead = 0;
-      alert("CLICKED");
-      allValid = this.addressValidation();
+      // allValid = this.addressValidation();
       if (allValid == false) {
         goAhead = 1;
       }
@@ -476,7 +530,6 @@ h2 {
 }
 
 .form {
-  font-family: sans-serif;
   font-size: 37%;
   padding: 20px 30px;
   margin-top: 1em;
