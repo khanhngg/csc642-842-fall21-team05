@@ -2,36 +2,43 @@
   <div class="form">
     <h1>
       &emsp;{{ title }}
-      <br/>
+      <!--<FormProgressBar/>-->
+
+      <br />
       <label class="hint-text"> &nbsp; * Required Fields </label><br />
       <form>
         <div id="v-model-select" class="form">
-          
           <h2>
             <span class="section-title"> Personal Information </span><br />
-            <div class="row mb-3">
-              <span class="field-title">* First Name: &nbsp;  * Last Name:</span>
-              <div class="col-sm-10">
-                <input
-                  v-model="Firstname"
-                  placeholder="Enter First Name"
-                  id="firstName"
-                  required
-                />
-             
-                <input
-                  v-model="lastName"
-                  placeholder="Enter Last Name"
-                  id="lastName"
-                  required
-                />
-              </div>
-              <div class="error-messages" v-if="nameError">{{ nameError }}</div>
-              <br />
-              <br/>
+            <div class="col-sm-6 mb-3">
+              <label class="field-title">First Name * </label>
 
-              <span class="field-title">* Date of Birth </span><br />
-              <select v-model="dateOfBirth.month" id="birth-month" class="expiration" >
+              <input
+                v-model="Firstname"
+                placeholder="Enter First Name"
+                id="firstName"
+                required
+              />
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label class="field-title">Last Name * </label>
+              <input
+                v-model="lastName"
+                placeholder="Enter Last Name"
+                id="lastName"
+                required
+              />
+            </div>
+            <div class="error-messages" v-if="nameError">{{ nameError }}</div>
+            
+      
+
+            <span class="field-title">* Date of Birth </span><br />
+            <select
+              v-model="dateOfBirth.month"
+              id="birth-month"
+              class="expiration"
+            >
               <option disabled value="">Enter Month</option>
               <option>01</option>
               <option>02</option>
@@ -48,41 +55,54 @@
             </select>
             <select v-model="dateOfBirth.day" id="birth-day" class="expiration">
               <option value="">Enter Day</option>
-              <option v-for ="day in days" :key="day" :value="day">{{day}}</option>
-              
+              <option v-for="day in days" :key="day" :value="day">
+                {{ day }}
+              </option>
             </select>
-            <select v-model="dateOfBirth.year" id="birth-year" class="expiration">
+            <select
+              v-model="dateOfBirth.year"
+              id="birth-year"
+              class="expiration"
+            >
               <option value="">Enter Year</option>
-              <option v-for ="year in years" :key="year" :value="state">{{year}}</option>
-              
+              <option v-for="year in years" :key="year" :value="state">
+                {{ year }}
+              </option>
             </select>
-            
-            </div>
           </h2>
           <h2>
             <span class="section-title"> Contact Information </span><br />
 
-            <span class = "field-title">* Email: </span><br/>
-            <input v-model="userEmail" placeholder="Enter Email" id="user-email" required/>
-            <div class="error-messages" v-if="emailError">{{emailError}}</div><br/>
+            <span class="field-title">* Email: </span><br />
+            <input
+              v-model="userEmail"
+              placeholder="Enter Email"
+              id="user-email"
+              required
+            />
+            <div class="error-messages" v-if="emailError">{{ emailError }}</div>
+            <br />
             <br />
 
-            <span class = "field-title">Phone Number: </span><br/>
-            <label class="hint-text">Please don't use letters</label><br/>
-            <input v-model="userPhone" placeholder="123" id="user-phone" class="phone" /> 
-            <span> - </span>
-            <input v-model="userPhone_2" placeholder="567" id="user-phone_2" class="phone"/>
-            <span> - </span>
-            <input v-model="userPhone_3" placeholder="8912" id="user-phone_3" class="phone"/>
-            <div class="error-messages" v-if="phoneError">{{phoneError}}</div><br/>
-            <br/>
+            <span class="field-title">Phone Number: </span><br />
+            <label class="hint-text">Please don't use letters</label><br />
+            <input
+              v-model="userPhone"
+              placeholder="000 - 000 - 0000"
+              id="user-phone"
+              class="phone"
+            />
+            
+            <div class="error-messages" v-if="phoneError">{{ phoneError }}</div>
+            <br />
+            <br />
           </h2>
           <h2>
-          <span class="section-title"> Account Information </span><br />
-          <label class="hint-text"> Note: Your username will be the same as your email</label>
+            <span class="section-title"> Account Information </span><br />
+            <label class="hint-text">
+              Note: Your username will be the same as your email</label
+            >
           </h2>
-
-
         </div>
       </form>
 
@@ -96,13 +116,14 @@
         </button>
       </div>
 
-        <div class="error-messages" v-if="overallError">{{ overallError }}</div>
-        <br />
+      <div class="error-messages" v-if="overallError">{{ overallError }}</div>
+      <br />
     </h1>
   </div>
 </template>
 
 <script>
+//import FormProgressBar from "../components/FormProgressBar.vue";
 /*
           <span> - </span>
 
@@ -121,15 +142,15 @@ export default {
       title: "Create a Account",
 
       //Data field variables
-     //userEmail: {
-        firstName: "",
-        lastName: "",
+      //userEmail: {
+      firstName: "",
+      lastName: "",
 
-        dateOfBirth: {
-          month: "",
-          day: "",
-          year: "",
-        }, 
+      dateOfBirth: {
+        month: "",
+        day: "",
+        year: "",
+      },
       //},
 
       //Date Of Birth Select Values
@@ -244,65 +265,72 @@ export default {
     };
   },
   methods: {
-   firstNameValidation: function(){
+    firstNameValidation: function () {
       var first = this.firstName;
-     
-      if(first == '' || first.length > 40){
-        document.getElementById('firstName').style.borderColor = 'red';
-        this.firstNameError = first == "" ? 
-        "You must enter your first name!" : "First name is too long, must be 40 characters or less"
+
+      if (first == "" || first.length > 40) {
+        document.getElementById("firstName").style.borderColor = "red";
+        this.firstNameError =
+          first == ""
+            ? "You must enter your first name!"
+            : "First name is too long, must be 40 characters or less";
         return false;
       }
-  
+
       this.firstNameError = "";
-      document.getElementById('firstName').style.borderColor = 'black';
-      return true; 
+      document.getElementById("firstName").style.borderColor = "black";
+      return true;
     },
-    lastNameValidation: function(){
+    lastNameValidation: function () {
       var last = this.lastName;
-      
-      if(last == '' || last.length > 40){
-        document.getElementById('lastName').style.borderColor = 'red';
-        this.lastNameError = last == "" ? 
-        "You must enter your last name!" : "Last name is too long, must be 40 characters or less"
+
+      if (last == "" || last.length > 40) {
+        document.getElementById("lastName").style.borderColor = "red";
+        this.lastNameError =
+          last == ""
+            ? "You must enter your last name!"
+            : "Last name is too long, must be 40 characters or less";
         return false;
       }
       this.lastNameError = "";
-      document.getElementById('lastName').style.borderColor = 'black';
+      document.getElementById("lastName").style.borderColor = "black";
       return true;
-      
     },
 
-    phoneNumberValid: function(){
-        if((/[a-zA-Z]/).test(this.userPhone)){
-          document.getElementById('user-phone').style.borderColor = 'red';
-          this.phoneError = "Phone Number Invalid: You cant use letters!";
-          return false;
-        }
-        if(this.userPhone.length > this.maxLength){
-          document.getElementById('user-phone').style.borderColor = 'red';
-          this.phoneError = "Phone number Invalid: format is incorrect or the number entered is longer than 11 numbers";
-          return false;
-        }
-        this.phoneError=  "",
-        document.getElementById('user-phone').style.borderColor = 'black';
-        return true;
+    phoneNumberValid: function () {
+      if (/[a-zA-Z]/.test(this.userPhone)) {
+        document.getElementById("user-phone").style.borderColor = "red";
+        this.phoneError = "Phone Number Invalid: You cant use letters!";
+        return false;
+      }
+      if (this.userPhone.length > this.maxLength) {
+        document.getElementById("user-phone").style.borderColor = "red";
+        this.phoneError =
+          "Phone number Invalid: format is incorrect or the number entered is longer than 11 numbers";
+        return false;
+      }
+      (this.phoneError = ""),
+        (document.getElementById("user-phone").style.borderColor = "black");
+      return true;
     },
 
-     emailValidation: function(){
-      if(this.userEmail == ''){
-        document.getElementById('user-email').style.borderColor = 'red';
+    emailValidation: function () {
+      if (this.userEmail == "") {
+        document.getElementById("user-email").style.borderColor = "red";
         this.emailError = "It is required to enter your email!";
         return false;
       }
-      if(this.userEmail.search("@") === -1 || this.userEmail.search(".") === -1){
-        document.getElementById('user-email').style.borderColor = 'red';
+      if (
+        this.userEmail.search("@") === -1 ||
+        this.userEmail.search(".") === -1
+      ) {
+        document.getElementById("user-email").style.borderColor = "red";
         this.emailError = "You must enter a valid email!";
         return false;
       }
       this.emailError = "";
-      document.getElementById('user-email').style.borderColor = 'black';
-        
+      document.getElementById("user-email").style.borderColor = "black";
+
       return true;
     },
 
@@ -338,8 +366,6 @@ export default {
         goAhead = 1;
       }
 
-
-
       if (goAhead === 0) {
         this.overallError = "";
         this.persist();
@@ -349,12 +375,13 @@ export default {
       }
     },
   },
-  components: {},
+  components: {
+    //FormProgressBar,
+  },
 };
 </script>
 
 <style scoped>
-
 /*Input styles*/
 input {
   border: 2px solid;
@@ -486,106 +513,4 @@ h2 {
   text-align: center;
 }
 
-/** CODE TO RESUSE:
-
- <span class = "section-title">* Chose preferred title:</span>
-          <br/>
-          <select v-model="userTitle" id="user-title" required>
-            <option disabled value="">Please select one</option>
-            <option>Student</option>
-            <option>Professor</option>
-            <option>Retired</option>
-            <option>Staff</option>
-            <option>None</option>
-          </select>
-          <div class="error-messages" v-if="userTitleError">{{userTitleError}}</div><br/>
-          <br/>
-
-          <span class = "section-title"> Select Height: </span><br/>
-          <select v-model="userFeet" id="user-feet" class = "height">
-            <option disabled value="">Please select feet</option>
-            <option>1 feet</option>
-            <option>2 feet</option>
-            <option>3 feet</option>
-            <option>4 feet</option>
-            <option>5 feet</option>
-            <option>6 feet</option>
-            <option>7 feet</option>
-            <option>8 feet or over</option>
-          </select>
-          <span>  </span>
-          <select v-model="userInches" id="user-inches"  class = "height">
-            <option disabled value="">Please select inches</option>
-            <option>1 inch</option>
-            <option>2 inches</option>
-            <option>3 inches</option>
-            <option>4 inches</option>
-            <option>5 inches</option>
-            <option>6 inches</option>
-            <option>7 inches</option>
-            <option>8 inches</option>
-            <option>9 inches</option>
-            <option>10 inches</option>
-            <option>11 inches</option>
-          </select>
-          <br/><br/>
-
-          <span class = "section-title">Phone Number: </span><br/>
-          <label class="hint-text">Please don't use letters</label><br/>
-          <input v-model="userPhone" placeholder="123-456-7891" id="user-phone" class="phone" /> 
-          <div class="error-messages" v-if="phoneError">{{phoneError}}</div><br/>
-          <br/>
-          
-          <span class = "section-title">* Address: </span><br/>
-          <input v-model="userStreet" placeholder="Enter bulding number and street" id="user-street" class="address" required />
-          <div class="error-messages" v-if="streetError">{{streetError}}</div><br/>
-
-          <input v-model="userAptNum" placeholder="Optional: Enter Apt number " id="user-aptNum" class="address" />
-          <div class="error-messages" v-if="aptNumError">{{aptNumError}}</div><br/>
-          
-          <input v-model="userCity" placeholder="Enter City" id="user-city" class="address" required />
-          <div class="error-messages" v-if="cityError">{{cityError}}</div><br/>
-          
-          <input v-model="userState" placeholder="Enter State" id="user-state" class="address" required/>
-          <div class="error-messages" v-if="stateError">{{stateError}}</div><br/>
-    
-          <input v-model="userZipCode" placeholder="Enter ZipCode" id="user-zipcode" class="address" required/>
-          <div class="error-messages" v-if="zipcodeError">{{zipcodeError}}</div><br/>
-          <br/>
-
-          <span class = "section-title"> Additional Services: </span><br/>
-          <label class="hint-text">Select all that apply to you</label><br/>
-          <input type="checkbox" id="email" value="email" v-model="additional">
-          <label class = "checkboxText" for="email">Email</label><br/>
-          <input type="checkbox" id="phone" value="phone" v-model="additional">
-          <label class = "checkboxText" for="phone">Phone</label><br/>
-          <input type="checkbox" id="facebook" value="facebook" v-model="additional">
-          <label class = "checkboxText" for="facebook">Facebook</label><br/>
-          <input type="checkbox" id="tweeter" value="tweeter" v-model="additional">
-          <label class = "checkboxText" for="tweeter">Tweeter</label><br/>
-          <input type="checkbox" id="surface_mail" value="surface_mail" v-model="additional">
-          <label class = "checkboxText" for="surface_mail">Surface Mail</label><br/>
-          <input type="checkbox" id="personal_visit" value="personal_visit" v-model="additional">
-          <label class = "checkboxText" for="personal_visit">Personal Visit</label><br/>
-          <br>  
-
-          <span class = "section-title"> Budget: </span><br/>
-          <select v-model="userBudget" id="user-budget" required>
-            <option disabled value="">Please select one</option>
-            <option>less that 50$</option>
-            <option>50$ - 100$</option>
-            <option>Over 100$</option>
-          </select><br/><br/>
-         
-          <span class = "section-title">* Email: </span><br/>
-          <input v-model="userEmail" placeholder="Enter Email" id="user-email" required/>
-          <div class="error-messages" v-if="emailError">{{emailError}}</div><br/>
-          <br />
-          
-          <div class = "terms">
-              <input type="checkbox" v-model="terms" required>
-              <label class = "checkboxText"> Accept terms and Conditions </label>
-              <div class="error-messages" v-if="termsError">{{termsError}}</div><br/>
-          </div> 
-*/
 </style>

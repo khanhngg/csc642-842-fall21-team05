@@ -13,7 +13,6 @@ import SignUpForm_1 from "../views/SignUpForm_1.vue";
 import SignUpForm_2 from "../views/SignUpForm_2.vue";
 import NotFound from "../views/NotFound.vue";
 
-
 const routes = [
   {
     path: "/",

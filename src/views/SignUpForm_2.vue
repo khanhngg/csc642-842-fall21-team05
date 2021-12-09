@@ -43,11 +43,16 @@
             />
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
-            <label for="state" class="field-title">*State:</label><br/>
+            <label for="state" class="field-title">*State:</label><br />
             <select v-model="userState" id="user-state" class="address">
               <option value="">Select State</option>
-              <option v-for ="userState in states" :key="userState" :value="userState"> {{userState}} </option>
-             
+              <option
+                v-for="userState in states"
+                :key="userState"
+                :value="userState"
+              >
+                {{ userState }}
+              </option>
             </select>
             <div class="error-messages" v-if="stateError">{{ stateError }}</div>
             <br />
@@ -177,19 +182,19 @@ export default {
 
       //Data field variables
       //userEmail: {
-        name: "",
+      name: "",
 
-        userStreet: "",
-        userAptNum: "",
-        userCity: "",
-        userState: "",
-        userZipCode: "",
+      userStreet: "",
+      userAptNum: "",
+      userCity: "",
+      userState: "",
+      userZipCode: "",
 
-        cardNum: "",
-        cardMonth: "",
-        cardYear: "",
-        cardCode: "",
-        defaultPay: "",
+      cardNum: "",
+      cardMonth: "",
+      cardYear: "",
+      cardCode: "",
+      defaultPay: "",
       //},
       states: [
         "Alabama",
@@ -378,7 +383,6 @@ export default {
 </script>
 
 <style scoped>
-
 /*Input styles*/
 input {
   border: 2px solid;

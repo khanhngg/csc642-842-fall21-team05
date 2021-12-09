@@ -59,11 +59,12 @@
             />
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
-            <label for="state" class="field-title">State *</label><br/>
+            <label for="state" class="field-title">State *</label><br />
             <select v-model="userState" id="user-state" class="address">
               <option value="">Select State</option>
-              <option v-for ="state in states" :key="state" :value="state"> {{state}} </option>
-             
+              <option v-for="state in states" :key="state" :value="state">
+                {{ state }}
+              </option>
             </select>
             <div class="error-messages" v-if="stateError">{{ stateError }}</div>
             <br />
@@ -192,6 +193,10 @@ export default {
       title: "Update Payment Form",
 
       //Data field variables
+<<<<<<< HEAD
+=======
+      //userEmail: {
+>>>>>>> Pushing what i have for the signup
       name: "",
 
       userStreet: "",
@@ -205,6 +210,10 @@ export default {
       cardYear: "",
       cardCode: "",
       defaultPay: "",
+<<<<<<< HEAD
+=======
+      //},
+>>>>>>> Pushing what i have for the signup
       states: [
         "Alabama",
         "Alaska",
