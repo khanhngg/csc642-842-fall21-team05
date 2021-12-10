@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div :key="rental.id" v-for="rental in carRentals">
       <h3>{{ rental.pickupDate }}</h3>
   </div>
@@ -17,3 +17,4 @@ export default {
 
 </style>
 
+-->
