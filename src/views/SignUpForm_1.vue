@@ -145,6 +145,7 @@ export default {
       //Page Variables
       title: "Create an Account",
       signUpUser: {
+        userType: "",
         firstName: "",
         lastName: "",
         dateOfBirth: {
@@ -365,6 +366,16 @@ export default {
       this.$router.go(-1);
     },
     persist() {
+      // check which user type based on email
+      var { email } = this.signUpUser;
+      if (email.startsWith("admin")) {
+        this.signUpUser.userType = "admin";
+      } else if (email.startsWith("delivery")) {
+        this.signUpUser.userType = "delivery";
+      } else {
+        this.signUpUser.userType = "user";
+      }
+
       // write to localStorage to be used in next step in signup flow
       localStorage.setItem("signUpUser", JSON.stringify(this.signUpUser));
       this.$router.push({ name: "SignUpForm_2" });
