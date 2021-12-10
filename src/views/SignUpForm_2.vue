@@ -193,6 +193,7 @@ export default {
       title: "Create an Account",
 
       signUpUser: {
+        userType: "",
         firstName: "",
         lastName: "",
         dateOfBirth: {

@@ -13,6 +13,7 @@ import SignUpForm_1 from "../views/SignUpForm_1.vue";
 import SignUpForm_2 from "../views/SignUpForm_2.vue";
 import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
+import DeliveryReport from "../views/DeliveryReport.vue";
 
 const routes = [
   {
@@ -90,6 +91,11 @@ const routes = [
     path: "/:catchAll(.*)",
     name: "NotFound",
     component: NotFound,
+  },
+  {
+    path: "/delivery",
+    name: "DeliveryReport",
+    component: DeliveryReport,
   },
 ];
 
