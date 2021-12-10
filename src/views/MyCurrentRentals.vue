@@ -19,7 +19,7 @@
              <!-- List of Rentals -->
             <div class="card row rental-info border border-dark mx-auto">
                 <!-- testing data -->
-                <div v-for="carRental in carRentals" :key="carRental.id"></div>
+                <!-- <div v-for="carRental in carRentals" :key="carRental.id"> -->
                 <div class="card-head row row-1 g-2 border border-primary">
                     <div class="col-md-8">
                         <p class="card-title fw-bold">Reservation Confirmed</p>
@@ -84,7 +84,7 @@
                 </div>
 
                 </div> <!-- close row-2 -->
-            </div> <!-- close testing data -->
+            <!-- </div> close testing data -->
             </div> <!-- close rental-info card -->
 
 
@@ -101,7 +101,7 @@
     
     </div> <!-- close tab-content --> 
 
-  <!-- </div> close rentals-container -->
+  </div> <!-- close rentals-container -->
 
   <CarRentals :carRentals="carRentals" />
 
@@ -117,7 +117,57 @@ export default {
     data() {
         return {
             carRentals: [
-                {
+            //     {
+            //     id: 1,
+            //     reservationId: 1234567890,
+            //     pickupDate: "October 24",
+            //     pickupTime: "10:30 AM",
+            //     returnDate: "October 31",
+            //     returnTime: "9:00 PM",
+            //     carType: "Sedan",
+            //     carMake: "Toyota",
+            //     carModel: "Camry",
+            //     pickupLocation: "1600 Holloway Ave, San Francisco, CA 94132",
+            //     returnLocation: "1600 Holloway Ave, San Francisco, CA 94132",
+            //     price: 350,
+            //     status: true,
+            // },
+            // {
+            //     id: 2,
+            //     reservationId: 1234567890,
+            //     pickupDate: "October 24",
+            //     pickupTime: "10:30 AM",
+            //     returnDate: "October 31",
+            //     returnTime: "9:00 PM",
+            //     carType: "Sedan",
+            //     carMake: "Toyota",
+            //     carModel: "Camry",
+            //     pickupLocation: "1600 Holloway Ave, San Francisco, CA 94132",
+            //     returnLocation: "1600 Holloway Ave, San Francisco, CA 94132",
+            //     price: 350,
+            //     status: true,
+            // },
+            // {
+            //     id: 3,
+            //     reservationId: 1234567890,
+            //     pickupDate: "October 24",
+            //     pickupTime: "10:30 AM",
+            //     returnDate: "October 31",
+            //     returnTime: "9:00 PM",
+            //     carType: "Sedan",
+            //     carMake: "Toyota",
+            //     carModel: "Camry",
+            //     pickupLocation: "1600 Holloway Ave, San Francisco, CA 94132",
+            //     returnLocation: "1600 Holloway Ave, San Francisco, CA 94132",
+            //     price: 350,
+            //     status: true,
+            // },
+            ],
+        };
+    },
+    created() {
+        this.carRentals = [
+            {
                 id: 1,
                 reservationId: 1234567890,
                 pickupDate: "October 24",
@@ -162,58 +212,8 @@ export default {
                 price: 350,
                 status: true,
             },
-            ],
-        };
+        ]
     },
-    // created() {
-    //     this.carRentals = [
-    //         {
-    //             id: 1,
-    //             reservationId: 1234567890,
-    //             pickupDate: "October 24",
-    //             pickupTime: "10:30 AM",
-    //             returnDate: "October 31",
-    //             returnTime: "9:00 PM",
-    //             carType: "Sedan",
-    //             carMake: "Toyota",
-    //             carModel: "Camry",
-    //             pickupLocation: "1600 Holloway Ave, San Francisco, CA 94132",
-    //             returnLocation: "1600 Holloway Ave, San Francisco, CA 94132",
-    //             price: 350,
-    //             status: true,
-    //         },
-    //         {
-    //             id: 2,
-    //             reservationId: 1234567890,
-    //             pickupDate: "October 24",
-    //             pickupTime: "10:30 AM",
-    //             returnDate: "October 31",
-    //             returnTime: "9:00 PM",
-    //             carType: "Sedan",
-    //             carMake: "Toyota",
-    //             carModel: "Camry",
-    //             pickupLocation: "1600 Holloway Ave, San Francisco, CA 94132",
-    //             returnLocation: "1600 Holloway Ave, San Francisco, CA 94132",
-    //             price: 350,
-    //             status: true,
-    //         },
-    //         {
-    //             id: 3,
-    //             reservationId: 1234567890,
-    //             pickupDate: "October 24",
-    //             pickupTime: "10:30 AM",
-    //             returnDate: "October 31",
-    //             returnTime: "9:00 PM",
-    //             carType: "Sedan",
-    //             carMake: "Toyota",
-    //             carModel: "Camry",
-    //             pickupLocation: "1600 Holloway Ave, San Francisco, CA 94132",
-    //             returnLocation: "1600 Holloway Ave, San Francisco, CA 94132",
-    //             price: 350,
-    //             status: true,
-    //         },
-    //     ]
-    // },
 }
 </script>
 
