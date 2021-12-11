@@ -2,12 +2,21 @@
   <div class="form">
     <h1>
       &emsp;{{ title }}
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-success"
+          role="progressbar"
+          aria-valuenow="50"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: 50%"
+        >
+          50% Percent Complete
+        </div>
+      </div>
+      <label class="hint-text"> &nbsp; * Required Fields </label><br />
       <form>
         <div id="v-model-select" class="form">
-          <label class="hint-text"
-            >Astriks(*) - Input in Field is Required</label
-          ><br />
-
           <h2>
             <span class="section-title"> Billing Address </span><br />
             <span class="field-title">* Street Address:</span><br />
@@ -44,15 +53,11 @@
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
             <label for="state" class="field-title">*State:</label><br />
-<<<<<<< HEAD
             <select
               v-model="signUpUser.address.state"
               id="user-state"
               class="address"
             >
-=======
-            <select v-model="userState" id="user-state" class="address">
->>>>>>> 738b492 (Pushing what i have for the signup)
               <option value="">Select State</option>
               <option
                 v-for="userState in states"
@@ -159,7 +164,7 @@
           Submit
         </button>
       </div>
-      <div class="col-12">
+      <div class="clear-button">
         <button
           class="btn btn-primary-theme"
           type="back"
@@ -168,9 +173,8 @@
         >
           Back
         </button>
-        <div class="error-messages" v-if="overallError">{{ overallError }}</div>
-        <br />
       </div>
+      <div class="error-messages" v-if="overallError">{{ overallError }}</div>
     </h1>
   </div>
 </template>
@@ -226,21 +230,9 @@ export default {
         securityCode: "",
         isDefault: false,
       },
+
       //Data field variables
       //userEmail: {
-      name: "",
-
-      userStreet: "",
-      userAptNum: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
-
-      cardNum: "",
-      cardMonth: "",
-      cardYear: "",
-      cardCode: "",
-      defaultPay: "",
       //},
       states: [
         "Alabama",
@@ -315,19 +307,16 @@ export default {
   },
   methods: {
     addressValidation: function () {
-      var street = this.userStreet;
-      var aptNum = this.userAptNum;
-      var city = this.userCity;
-      var state = this.userState;
-      var zip = this.userZipCode;
+      var street = this.signUpUser.address.streetAddress;
+      var aptNum = this.signUpUser.address.apartmentNumber;
+      var city = this.signUpUser.address.city;
+      var state = this.signUpUser.address.state;
+      var zip = this.signUpUser.address.zipCode;
       var invalid = 0;
 
-      if (street.length > 40 || street.length == 0) {
+      if (street.length > 40 || street == "") {
         document.getElementById("user-street").style.borderColor = "red";
-        this.streetError =
-          street.length > 40
-            ? "Street address too long, must to be less than 40 characters!"
-            : "You must fill out the street address!";
+        this.streetError = "You must fill out the street address!";
         invalid = 1;
       } else {
         this.streetError = "";
@@ -387,12 +376,20 @@ export default {
 
       this.streetError = "";
       this.cityError = "";
-
+      this.stateError = "";
       this.zipcodeError = "";
 
-      document.getElementById("user-street").style.borderColor = "black";
-
       return true;
+    },
+    paymentValidation: function () {
+      var cardNum = this.cardInfo.cardNumber;
+      //var expirationMonth = this.cardInfo.expiration.month;
+      // var expirationYear = this.cardInfo.expiration.year;
+      // var code = this.cardInfo.securityCode;
+
+      if (cardNum.length == 0) {
+        document.getElementById("user-card").style.borderColor = "red";
+      }
     },
     goBackButton() {
       this.$router.go(-1);
@@ -423,8 +420,14 @@ export default {
     onSubmit() {
       var allValid;
       var goAhead = 0;
-      // allValid = this.addressValidation();
+
+      allValid = this.addressValidation();
       if (allValid == false) {
+        goAhead = 1;
+      }
+      
+      allValid = this.paymentValidation();
+       if (allValid == false) {
         goAhead = 1;
       }
 
@@ -556,121 +559,16 @@ h2 {
 }
 
 .clear-button {
+  position: left;
   float: left;
-  margin-left: 20%;
+  margin-left: 0%;
   color: white;
-  display: block;
-  width: 10%;
-  border: none;
-  background-color: grey;
-  color: white;
-  border-color: gray;
-  padding: 1% 1%;
+  width: 100%;
   font-size: 60%;
   cursor: pointer;
-  text-align: center;
 }
-
-/** CODE TO RESUSE:
-
- <span class = "section-title">* Chose preferred title:</span>
-          <br/>
-          <select v-model="userTitle" id="user-title" required>
-            <option disabled value="">Please select one</option>
-            <option>Student</option>
-            <option>Professor</option>
-            <option>Retired</option>
-            <option>Staff</option>
-            <option>None</option>
-          </select>
-          <div class="error-messages" v-if="userTitleError">{{userTitleError}}</div><br/>
-          <br/>
-
-          <span class = "section-title"> Select Height: </span><br/>
-          <select v-model="userFeet" id="user-feet" class = "height">
-            <option disabled value="">Please select feet</option>
-            <option>1 feet</option>
-            <option>2 feet</option>
-            <option>3 feet</option>
-            <option>4 feet</option>
-            <option>5 feet</option>
-            <option>6 feet</option>
-            <option>7 feet</option>
-            <option>8 feet or over</option>
-          </select>
-          <span>  </span>
-          <select v-model="userInches" id="user-inches"  class = "height">
-            <option disabled value="">Please select inches</option>
-            <option>1 inch</option>
-            <option>2 inches</option>
-            <option>3 inches</option>
-            <option>4 inches</option>
-            <option>5 inches</option>
-            <option>6 inches</option>
-            <option>7 inches</option>
-            <option>8 inches</option>
-            <option>9 inches</option>
-            <option>10 inches</option>
-            <option>11 inches</option>
-          </select>
-          <br/><br/>
-
-          <span class = "section-title">Phone Number: </span><br/>
-          <label class="hint-text">Please don't use letters</label><br/>
-          <input v-model="userPhone" placeholder="123-456-7891" id="user-phone" class="phone" /> 
-          <div class="error-messages" v-if="phoneError">{{phoneError}}</div><br/>
-          <br/>
-          
-          <span class = "section-title">* Address: </span><br/>
-          <input v-model="userStreet" placeholder="Enter bulding number and street" id="user-street" class="address" required />
-          <div class="error-messages" v-if="streetError">{{streetError}}</div><br/>
-
-          <input v-model="userAptNum" placeholder="Optional: Enter Apt number " id="user-aptNum" class="address" />
-          <div class="error-messages" v-if="aptNumError">{{aptNumError}}</div><br/>
-          
-          <input v-model="userCity" placeholder="Enter City" id="user-city" class="address" required />
-          <div class="error-messages" v-if="cityError">{{cityError}}</div><br/>
-          
-          <input v-model="userState" placeholder="Enter State" id="user-state" class="address" required/>
-          <div class="error-messages" v-if="stateError">{{stateError}}</div><br/>
-    
-          <input v-model="userZipCode" placeholder="Enter ZipCode" id="user-zipcode" class="address" required/>
-          <div class="error-messages" v-if="zipcodeError">{{zipcodeError}}</div><br/>
-          <br/>
-
-          <span class = "section-title"> Additional Services: </span><br/>
-          <label class="hint-text">Select all that apply to you</label><br/>
-          <input type="checkbox" id="email" value="email" v-model="additional">
-          <label class = "checkboxText" for="email">Email</label><br/>
-          <input type="checkbox" id="phone" value="phone" v-model="additional">
-          <label class = "checkboxText" for="phone">Phone</label><br/>
-          <input type="checkbox" id="facebook" value="facebook" v-model="additional">
-          <label class = "checkboxText" for="facebook">Facebook</label><br/>
-          <input type="checkbox" id="tweeter" value="tweeter" v-model="additional">
-          <label class = "checkboxText" for="tweeter">Tweeter</label><br/>
-          <input type="checkbox" id="surface_mail" value="surface_mail" v-model="additional">
-          <label class = "checkboxText" for="surface_mail">Surface Mail</label><br/>
-          <input type="checkbox" id="personal_visit" value="personal_visit" v-model="additional">
-          <label class = "checkboxText" for="personal_visit">Personal Visit</label><br/>
-          <br>  
-
-          <span class = "section-title"> Budget: </span><br/>
-          <select v-model="userBudget" id="user-budget" required>
-            <option disabled value="">Please select one</option>
-            <option>less that 50$</option>
-            <option>50$ - 100$</option>
-            <option>Over 100$</option>
-          </select><br/><br/>
-         
-          <span class = "section-title">* Email: </span><br/>
-          <input v-model="userEmail" placeholder="Enter Email" id="user-email" required/>
-          <div class="error-messages" v-if="emailError">{{emailError}}</div><br/>
-          <br />
-          
-          <div class = "terms">
-              <input type="checkbox" v-model="terms" required>
-              <label class = "checkboxText"> Accept terms and Conditions </label>
-              <div class="error-messages" v-if="termsError">{{termsError}}</div><br/>
-          </div> 
-*/
+.progress-bar {
+  background-color: #7678ed;
+  position: center;
+}
 </style>

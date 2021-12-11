@@ -2,9 +2,22 @@
   <div class="form">
     <h1>
       &emsp;{{ title }}
-      <!--<FormProgressBar/>-->
-
-      <br />
+      <!--<div class="progressBar">
+        <form-progress-bar :length="3" > </form-progress-bar>
+      </div>
+      <br />-->
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-success"
+          role="progressbar"
+          aria-valuenow="40"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: 0%"
+        >
+          0% Percent Complete
+        </div>
+      </div>
       <label class="hint-text"> &nbsp; * Required Fields </label><br />
       <form>
         <div id="v-model-select" class="form">
@@ -14,24 +27,32 @@
               <label class="field-title">First Name * </label>
 
               <input
-                v-model="signUpUser.firstName"
+                type="text"
+                class="form-control"
                 placeholder="Enter First Name"
                 id="firstName"
+                v-model="signUpUser.firstName"
                 required
               />
+            </div>
+            <div class="error-messages" v-if="firstNameError">
+              {{ firstNameError }}
             </div>
             <div class="col-sm-6 mb-3">
               <label class="field-title">Last Name * </label>
               <input
+                class="form-control"
                 v-model="signUpUser.lastName"
                 placeholder="Enter Last Name"
                 id="lastName"
                 required
               />
             </div>
-            <div class="error-messages" v-if="nameError">{{ nameError }}</div>
+            <div class="error-messages" v-if="lastNameError">
+              {{ lastNameError }}
+            </div>
 
-            <span class="field-title">* Date of Birth </span><br />
+            <span class="field-title"> Date of Birth *</span><br />
             <select
               v-model="signUpUser.dateOfBirth.month"
               id="birth-month"
@@ -71,6 +92,7 @@
                 {{ year }}
               </option>
             </select>
+            <div class="error-messages" v-if="birthError">{{ birthError }}</div>
           </h2>
           <h2>
             <span class="section-title"> Contact Information </span><br />
@@ -84,9 +106,8 @@
             />
             <div class="error-messages" v-if="emailError">{{ emailError }}</div>
             <br />
-            <br />
 
-            <span class="field-title">Phone Number: </span><br />
+            <span class="field-title">Phone Number * </span><br />
             <label class="hint-text">Please don't use letters</label><br />
             <input
               v-model="signUpUser.phone"
@@ -95,16 +116,29 @@
               class="phone"
             />
             <div class="error-messages" v-if="phoneError">{{ phoneError }}</div>
-            <br />
-            <br />
           </h2>
           <h2>
             <span class="section-title"> Account Information </span><br />
             <label class="hint-text">
               Note: Your username will be the same as your email</label
-            >
-            <label class="form-label">Password</label>
-            <input type="password" v-model="signUpUser.password" />
+            ><br />
+            <label class="field-title">Password *</label>
+            <input
+              type="password"
+              id="password-field"
+              v-model="signUpUser.password"
+            />
+            <br />
+            <label class="field-title">Re-enter Password *</label>
+            <input
+              type="password"
+              id="password-field"
+              v-model="signUpUser.password2"
+            />
+
+            <div class="error-messages" v-if="passwordError">
+              {{ passwordError }}
+            </div>
           </h2>
         </div>
       </form>
@@ -126,6 +160,25 @@
 </template>
 
 <script>
+/*
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  // email,
+  // minLength,
+  maxLength,
+  // minValue,
+  // maxValue,
+  // numeric,
+  //sameAs,
+  helpers,
+} from "@vuelidate/validators";
+const validAlpha = (value) => {
+  return /^[a-zA-Z ]*$/.test(value);
+};
+const validAlphaNumeric = (value) => {
+  return /^[a-zA-Z0-9 ]*$/.test(value);
+};
 //import FormProgressBar from "../components/FormProgressBar.vue";
 /*
           <span> - </span>
@@ -141,6 +194,7 @@ export default {
   name: "PaymentForm",
   data() {
     return {
+      //v$: useVuelidate(),
       //Page Variables
       title: "Create an Account",
       signUpUser: {
@@ -155,6 +209,8 @@ export default {
         email: "",
         phone: "",
         password: "",
+        password2: "",
+
         address: {
           streetAddress: "",
           apartmentNumber: "",
@@ -173,6 +229,7 @@ export default {
         securityCode: "",
         isDefault: false,
       },
+
       //Date Of Birth Select Values
       years: [
         "1960",
@@ -273,7 +330,11 @@ export default {
       ],
 
       //ERROR MESSAGES
-      nameError: "",
+      firstNameError: "",
+      lastNameError: "",
+      birthError: "",
+
+      passwordError: "",
 
       streetError: "",
       aptNumError: "",
@@ -291,9 +352,33 @@ export default {
       this.signUpUser = user;
     }
   },
+  /*
+  validations() {
+    return {
+      signUpUser: {
+        lastName: {
+          required,
+          validAlpha: helpers.withMessage(
+            "Value must be alphabetical",
+            validAlpha
+          ),
+          maxLength: maxLength(40),
+        },
+        firstName: {
+          required,
+          validAlpha: helpers.withMessage(
+            "Value must be alphabetical",
+            validAlpha
+          ),
+          maxLength: maxLength(40),
+        },
+      },
+    };
+  },
+*/
   methods: {
     firstNameValidation: function () {
-      var first = this.firstName;
+      var first = this.signUpUser.firstName;
 
       if (first == "" || first.length > 40) {
         document.getElementById("firstName").style.borderColor = "red";
@@ -309,7 +394,7 @@ export default {
       return true;
     },
     lastNameValidation: function () {
-      var last = this.lastName;
+      var last = this.signUpUser.lastName;
 
       if (last == "" || last.length > 40) {
         document.getElementById("lastName").style.borderColor = "red";
@@ -323,41 +408,87 @@ export default {
       document.getElementById("lastName").style.borderColor = "black";
       return true;
     },
+    birthValidation: function () {
+      var month = this.signUpUser.dateOfBirth.month;
+      var day = this.signUpUser.dateOfBirth.day;
+      var year = this.signUpUser.dateOfBirth.year;
+      var error = 0;
+
+      if (month == "") {
+        document.getElementById("birth-month").style.borderColor = "red";
+        error = 1;
+      }
+      if (day == "") {
+        document.getElementById("birth-day").style.borderColor = "red";
+        error = 1;
+      }
+      if (year == "") {
+        document.getElementById("birth-year").style.borderColor = "red";
+        error = 1;
+      }
+
+      if (error != 0) {
+        this.birthError = "You must input your entire birthday!";
+        return false;
+      }
+
+      this.birthError = "";
+      document.getElementById("birth-month").style.borderColor = "black";
+      document.getElementById("birth-day").style.borderColor = "black";
+      document.getElementById("birth-year").style.borderColor = "black";
+      return true;
+    },
 
     phoneNumberValid: function () {
-      if (/[a-zA-Z]/.test(this.userPhone)) {
+      var phone = this.signUpUser.phone;
+      if (phone === "") {
+        document.getElementById("user-phone").style.borderColor = "red";
+        this.phoneError = "You must enter a phone number!";
+        return false;
+      }
+
+      if (/[a-zA-Z]/.test(phone)) {
         document.getElementById("user-phone").style.borderColor = "red";
         this.phoneError = "Phone Number Invalid: You cant use letters!";
         return false;
       }
-      if (this.userPhone.length > this.maxLength) {
-        document.getElementById("user-phone").style.borderColor = "red";
-        this.phoneError =
-          "Phone number Invalid: format is incorrect or the number entered is longer than 11 numbers";
-        return false;
-      }
-      (this.phoneError = ""),
-        (document.getElementById("user-phone").style.borderColor = "black");
+
+      this.phoneError = "";
+      document.getElementById("user-phone").style.borderColor = "black";
+
       return true;
     },
 
     emailValidation: function () {
-      if (this.userEmail == "") {
+      var email = this.signUpUser.email;
+      if (email == "") {
         document.getElementById("user-email").style.borderColor = "red";
         this.emailError = "It is required to enter your email!";
         return false;
       }
-      if (
-        this.userEmail.search("@") === -1 ||
-        this.userEmail.search(".") === -1
-      ) {
-        document.getElementById("user-email").style.borderColor = "red";
-        this.emailError = "You must enter a valid email!";
-        return false;
-      }
+
       this.emailError = "";
       document.getElementById("user-email").style.borderColor = "black";
+      return true;
+    },
 
+    passwordValidation: function () {
+      var password = this.signUpUser.password;
+      var password2 = this.signUpUser.password2;
+
+      if (password == "" || password2 == "") {
+        document.getElementById("password-field").style.borderColor = "red";
+        this.passwordError = "You must enter a password!";
+        return false;
+      }
+      if (password != password2) {
+        document.getElementById("password-field").style.borderColor = "red";
+        this.passwordError = "Passwords dont match!";
+        return false;
+      }
+
+      document.getElementById("password-field").style.borderColor = "black";
+      this.passwordError = "";
       return true;
     },
 
@@ -379,24 +510,32 @@ export default {
       localStorage.setItem("signUpUser", JSON.stringify(this.signUpUser));
       this.$router.push({ name: "SignUpForm_2" });
     },
+
     submitButton: function () {
       var allValid;
       var goAhead = 0;
 
-      //allValid = this.firstNameValidation(); //FIX LATER
+      allValid = this.firstNameValidation(); //FIX LATER
       if (allValid == false) {
         goAhead = 1;
       }
-      // allValid = this.lastNameValidation();
+      allValid = this.lastNameValidation();
       if (allValid == false) {
         goAhead = 1;
       }
-
-      // allValid = this.phoneNumberValid();
+      allValid = this.birthValidation();
       if (allValid == false) {
         goAhead = 1;
       }
-      // allValid = this.emailValidation();
+      allValid = this.phoneNumberValid();
+      if (allValid == false) {
+        goAhead = 1;
+      }
+      allValid = this.emailValidation();
+      if (allValid == false) {
+        goAhead = 1;
+      }
+      allValid = this.passwordValidation();
       if (allValid == false) {
         goAhead = 1;
       }
@@ -545,5 +684,16 @@ h2 {
   font-size: 60%;
   cursor: pointer;
   text-align: center;
+}
+.progress-bar {
+  color: #7678ed;
+  position: center;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  height: 70px;
+  border-radius: 5px;
 }
 </style>

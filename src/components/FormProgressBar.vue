@@ -16,6 +16,8 @@ export default {
 };
 </script>
 
+(html comment removed: Add "scoped" attribute to limit CSS to this component
+only )
 <style scoped>
 .container {
   width: 35%;
@@ -64,6 +66,14 @@ export default {
 }
 .progressbar li.active:after {
   background: #3aac5d;
+}
+.progressbar li.active + li:after {
+  background: #3aac5d;
+}
+.progressbar li.active + li:before {
+  border-color: #3aac5d;
+  background: #3aac5d;
+  color: white;
 }
 .progressbar li:first-child:after {
   content: none;
