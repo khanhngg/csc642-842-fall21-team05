@@ -9,7 +9,13 @@ import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
 import PaymentForm from "../views/PaymentForm.vue";
 import PaymentFormResult from "../views/PaymentFormResult.vue";
+import SignUpForm_1 from "../views/SignUpForm_1.vue";
+import SignUpForm_2 from "../views/SignUpForm_2.vue";
+import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
+import DeliveryReport from "../views/DeliveryReport.vue";
+import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
+import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
 
 const routes = [
   {
@@ -67,11 +73,41 @@ const routes = [
     name: "PaymentFormResult",
     component: PaymentFormResult,
   },
+  {
+    path: "/signup/info",
+    name: "SignUpForm_1",
+    component: SignUpForm_1,
+  },
+  {
+    path: "/signup/payments",
+    name: "SignUpForm_2",
+    component: SignUpForm_2,
+  },
+  {
+    path: "/signup/result",
+    name: "SignUpResult",
+    component: SignUpResult,
+  },
   //404 page
   {
     path: "/:catchAll(.*)",
     name: "NotFound",
     component: NotFound,
+  },
+  {
+    path: "/delivery",
+    name: "DeliveryReport",
+    component: DeliveryReport,
+  },
+  {
+    path: "/emailreservation/confirmed",
+    name: "EmailReservationConfirmed",
+    component: EmailReservationConfirmed,
+  },
+  {
+    path: "/emailreservation/canceled",
+    name: "EmailReservationCanceled",
+    component: EmailReservationCanceled,
   },
 ];
 

@@ -72,12 +72,59 @@
           />
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Payments</a></li>
-          <li><a class="dropdown-item" href="#">My Rentals</a></li>
+          <div v-if="isUserTypeAdmin()">
+            <li>
+              <router-link class="dropdown-item" :to="{ name: 'Dashboard' }">
+                Dashboard
+              </router-link>
+            </li>
+            <li>
+              <router-link class="dropdown-item" :to="{ name: 'AddForm' }">
+                Add a Car
+              </router-link>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+          </div>
+          <div v-else-if="isUserTypeDelivery()">
+            <li>
+              <router-link
+                class="dropdown-item"
+                :to="{ name: 'DeliveryReport' }"
+              >
+                My Deliveries
+              </router-link>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+          </div>
+          <li>
+            <router-link class="dropdown-item" :to="{ name: 'Profile' }">
+              Profile
+            </router-link>
+          </li>
+          <li>
+            <router-link class="dropdown-item" :to="{ name: 'Profile' }">
+              Payments
+            </router-link>
+          </li>
+          <li>
+            <router-link class="dropdown-item" :to="{ name: 'Profile' }">
+              My Rentals
+            </router-link>
+          </li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li>
+            <a class="dropdown-item" @click.prevent="onSignOut">Sign out</a>
+          </li>
         </ul>
+      </div>
+      <div v-else>
+        <button class="btn btn-primary-theme" @click.prevent="onLogIn">
+          Log In
+        </button>
       </div>
     </div>
   </nav>
@@ -90,9 +137,65 @@ export default {
       type: Boolean,
       default: true,
     },
-    isLoggedIn: {
-      type: Boolean,
-      default: true,
+  },
+  data() {
+    return {
+      isLoggedIn: false,
+      loggedInUser: {
+        userType: "",
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        },
+        email: "",
+        phone: "",
+        password: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        cardInfo: {
+          cardNumber: "",
+          expiration: {
+            month: "",
+            year: "",
+          },
+          securityCode: "",
+          isDefault: false,
+        },
+      },
+    };
+  },
+  created() {
+    var user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (user) {
+      this.isLoggedIn = true;
+      this.loggedInUser = user;
+    } else {
+      this.isLoggedIn = false;
+    }
+  },
+  methods: {
+    onLogIn() {
+      this.$router.push({ name: "Login" });
+    },
+    onSignOut() {
+      localStorage.removeItem("loggedInUser");
+      this.isLoggedIn = false;
+      this.$router.push({ name: "Home" });
+    },
+    isUserTypeAdmin() {
+      return this.loggedInUser && this.loggedInUser.userType == "admin";
+    },
+    isUserTypeDelivery() {
+      return this.loggedInUser && this.loggedInUser.userType == "delivery";
     },
   },
 };
