@@ -1,7 +1,7 @@
 <template>
     <div class="container form-container bg-info bg-opacity-10">
         <div class="d-flex bd-highlight mb-3">
-            <h3 class="text-left mb-5">SUMMARY OF ADDED CAR</h3>
+            <h3 class="text-left mb-5">SUMMARY OF EDITED CAR</h3>
                 <div class="ms-auto p-2 bd-highlight">
                     <router-link :to="{ name: 'Edit', params: { id: car.id}}">
                         <button class="btn btn-primary">EDIT</button>
@@ -56,6 +56,7 @@
 export default {
     data() {
         return {
+            id: this.$route.params.id,
             car: {
                 id: "",
                 make: "",
@@ -141,16 +142,22 @@ export default {
     },
     methods: {
         onAdd: function () {
-            this.$router.push("addform");
+            this.$router.push({ name: "AddForm" });
         },
         onDash: function () {
-            this.$router.push("dashboard");
+            this.$router.push({ name: "Dashboard" });
         },
     },
     async created() {
     // parse local storage to get form data
-    this.cars = JSON.parse(localStorage.getItem("cars"));
-    this.car = this.cars[this.cars.length - 1];
+        if (localStorage.getItem('cars')) {
+                try {
+                    this.cars = JSON.parse(localStorage.getItem('cars'));
+                    this.car = this.cars.find(car => car.id == this.id);
+                } catch(e) {
+                    localStorage.removeItem('cars');
+                }  
+            }
     },
 };
 </script>

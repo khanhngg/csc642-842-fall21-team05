@@ -7,6 +7,8 @@ import Profile from "../views/Profile.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Edit from "../views/Edit.vue";
+import EditSummary from "../views/EditSummary.vue";
 
 const routes = [
   {
@@ -51,6 +53,16 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/addform/:id",
+    name: "Edit",
+    component: Edit,
+  },
+  {
+    path: "/addsummary/:id",
+    name: "EditSummary",
+    component: EditSummary,
   },
 ];
 

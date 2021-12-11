@@ -1,7 +1,7 @@
 <template>
     <div class="container form-container bg-light bg-opacity-70">
-        <h1 class="text-center">ADD A CAR</h1>
-        <p class="form-text fw-bold mb-4">* Required to add a car</p>
+        <h1 class="text-center">Edit A CAR</h1>
+        <p class="form-text fw-bold mb-4">* Required to edit a car</p>
         <form class="g-3" v-on:submit.prevent="onSubmit" novalidate>
             <section class="row form-section mb-4">
                 <h4 class="fw-bold">CAR DETAILS</h4>
@@ -236,13 +236,14 @@
 
                     <div class="col-12 mb-3">
                         <label for="formFile" class="form-label">Add Pictures of car</label>
+                        
                         <div v-if="!car.image">
                             <p>Select an image</p>
                             <input class="form-control" type="file" @change="onFileChange" id="formFile">
                         </div>
                         <div v-else>
                             <div>
-                                <img class="img-max" :src="car.image" />
+                                <img class="img-max"  :src="car.image" />
                             </div>
                             <div>
                                 <button class="btn btn-outline-dark" @click="removeImage">Remove image</button>
@@ -306,10 +307,10 @@ import {
 } from "@vuelidate/validators";
 
 export default {
-    
     data(){
         return{
             v$: useVuelidate(),
+            id: this.$route.params.id,
             car: {
                 id: "",
                 make: "",
@@ -322,26 +323,12 @@ export default {
                 seat: "",
                 suitcase: "",
                 addon: [],
-                image: "", //generate random image in assets
+                image: "",
                 price: "",
                 description: "",
             },
-            cars: [
-                {id: 100,
-                make: "Toyota",
-                model: "Camry",
-                year: "2020",
-                type: "Sedan",
-                fuel: "Gasoline",
-                mpg: "800",
-                door: "4",
-                seat: "5",
-                suitcase: "2",
-                addon: ["Air-Condition"],
-                image: "../assets/deal-image-1.png",
-                price: "300",
-                description: "nothing",}],
-        }
+            cars: [],
+        };
     },
     
     validations() {
@@ -411,13 +398,12 @@ export default {
             const year = new Date().getFullYear()
             return Array.from({length: year - 2009}, (value, index) => 2010 + index)
         },
-        
     },
     methods: {
         onCancel: function () {
             if(confirm("Your page is not saved. Do you really want to leave?")){
                 this.$nextTick(() => { this.v$.$reset() })
-                this.$router.push("dashboard");
+                this.$router.push({ name: "Dashboard" });
             } 
         },
         onClear: function () {
@@ -440,12 +426,11 @@ export default {
         async onSubmit() {
             await this.v$.$touch();
             if (!this.v$.$invalid) {
-                
-                this.car.id = 105
-                this.cars.push(this.car);
+                this.cars[this.cars.indexOf(this.car)] = this.car
+                //this.cars.push(this.car);
                 localStorage.setItem("cars", JSON.stringify(this.cars));
                 
-                this.$router.push("addsummary");
+                this.$router.push({ name: "EditSummary" });
             } else {
                 return;
             }
@@ -455,6 +440,8 @@ export default {
             if (!files.length)
                 return;
             this.createImage(files[0]);
+            this.car.image = files[0].name
+            console.log(files[0].name)
         },
         createImage(file) {
             var reader = new FileReader();
@@ -468,9 +455,19 @@ export default {
         removeImage: function () {
             this.car.image = '';
         },
-    }
+    },
+    async created() {
+        // parse local storage to get form data
+        if (localStorage.getItem('cars')) {
+            try {
+                this.cars = JSON.parse(localStorage.getItem('cars'));
+                this.car = this.cars.find(car => car.id == this.id);
+            } catch(e) {
+                localStorage.removeItem('cars');
+            }  
+        }
+    },
 }
-    
 </script>
 
 <style scoped>
