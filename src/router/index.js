@@ -14,6 +14,8 @@ import SignUpForm_2 from "../views/SignUpForm_2.vue";
 import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
 import DeliveryReport from "../views/DeliveryReport.vue";
+import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
+import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
 
 const routes = [
   {
@@ -96,6 +98,16 @@ const routes = [
     path: "/delivery",
     name: "DeliveryReport",
     component: DeliveryReport,
+  },
+  {
+    path: "/emailreservation/confirmed",
+    name: "EmailReservationConfirmed",
+    component: EmailReservationConfirmed,
+  },
+  {
+    path: "/emailreservation/canceled",
+    name: "EmailReservationCanceled",
+    component: EmailReservationCanceled,
   },
 ];
 
