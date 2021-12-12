@@ -122,7 +122,7 @@
         </ul>
       </div>
       <div v-else>
-        <button class="btn btn-primary-theme" @click.prevent="onLogIn">
+        <button class="btn btn-primary-theme fw-bold" @click.prevent="onLogIn">
           Log In
         </button>
       </div>
