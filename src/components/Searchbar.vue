@@ -107,7 +107,7 @@
     <!-- submit btn -->
     <div class="p-2 flex-grow-3 align-self-center text-center">
       <button
-        class="btn btn-primary-theme"
+        class="btn btn-primary-theme fw-bold text-uppercase"
         type="submit"
         @click.prevent="handleSubmit"
       >

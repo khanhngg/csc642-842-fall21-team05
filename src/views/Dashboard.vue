@@ -61,7 +61,7 @@
             <div class="row g-0">
               <div class="col-md-4">
                 <img
-                  :src="`${car.image}`"
+                  :src="`/csc642-842-fall21-team05/img/${car.image}`"
                   class="img-fluid rounded-start"
                   alt="Car Image"
                 />
