@@ -4,6 +4,7 @@ import About from "../views/About.vue";
 import Search from "../views/Search.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
+import MyRentals from "../views/MyRentals.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
@@ -18,6 +19,7 @@ import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
 import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
 import ReservationReview from "../views/ReservationReview.vue";
 import ReservationResult from "../views/ReservationResult.vue";
+import Payments from "../views/PaymentTab.vue";
 
 const routes = [
   {
@@ -47,6 +49,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/myrentals",
+    name: "MyRentals",
+    component: MyRentals,
   },
   {
     path: "/addform",
@@ -121,6 +128,11 @@ const routes = [
     path: "/reservation/result",
     name: "ReservationResult",
     component: ReservationResult,
+  },
+  {
+    path: "/payments",
+    name: "Payments",
+    component: Payments,
   },
 ];
 

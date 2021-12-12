@@ -1,149 +1,163 @@
 <template>
-  <div class="form">
-    <h1>
-      &emsp;{{ title }}
-      <!--<FormProgressBar/>-->
+  <div class="container form-container">
+    <!-- Title -->
+    <h1 class="text-center fw-bold">Create an Account</h1>
+    <h4 class="text-center fw-bold">Step 1/2: Basic Information</h4>
+    <p class="form-text fw-bold fst-italic mb-4">
+      Required fields are marked with *
+    </p>
 
-      <br />
-      <label class="hint-text"> &nbsp; * Required Fields </label><br />
-      <form>
-        <div id="v-model-select" class="form">
-          <h2>
-            <span class="section-title"> Personal Information </span><br />
-            <div class="col-sm-6 mb-3">
-              <label class="field-title">First Name * </label>
-
-              <input
-                v-model="signUpUser.firstName"
-                placeholder="Enter First Name"
-                id="firstName"
-                required
-              />
-            </div>
-            <div class="col-sm-6 mb-3">
-              <label class="field-title">Last Name * </label>
-              <input
-                v-model="signUpUser.lastName"
-                placeholder="Enter Last Name"
-                id="lastName"
-                required
-              />
-            </div>
-            <div class="error-messages" v-if="nameError">{{ nameError }}</div>
-
-            <span class="field-title">* Date of Birth </span><br />
-            <select
-              v-model="signUpUser.dateOfBirth.month"
-              id="birth-month"
-              class="expiration"
-            >
-              <option disabled value="">Enter Month</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-            </select>
-            <select
-              v-model="signUpUser.dateOfBirth.day"
-              id="birth-day"
-              class="expiration"
-            >
-              <option value="">Enter Day</option>
-              <option v-for="day in days" :key="day" :value="day">
-                {{ day }}
-              </option>
-            </select>
-            <select
-              v-model="signUpUser.dateOfBirth.year"
-              id="birth-year"
-              class="expiration"
-            >
-              <option value="">Enter Year</option>
-              <option v-for="year in years" :key="year" :value="year">
-                {{ year }}
-              </option>
-            </select>
-          </h2>
-          <h2>
-            <span class="section-title"> Contact Information </span><br />
-
-            <span class="field-title">* Email: </span><br />
-            <input
-              v-model="signUpUser.email"
-              placeholder="Enter Email"
-              id="user-email"
-              required
-            />
-            <div class="error-messages" v-if="emailError">{{ emailError }}</div>
-            <br />
-            <br />
-
-            <span class="field-title">Phone Number: </span><br />
-            <label class="hint-text">Please don't use letters</label><br />
-            <input
-              v-model="signUpUser.phone"
-              placeholder="000 - 000 - 0000"
-              id="user-phone"
-              class="phone"
-            />
-
-            <div class="error-messages" v-if="phoneError">{{ phoneError }}</div>
-            <br />
-            <br />
-          </h2>
-          <h2>
-            <span class="section-title"> Account Information </span><br />
-            <label class="hint-text">
-              Note: Your username will be the same as your email</label
-            >
-            <label class="form-label">Password</label>
-            <input type="password" v-model="signUpUser.password" />
-          </h2>
+    <!-- Form -->
+    <form class="g-3" novalidate>
+      <section class="row form-section mb-4">
+        <h4 class="fw-bold mb-3">Personal Information</h4>
+        <!-- First Name -->
+        <div class="col-sm-6 mb-3">
+          <label class="form-label">First Name *</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter your first name"
+            v-model="signUpUser.firstName"
+          />
         </div>
-      </form>
 
-      <div class="submit">
+        <!-- Last Name -->
+        <div class="col-sm-6 mb-3">
+          <label class="form-label">Last Name *</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter your last name"
+            v-model="signUpUser.lastName"
+            required
+          />
+        </div>
+
+        <!-- DOB -->
+        <label class="form-label mb-0">Date of Birth</label>
+        <div class="col-12 col-md-3 mb-1 mt-0">
+          <div class="form-text">Month *</div>
+          <select class="form-select" v-model="signUpUser.dateOfBirth.month">
+            <option value="">Select month</option>
+            <option v-for="month in months" :key="month" :value="month">
+              {{ month }}
+            </option>
+          </select>
+        </div>
+        <div class="col-12 col-md-3 mb-3 mt-0">
+          <div class="form-text">Day *</div>
+          <select class="form-select" v-model="signUpUser.dateOfBirth.day">
+            <option value="">Select day</option>
+            <option v-for="day in days" :key="day" :value="day">
+              {{ day }}
+            </option>
+          </select>
+        </div>
+        <div class="col-12 col-md-3 mb-3 mt-0">
+          <div class="form-text">Year *</div>
+          <select class="form-select" v-model="signUpUser.dateOfBirth.year">
+            <option value="">Select year</option>
+            <option
+              v-for="year in years.slice().reverse()"
+              :key="year"
+              :value="year"
+            >
+              {{ year }}
+            </option>
+          </select>
+        </div>
+      </section>
+
+      <section class="row form-section mb-4">
+        <!-- Email -->
+        <h4 class="fw-bold mb-3">Contact Information</h4>
+        <div class="mb-3">
+          <label class="form-label">Email Address *</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="you@example.com"
+            v-model="signUpUser.email"
+          />
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+          <label class="form-label">Phone Number *</label>
+          <input
+            type="tel"
+            class="form-control"
+            placeholder="Enter a 10 digit phone number"
+            v-model="signUpUser.phone"
+          />
+        </div>
+      </section>
+
+      <section class="row form-section mb-4">
+        <!-- Password -->
+        <h4 class="fw-bold mb-3">Account Information</h4>
+        <div class="col-12 mb-3">
+          <label class="form-label">Password *</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter password"
+            v-model="signUpUser.password"
+          />
+        </div>
+        <p class="text-muted">
+          <small>
+            <span class="fw-bold"> NOTE: </span>Password must include at least:
+            <ul>
+              <li>1 capital letter</li>
+              <li>1 number</li>
+              <li>1 symbol</li>
+            </ul>
+            Password has to be 8 or more chacters long
+          </small>
+        </p>
+      </section>
+
+      <!-- Button -->
+      <div class="mb-5 text-center">
         <button
-          class="btn btn-primary-theme"
-          type="submit"
-          v-on:click="submitButton()"
+          class="
+            d-none d-md-block
+            w-25
+            btn btn-primary-theme
+            fw-bold
+            text-uppercase
+            right-align-item
+          "
+          type="button"
+          @click.prevent="onSubmit"
+        >
+          Continue
+        </button>
+        <button
+          class="
+            d-block d-md-none
+            w-100
+            btn btn-primary-theme
+            fw-bold
+            text-uppercase
+          "
+          type="button"
+          @click.prevent="onSubmit"
         >
           Continue
         </button>
       </div>
-
-      <div class="error-messages" v-if="overallError">{{ overallError }}</div>
-      <br />
-    </h1>
+    </form>
   </div>
 </template>
 
 <script>
-//import FormProgressBar from "../components/FormProgressBar.vue";
-/*
-          <span> - </span>
-
-          <input v-model="userPhone_2" placeholder="567" id="user-phone_2" class="phone"/>
-          <span> - </span>
-          <input v-model="userPhone_3" placeholder="891" id="user-phone_3" class="phone"/>
-
-          @keypress = "atPressed"
-*/
-
 export default {
-  name: "PaymentForm",
+  name: "SignUpForm_1",
   data() {
     return {
-      //Page Variables
-      title: "Create an Account",
       signUpUser: {
         userType: "",
         firstName: "",
@@ -174,6 +188,7 @@ export default {
         securityCode: "",
         isDefault: false,
       },
+
       //Date Of Birth Select Values
       years: [
         "1960",
@@ -240,15 +255,15 @@ export default {
         "2021",
       ],
       days: [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
         "10",
         "11",
         "12",
@@ -272,17 +287,20 @@ export default {
         "30",
         "31",
       ],
-
-      //ERROR MESSAGES
-      nameError: "",
-
-      streetError: "",
-      aptNumError: "",
-      cityError: "",
-      stateError: "",
-      zipcodeError: "",
-
-      cardNumError: "",
+      months: [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+      ],
     };
   },
   created() {
@@ -293,79 +311,7 @@ export default {
     }
   },
   methods: {
-    firstNameValidation: function () {
-      var first = this.firstName;
-
-      if (first == "" || first.length > 40) {
-        document.getElementById("firstName").style.borderColor = "red";
-        this.firstNameError =
-          first == ""
-            ? "You must enter your first name!"
-            : "First name is too long, must be 40 characters or less";
-        return false;
-      }
-
-      this.firstNameError = "";
-      document.getElementById("firstName").style.borderColor = "black";
-      return true;
-    },
-    lastNameValidation: function () {
-      var last = this.lastName;
-
-      if (last == "" || last.length > 40) {
-        document.getElementById("lastName").style.borderColor = "red";
-        this.lastNameError =
-          last == ""
-            ? "You must enter your last name!"
-            : "Last name is too long, must be 40 characters or less";
-        return false;
-      }
-      this.lastNameError = "";
-      document.getElementById("lastName").style.borderColor = "black";
-      return true;
-    },
-
-    phoneNumberValid: function () {
-      if (/[a-zA-Z]/.test(this.userPhone)) {
-        document.getElementById("user-phone").style.borderColor = "red";
-        this.phoneError = "Phone Number Invalid: You cant use letters!";
-        return false;
-      }
-      if (this.userPhone.length > this.maxLength) {
-        document.getElementById("user-phone").style.borderColor = "red";
-        this.phoneError =
-          "Phone number Invalid: format is incorrect or the number entered is longer than 11 numbers";
-        return false;
-      }
-      (this.phoneError = ""),
-        (document.getElementById("user-phone").style.borderColor = "black");
-      return true;
-    },
-
-    emailValidation: function () {
-      if (this.userEmail == "") {
-        document.getElementById("user-email").style.borderColor = "red";
-        this.emailError = "It is required to enter your email!";
-        return false;
-      }
-      if (
-        this.userEmail.search("@") === -1 ||
-        this.userEmail.search(".") === -1
-      ) {
-        document.getElementById("user-email").style.borderColor = "red";
-        this.emailError = "You must enter a valid email!";
-        return false;
-      }
-      this.emailError = "";
-      document.getElementById("user-email").style.borderColor = "black";
-
-      return true;
-    },
-
-    goBackButton() {
-      this.$router.go(-1);
-    },
-    persist() {
+    onSubmit() {
       // check which user type based on email
       var { email } = this.signUpUser;
       if (email.startsWith("admin")) {
@@ -380,171 +326,26 @@ export default {
       localStorage.setItem("signUpUser", JSON.stringify(this.signUpUser));
       this.$router.push({ name: "SignUpForm_2" });
     },
-    submitButton: function () {
-      var allValid;
-      var goAhead = 0;
-
-      //allValid = this.firstNameValidation(); //FIX LATER
-      if (allValid == false) {
-        goAhead = 1;
-      }
-      // allValid = this.lastNameValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-
-      // allValid = this.phoneNumberValid();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-      // allValid = this.emailValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-
-      if (goAhead === 0) {
-        this.overallError = "";
-        this.persist();
-      } else {
-        this.overallError =
-          "You must fix the highlighted fields before continuing!";
-      }
-    },
-  },
-  components: {
-    //FormProgressBar,
   },
 };
 </script>
 
 <style scoped>
-/*Input styles*/
-input {
-  border: 2px solid;
-  border-radius: 4px;
-  background-color: rgb(250, 248, 248);
-  font-size: 14px;
-  margin: 0.25rem;
-  padding: 5px 10px;
-  transition: background-color 0.5s ease-out;
+.form-label {
+  font-weight: 600;
 }
 
-input[id="user-street"] {
-  width: 375px;
-}
-input[id="user-city"] {
-  width: 250px;
-}
-input[class="phone"] {
-  width: 20%;
-  text-align: center;
-  padding: 3px;
+.form-section {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  border: solid #dee2e6;
+  border-width: 1px;
 }
 
-.checkboxText {
-  font-size: 80%;
-}
-input[id="agree"] {
-  margin-right: 60%;
-}
-input[type="checkbox"] {
-  cursor: pointer;
-}
-
-select {
-  border: 2px solid;
-  border-radius: 4px;
-  border-color: grey;
-  background-color: rgb(250, 248, 248);
-  font-size: 14px;
-  margin: 0.25rem;
-  padding: 5px 10px;
-  transition: background-color 0.5s ease-out;
-}
-
-/*Page style*/
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  background-color: #7678ed;
-  text-align: center;
-}
-body > div {
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
-}
-
-h2 {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 2%;
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: left;
-  padding: 3%;
-}
-#clearBtn {
-  background-color: grey;
-}
-#backBtn {
-  color: black;
-  background-color: white;
-  border-color: black;
-}
-/*Class Styles*/
-.field-title {
-  font-size: 75%;
-}
-.section-title {
-  font-size: 100%;
-}
-
-.terms-agree {
-  font-size: 16px;
-  text-align: left;
-}
-
-.hint-text {
-  font-size: 14px;
-  color: rgb(95, 95, 95);
-}
-
-.form {
-  font-size: 37%;
-  padding: 20px 30px;
-  margin-top: 1em;
-  margin-bottom: 5%;
-  user-select: none;
-  overflow-x: auto;
-}
-
-.error-messages {
-  font-size: 16px;
-  color: rgb(180, 12, 12);
-}
-
-.btn-primary-theme {
-  float: right;
-  margin-right: 20%;
-
-  width: 10%;
-}
-
-.clear-button {
-  float: left;
-  margin-left: 20%;
-  color: white;
-  display: block;
-  width: 10%;
-  border: none;
-  background-color: grey;
-  color: white;
-  border-color: gray;
-  padding: 1% 1%;
-  font-size: 60%;
-  cursor: pointer;
-  text-align: center;
+.right-align-item {
+  margin-left: auto;
 }
 </style>
