@@ -126,7 +126,7 @@
                 return this.cars.filter(car => {
                     return car.id.toString().includes(this.search)
                     &&car.make.toLowerCase().includes(this.searchmake.toLowerCase())
-                    //&&car.price.toString().includes(this.findPrice(car.price,this.searchprice))
+                    &&car.price.toString().includes(this.findPrice(car.price,this.searchprice))
                 })
             },
         },
@@ -139,6 +139,9 @@
                 localStorage.setItem("cars", JSON.stringify(this.cars));
             },
             findPrice: function (price,searchprice) {
+                if (searchprice=="") {
+                        return price
+                }
                 if (searchprice=="0-100") {
                     if (price>0 && price<=100){
                         return price
