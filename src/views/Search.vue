@@ -13,6 +13,66 @@
   <!-- Search Results count -->
   <h6 class="fw-bold text-uppercase">Showing 1-10 out of 50 cars</h6>
 
+  <img
+    src="../assets/car-1.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-2.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-3.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-4.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-5.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-6.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-7.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-8.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-9.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
+  <img
+    src="../assets/car-10.jpg"
+    class="img-fluid rounded-start"
+    alt="Car Image"
+  />
+
   <!-- Search Results -->
   <section class="container mb-5">
     <div class="row">
@@ -203,16 +263,20 @@ export default {
         fromTime: "",
         toTime: "",
       },
-      selectedCar: {},
+      selectedCar: {
+
+      }
     };
   },
   created() {
     // TODO - get cars from localstorage or json
     // calculate duration based on searchQuery
-    console.log("in search created...");
-    var searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
-    console.log(searchQuery);
-    this.searchQuery = searchQuery;
+    console.log('in search created...')
+    var searchQuery = JSON.parse(localStorage.getItem("searchQuery"))
+    if (searchQuery) {
+      this.searchQuery = searchQuery
+    }
+    console.log(searchQuery)
   },
   methods: {
     getTotalPrice(carId) {
@@ -221,13 +285,14 @@ export default {
     },
     handleOnSearch(searchQuery) {
       // write to localStorage for search page
-      this.searchQuery = searchQuery;
-      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+      this.searchQuery = searchQuery
+      localStorage.setItem("searchQuery", JSON.stringify(searchQuery))
 
       // TODO - update list of cars?
+      
     },
     onSubmit(carId) {
-      console.log(carId);
+      console.log(carId)
 
       // write to localStorage
       localStorage.setItem("searchQuery", JSON.stringify(this.searchQuery));
