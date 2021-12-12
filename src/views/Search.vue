@@ -124,6 +124,20 @@
         </div>
       </section>
 
+      <!-- NOTE: Trick to have images on github-pages -->
+      <div class="d-none">
+        <img src="../assets/car-1.jpg" />
+        <img src="../assets/car-2.jpg" />
+        <img src="../assets/car-3.jpg" />
+        <img src="../assets/car-4.jpg" />
+        <img src="../assets/car-5.jpg" />
+        <img src="../assets/car-6.jpg" />
+        <img src="../assets/car-7.jpg" />
+        <img src="../assets/car-8.jpg" />
+        <img src="../assets/car-9.jpg" />
+        <img src="../assets/car-10.jpg" />
+      </div>
+
       <!-- List of cars -->
       <section class="col-9 pe-0">
         <div v-for="car in cars" :key="car.id" class="card mb-3">

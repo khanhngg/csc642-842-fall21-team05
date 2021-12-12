@@ -383,7 +383,10 @@
           </div>
           <div v-else>
             <div>
-              <img class="img-max" :src="`/csc642-842-fall21-team05/img/${car.image}`" />
+              <img
+                class="img-max"
+                :src="`/csc642-842-fall21-team05/img/${car.image}`"
+              />
             </div>
             <div>
               <button class="btn btn-secondary-theme" @click="removeImage">
