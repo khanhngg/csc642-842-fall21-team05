@@ -41,7 +41,11 @@
     </h2>
     <div class="row">
       <div class="col-md-10 offset-md-9">
-        <button class="btn btn-primary-theme" type="submit">
+        <button
+          class="btn btn-primary-theme"
+          type="submit"
+          v-on:click="ToPaymentsButton()"
+        >
           Back To Payments
         </button>
       </div>
@@ -68,61 +72,56 @@ export default {
     return {
       title: "Update Payment Form",
 
-      name: "",
-
-      userStreet: "",
-      userAptNum: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
-
-      cardNum: "",
-      cardMonth: "",
-      cardYear: "",
-      cardCode: "",
-      defaultPay: "",
+      signUpUser: {
+        userType: "",
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        },
+        email: "",
+        phone: "",
+        password: "",
+        censoredPassword: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        payments: [],
+        skip: false,
+      },
+      cardInfo: {
+        nameOnCard: "",
+        cardNumber: "",
+        expiration: {
+          month: "",
+          year: "",
+        },
+        securityCode: "",
+        isDefault: false,
+      },
     };
   },
   methods: {
     goBackButton() {
       this.$router.go(-1);
     },
+    ToPaymentsButton() {
+      this.$router.push({ name: "Payments" });
+    },
   },
 
-  async mounted() {
-    if (localStorage.lastName) {
-      this.name = localStorage.name;
-    }
-    if (localStorage.userStreet) {
-      this.userStreet = localStorage.userStreet;
-    }
-    if (localStorage.userAptNum) {
-      this.userAptNum = localStorage.userAptNum;
-    }
-    if (localStorage.userCity) {
-      this.userCity = localStorage.userCity;
-    }
-    if (localStorage.userState) {
-      this.userState = localStorage.userState;
-    }
-    if (localStorage.userZipCode) {
-      this.userZipCode = localStorage.userZipCode;
-    }
-
-    if (localStorage.cardNum) {
-      this.cardNum = localStorage.cardNum;
-    }
-    if (localStorage.cardMonth) {
-      this.cardMonth = localStorage.cardMonth;
-    }
-    if (localStorage.cardYear) {
-      this.cardYear = localStorage.cardYear;
-    }
-    if (localStorage.cardCode) {
-      this.cardCode = localStorage.cardCode;
-    }
-    if (localStorage.defaultPay) {
-      this.defaultPay = localStorage.defaultPay;
+  created() {
+    // parse local storage to get logged in user data
+    var user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      this.signUpUser = user;
+      this.cardInfo = user.payments[0];
     }
   },
 };

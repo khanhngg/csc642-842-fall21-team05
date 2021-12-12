@@ -58,3 +58,11 @@ body {
 .fw-medium {
   font-weight: 500;
 }
+
+.w-25 {
+  width: 25% !important;
+}
+
+.form-container {
+  max-width: 820px;
+}
