@@ -4,6 +4,7 @@ import About from "../views/About.vue";
 import Search from "../views/Search.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
+import MyRentals from "../views/MyRentals.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
@@ -14,6 +15,10 @@ import SignUpForm_2 from "../views/SignUpForm_2.vue";
 import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
 import DeliveryReport from "../views/DeliveryReport.vue";
+import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
+import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
+import ReservationReview from "../views/ReservationReview.vue";
+import ReservationResult from "../views/ReservationResult.vue";
 import Payments from "../views/PaymentTab.vue";
 
 const routes = [
@@ -44,6 +49,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/myrentals",
+    name: "MyRentals",
+    component: MyRentals,
   },
   {
     path: "/addform",
@@ -97,6 +107,27 @@ const routes = [
     path: "/delivery",
     name: "DeliveryReport",
     component: DeliveryReport,
+  },
+  {
+    path: "/emailreservation/confirmed",
+    name: "EmailReservationConfirmed",
+    component: EmailReservationConfirmed,
+  },
+  {
+    path: "/emailreservation/canceled",
+    name: "EmailReservationCanceled",
+    component: EmailReservationCanceled,
+  },
+  {
+    path: "/reservation/review",
+    name: "ReservationReview",
+    component: ReservationReview,
+  },
+  {
+    // TODO - get url by id
+    path: "/reservation/result",
+    name: "ReservationResult",
+    component: ReservationResult,
   },
   {
     path: "/payments",

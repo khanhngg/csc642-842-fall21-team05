@@ -1,6 +1,14 @@
 <template>
-  <!-- Search bar -->
-  <Searchbar />
+  <Searchbar
+    :rentalMethod="searchQuery.rentalMethod"
+    :isSamePickupAndReturnLocation="searchQuery.isSamePickupAndReturnLocation"
+    :location="searchQuery.location"
+    :pickupLocation="searchQuery.pickupLocation"
+    :returnLocation="searchQuery.returnLocation"
+    :fromTime="searchQuery.fromTime"
+    :toTime="searchQuery.toTime"
+    @onSearch="handleOnSearch"
+  />
 
   <!-- Search Results count -->
   <h6 class="fw-bold text-uppercase">Showing 1-10 out of 50 cars</h6>
@@ -122,7 +130,7 @@
           <div class="row g-0">
             <div class="col-md-4">
               <img
-                src="../assets/hero-image.jpg"
+                :src="`/csc642-842-fall21-team05/img/${car.image}`"
                 class="img-fluid rounded-start"
                 alt="Car Image"
               />
@@ -133,7 +141,7 @@
                 <p class="card-title text-uppercase fw-medium fs-5">
                   {{ car.make }} {{ car.model }}
                 </p>
-                <p class="">
+                <p>
                   {{ car.seat }} seats
                   <i class="mx-2 fas fa-circle" style="font-size: 7px"></i>
                   {{ car.suitcase }} suitcases
@@ -159,6 +167,7 @@
                     fw-bold
                     text-uppercase
                   "
+                  @click.prevent="onSubmit(car.id)"
                 >
                   Rent
                 </button>
@@ -176,6 +185,7 @@ import Searchbar from "@/components/Searchbar";
 import carsData from "../data/carsData.json";
 
 export default {
+  name: "Search",
   components: {
     Searchbar,
   },
@@ -184,15 +194,46 @@ export default {
       cars: carsData,
       // TODO - get from searchbar
       duration: 7,
+      searchQuery: {
+        rentalMethod: "",
+        isSamePickupAndReturnLocation: true,
+        location: "",
+        pickupLocation: "",
+        returnLocation: "",
+        fromTime: "",
+        toTime: "",
+      },
+      selectedCar: {},
     };
   },
   created() {
-    // TODO
+    // TODO - get cars from localstorage or json
+    // calculate duration based on searchQuery
+    console.log("in search created...");
+    var searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
+    if (searchQuery) {
+      this.searchQuery = searchQuery;
+    }
+    console.log(searchQuery);
   },
   methods: {
     getTotalPrice(carId) {
       let car = this.cars.find((car) => car.id == carId);
       return car.price * this.duration;
+    },
+    handleOnSearch(searchQuery) {
+      // write to localStorage for search page
+      this.searchQuery = searchQuery;
+      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+
+      // TODO - update list of cars?
+    },
+    onSubmit(carId) {
+      console.log(carId);
+
+      // write to localStorage
+      localStorage.setItem("searchQuery", JSON.stringify(this.searchQuery));
+      this.$router.push({ name: "ReservationReview" });
     },
   },
 };

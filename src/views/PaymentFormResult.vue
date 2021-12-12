@@ -41,8 +41,11 @@
     </h2>
     <div class="row">
       <div class="col-md-10 offset-md-9">
-        <button class="btn btn-primary-theme" type="submit"
-        v-on:click="ToPaymentsButton()">
+        <button
+          class="btn btn-primary-theme"
+          type="submit"
+          v-on:click="ToPaymentsButton()"
+        >
           Back To Payments
         </button>
       </div>
@@ -108,10 +111,9 @@ export default {
     goBackButton() {
       this.$router.go(-1);
     },
-    ToPaymentsButton(){
+    ToPaymentsButton() {
       this.$router.push({ name: "Payments" });
     },
-    
   },
 
   created() {

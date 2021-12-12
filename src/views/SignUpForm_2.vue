@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="form">
     <h1>
       &emsp;{{ title }}
@@ -32,12 +33,41 @@
             </div>
             <br />
             <span class="field-title"> Apt/Suite Number </span><br />
+=======
+  <div class="container form-container">
+    <!-- Title -->
+    <h1 class="text-center fw-bold">Create an Account</h1>
+    <h4 class="text-center fw-bold">Step 2/2: Payments Information</h4>
+    <p class="form-text fw-bold fst-italic mb-4">
+      Required fields are marked with *
+    </p>
+
+    <!-- Form -->
+    <form class="g-3" novalidate>
+      <section class="row form-section mb-4">
+        <!-- Address -->
+        <h4 class="fw-bold mb-3">Billing Address</h4>
+        <div class="col-12 mb-3">
+          <label class="form-label">Street Address *</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="123 Main St"
+            v-model="signUpUser.address.streetAddress"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Apartment/Suite Number</label>
+          <div class="col-md-5">
+>>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
             <input
+              type="text"
+              class="form-control"
+              placeholder="20A"
               v-model="signUpUser.address.apartmentNumber"
-              placeholder="Enter Apt number "
-              id="user-aptNum"
-              class="address"
             />
+<<<<<<< HEAD
             <div class="error-messages" v-if="aptNumError">
               {{ aptNumError }}
             </div>
@@ -105,6 +135,77 @@
               class="expiration"
             >
               <option disabled value="">Month</option>
+=======
+          </div>
+        </div>
+
+        <div class="col-md-5 mb-3">
+          <label class="form-label">City *</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter city name"
+            v-model="signUpUser.address.city"
+          />
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="state" class="form-label">State *</label>
+          <select
+            class="form-select"
+            id="state"
+            v-model="signUpUser.address.state"
+          >
+            <option value="">Select state...</option>
+            <option v-for="state in states" :key="state" :value="state">
+              {{ state }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="zip" class="form-label">Zip *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="zip"
+            placeholder="12345"
+            v-model="signUpUser.address.zip"
+          />
+        </div>
+      </section>
+
+      <section class="row form-section mb-4">
+        <!-- Card info -->
+        <h4 class="fw-bold mb-3">Card Information</h4>
+        <div class="col-12 mb-3">
+          <label class="form-label">Name on Card *</label>
+          <input
+            v-model="cardInfo.nameOnCard"
+            type="text"
+            class="form-control"
+            placeholder="Enter the name on card"
+            required
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Card Number *</label>
+          <input
+            v-model="cardInfo.cardNumber"
+            type="text"
+            class="form-control"
+            placeholder="Enter the card number"
+          />
+        </div>
+
+        <div class="row mb-3 pe-0">
+          <label class="form-label mb-0">Expiration Date</label>
+          <div class="col-12 col-md-4 mb-1 mt-0">
+            <div class="form-text">Month *</div>
+            <select v-model="cardInfo.expiration.month" class="form-select">
+              <option value="">Select month...</option>
+>>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
               <option>01</option>
               <option>02</option>
               <option>03</option>
@@ -118,13 +219,11 @@
               <option>11</option>
               <option>12</option>
             </select>
-            <span> </span>
-            <select
-              v-model="cardInfo.expiration.year"
-              id="card-year"
-              class="expiration"
-            >
-              <option disabled value="">Year</option>
+          </div>
+          <div class="col-12 col-md-4 mt-0">
+            <div class="form-text">Year *</div>
+            <select v-model="cardInfo.expiration.month" class="form-select">
+              <option value="">Select year...</option>
               <option>2022</option>
               <option>2023</option>
               <option>2024</option>
@@ -137,6 +236,7 @@
               <option>2031</option>
               <option>2032</option>
             </select>
+<<<<<<< HEAD
             <div class="error-messages" v-if="cardExpirError">
               {{ cardExpirError }}
             </div>
@@ -159,17 +259,46 @@
               <br />
             </div>
           </h2>
+=======
+          </div>
         </div>
-      </form>
 
-      <div class="submit">
+        <div class="col-12 col-md-4 mb-3">
+          <label class="form-label">Security Code *</label>
+          <input
+            v-model="cardInfo.securityCode"
+            type="text"
+            class="form-control"
+            placeholder="Enter security code"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              v-model="cardInfo.isDefault"
+              id="isDefault"
+            />
+            <label class="form-check-label mb-0" for="isDefault">
+              Set as default payment
+            </label>
+          </div>
+>>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
+        </div>
+      </section>
+
+      <!-- Button -->
+      <div class="d-flex justify-content-between">
         <button
-          class="btn btn-primary-theme"
-          type="submit"
-          v-on:click="onSubmit()"
+          class="btn btn-secondary-theme fw-bold text-uppercase w-25"
+          type="button"
+          @click.prevent="onBack"
         >
-          Submit
+          Back
         </button>
+<<<<<<< HEAD
       </div>
       <div class="skip-button">
         <button
@@ -182,41 +311,33 @@
         </button>
       </div>
       <div class="clear-button">
+=======
+
+>>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
         <button
-          class="btn btn-primary-theme"
-          type="back"
-          id="backBtn"
-          v-on:click="goBackButton()"
+          class="btn btn-primary-theme fw-bold text-uppercase w-25"
+          type="button"
+          @click.prevent="onSubmit"
         >
-          Back
+          Submit
         </button>
       </div>
+<<<<<<< HEAD
       <div class="error-messages" v-if="overallError">{{ overallError }}</div>
     </h1>
+=======
+    </form>
+>>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-//<label class="form-label">Contact Information: </label><br/><br/>
-//<label class="form-label">Additional Information: </label><br/><br/>
-/*
-          <span> - </span>
-
-          <input v-model="userPhone_2" placeholder="567" id="user-phone_2" class="phone"/>
-          <span> - </span>
-          <input v-model="userPhone_3" placeholder="891" id="user-phone_3" class="phone"/>
-
-          @keypress = "atPressed"
-*/
+import states from "../data/states.json";
 
 export default {
-  name: "PaymentForm",
+  name: "SignUpForm_2",
   data() {
     return {
-      //Page Variables
-      title: "Create an Account",
-
       signUpUser: {
         userType: "",
         firstName: "",
@@ -248,74 +369,7 @@ export default {
         securityCode: "",
         isDefault: false,
       },
-
-      //Data field variables
-      //userEmail: {
-      //},
-      states: [
-        "Alabama",
-        "Alaska",
-        "Arizona",
-        "Arkansas",
-        "California",
-        "Colorado",
-        "Connecticut",
-        "Delaware",
-        "Florida",
-        "Georgia",
-        "Hawaii",
-        "Idaho",
-        "Illinois",
-        "Indiana",
-        "Iowa",
-        "Kansas",
-        "Kentucky",
-        "Louisiana",
-        "Maine",
-        "Maryland",
-        "Massachusetts",
-        "Michigan",
-        "Minnesota",
-        "Mississippi",
-        "Missouri",
-        "Montana",
-        "Nebraska",
-        "Nevada",
-        "New Hampshire",
-        "New Jersey",
-        "New Mexico",
-        "New York",
-        "North Carolina",
-        "North Dakota",
-        "Ohio",
-        "Oklahoma",
-        "Oregon",
-        "Pennsylvania",
-        "Rhode Island",
-        "South Carolina",
-        "South Dakota",
-        "Tennessee",
-        "Texas",
-        "Utah",
-        "Vermont",
-        "Virginia",
-        "Washington",
-        "West Virginia",
-        "Wisconsin",
-        "Wyoming",
-      ],
-      //ERROR MESSAGES
-      nameError: "",
-
-      streetError: "",
-      aptNumError: "",
-      cityError: "",
-      stateError: "",
-      zipcodeError: "",
-
-      cardNumError: "",
-      cardExpirError: "",
-      cardCodeError: "",
+      states: states,
     };
   },
   created() {
@@ -326,131 +380,11 @@ export default {
     }
   },
   methods: {
-    addressValidation: function () {
-      var street = this.signUpUser.address.streetAddress;
-      var aptNum = this.signUpUser.address.apartmentNumber;
-      var city = this.signUpUser.address.city;
-      var state = this.signUpUser.address.state;
-      var zip = this.signUpUser.address.zipCode;
-      var invalid = 0;
-
-      if (street.length > 40 || street == "") {
-        document.getElementById("user-street").style.borderColor = "red";
-        this.streetError = "You must fill out the street address!";
-        invalid = 1;
-      } else {
-        this.streetError = "";
-        document.getElementById("user-street").style.borderColor = "black";
-      }
-
-      if (aptNum.length > 40) {
-        document.getElementById("user-aptNum").style.borderColor = "red";
-        this.aptNumError =
-          "Apt Number is too long, must to be less than 40 characters!";
-        invalid = 1;
-      } else {
-        this.aptNumError = "";
-        document.getElementById("user-aptNum").style.borderColor = "black";
-      }
-      if (city.length > 40 || city.length == 0) {
-        document.getElementById("user-city").style.borderColor = "red";
-        this.cityError =
-          city.length > 40
-            ? "City input too long, must to be less than 40 characters!"
-            : "You must fill out the City textbox!";
-        invalid = 1;
-      } else {
-        this.cityError = "";
-        document.getElementById("user-city").style.borderColor = "black";
-      }
-      if (state.length > 40 || state.length == 0) {
-        document.getElementById("user-state").style.borderColor = "red";
-        this.stateError =
-          state.length > 40
-            ? "State entry too long, must to be less than 40 characters!"
-            : "You must fill out the State textbox!";
-        invalid = 1;
-      } else {
-        this.stateError = "";
-        document.getElementById("user-state").style.borderColor = "black";
-      }
-
-      if (/[a-zA-Z]/.test(this.userZipCode)) {
-        document.getElementById("user-zipcode").style.borderColor = "red";
-        this.zipcodeError = "The ZipCode cannot contain letter/s!";
-      } else if (zip.length > 5 || zip.length == 0) {
-        document.getElementById("user-zipcode").style.borderColor = "red";
-        this.zipcodeError =
-          zip.length > 5
-            ? "ZipCode entry too long, must to be 5 characters!"
-            : "You must fill out the ZipCode textbox!";
-        invalid = 1;
-      } else {
-        this.zipcodeError = "";
-        document.getElementById("user-zipcode").style.borderColor = "black";
-      }
-
-      if (invalid == 1) {
-        return false;
-      }
-
-      this.streetError = "";
-      this.cityError = "";
-      this.stateError = "";
-      this.zipcodeError = "";
-
-      return true;
-    },
-    paymentValidation: function () {
-      var cardNum = this.cardInfo.cardNumber;
-      var expirationMonth = this.cardInfo.expiration.month;
-      var expirationYear = this.cardInfo.expiration.year;
-      var code = this.cardInfo.securityCode;
-      var error = 0;
-      var overallError = false;
-
-      if (cardNum.length != 16) {
-        document.getElementById("user-card").style.borderColor = "red";
-        this.cardNumError = "Card number Invalid: Not 16 Numbers";
-        overallError = true;
-      }
-      else{
-         document.getElementById("user-card").style.borderColor = "black";
-          this.cardNumError = "";
-      }
-      if (expirationMonth == "") {
-        document.getElementById("card-month").style.borderColor = "red";
-        error = 1;
-        overallError = true;
-      }else{
-        document.getElementById("card-month").style.borderColor = "black";
-      }
-      if (expirationYear == "") {
-        document.getElementById("card-year").style.borderColor = "red";
-        error = 1;
-        overallError = true;
-      }else{
-         document.getElementById("card-year").style.borderColor = "black";
-      }
-      this.cardExpirError =
-        error > 0 ? "You must fill out both Expiration Date Fields!" : "";
-      if (code.length != 3) {
-        document.getElementById("card-code").style.borderColor = "red";
-        this.cardCodeError = "Security Code Invalid: not a 3 digit code!";
-        overallError = true;
-      }
-      else{
-          document.getElementById("card-code").style.borderColor = "black";
-          this.cardCodeError = "";
-      }
-      if (overallError) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    goBackButton() {
+    onBack() {
       this.$router.go(-1);
+    },
+    onSubmit() {
+      this.persist();
     },
     persist() {
       // check if list of users exist, if not create
@@ -475,169 +409,22 @@ export default {
       // go to result page
       this.$router.push({ name: "SignUpResult" });
     },
-    onSubmit() {
-      var allValid;
-      var goAhead = 0;
-      this.signUpUser.skip = false;
-
-      allValid = this.addressValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-
-      allValid = this.paymentValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-
-      if (goAhead === 0) {
-        this.overallError = "";
-        this.persist();
-      } else {
-        this.overallError =
-          "You must fix the highlighted fields before continuing!";
-      }
-    },
-    onSkip() {
-      this.overallError = "";
-      this.signUpUser.skip = true;
-      this.persist();
-    },
   },
-  components: {},
 };
 </script>
 
 <style scoped>
-/*Input styles*/
-input {
-  border: 2px solid;
-  border-radius: 4px;
-  background-color: rgb(250, 248, 248);
-  font-size: 14px;
-  margin: 0.25rem;
-  padding: 5px 10px;
-  transition: background-color 0.5s ease-out;
+.form-label {
+  font-weight: 600;
 }
 
-input[id="user-street"] {
-  width: 375px;
-}
-input[id="user-city"] {
-  width: 250px;
-}
-input[class="phone"] {
-  width: 20%;
-  text-align: center;
-  padding: 3px;
-}
-
-.checkboxText {
-  font-size: 80%;
-}
-input[id="agree"] {
-  margin-right: 60%;
-}
-input[type="checkbox"] {
-  cursor: pointer;
-}
-select {
-  border: 2px solid;
-  border-radius: 4px;
-  border-color: grey;
-  background-color: rgb(250, 248, 248);
-  font-size: 14px;
-  margin: 0.25rem;
-  padding: 5px 10px;
-  transition: background-color 0.5s ease-out;
-}
-
-/*Page style*/
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  background-color: #7678ed;
-  text-align: center;
-}
-body > div {
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
-}
-
-h2 {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 2%;
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: left;
-  padding: 3%;
-}
-#skipBtn {
-  background-color: white;
-  border-color: #7678ed;
-  color: #7678ed;
-}
-#clearBtn {
-  background-color: grey;
-}
-#backBtn {
-  color: black;
-  background-color: white;
-  border-color: black;
-}
-/*Class Styles*/
-.field-title {
-  font-size: 75%;
-}
-.section-title {
-  font-size: 100%;
-}
-
-.terms-agree {
-  font-size: 16px;
-  text-align: left;
-}
-
-.hint-text {
-  font-size: 14px;
-  color: rgb(95, 95, 95);
-}
-
-.form {
-  font-size: 37%;
-  padding: 20px 30px;
-  margin-top: 1em;
-  margin-bottom: 5%;
-  user-select: none;
-  overflow-x: auto;
-}
-
-.error-messages {
-  font-size: 16px;
-  color: rgb(180, 12, 12);
-}
-
-.btn-primary-theme {
-  float: right;
-  margin-right: 20%;
-
-  width: 10%;
-}
-
-.clear-button {
-  position: left;
-  float: left;
-  margin-left: 0%;
-  color: white;
-  width: 100%;
-  font-size: 60%;
-  cursor: pointer;
-}
-.progress-bar {
-  background-color: #7678ed;
-  position: center;
+.form-section {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  border: solid #dee2e6;
+  border-width: 1px;
 }
 </style>
