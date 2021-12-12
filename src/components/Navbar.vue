@@ -63,13 +63,9 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <img
-            src="https://github.com/mdo.png"
-            alt="mdo"
-            width="32"
-            height="32"
-            class="rounded-circle"
-          />
+          <span style="font-size: 32px; color: #2c3e50">
+            <i class="fas fa-user-circle"></i>
+          </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
           <div v-if="isUserTypeAdmin()">
@@ -111,7 +107,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="dropdown-item" :to="{ name: 'Profile' }">
+            <router-link class="dropdown-item" :to="{ name: 'MyRentals' }">
               My Rentals
             </router-link>
           </li>
