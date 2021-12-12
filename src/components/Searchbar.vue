@@ -71,28 +71,37 @@
       />
     </div>
 
-    <!-- from time -->
-    <div class="p-2 flex-grow-2 bd-highlight">
-      <label class="fw-bold">From</label>
-      <input
-        v-model="searchQuery.fromTime"
-        class="form-control input-no-border me-2"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-    </div>
+    <!-- datepicker -->
+    <div class="p-2 flex-grow-2">
+      <DatePicker v-model="range" mode="dateTime" :masks="masks" is-range>
+        <template v-slot="{ inputValue, inputEvents }">
+          <div class="d-flex">
+            <!-- from time -->
+            <div class="flex-grow-1 me-2">
+              <div class="d-flex flex-column">
+                <label class="fw-bold">From</label>
+                <input
+                  class="flex-grow-1 form-control input-no-border text-center"
+                  :value="inputValue.start"
+                  v-on="inputEvents.start"
+                />
+              </div>
+            </div>
 
-    <!-- to time -->
-    <div class="p-2 flex-grow-2 bd-highlight">
-      <label class="fw-bold">To</label>
-      <input
-        v-model="searchQuery.toTime"
-        class="form-control input-no-border me-2"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
+            <!-- to time -->
+            <div class="flex-grow-1">
+              <div class="d-flex flex-column">
+                <label class="fw-bold">To</label>
+                <input
+                  class="flex-grow-1 form-control input-no-border text-center"
+                  :value="inputValue.end"
+                  v-on="inputEvents.end"
+                />
+              </div>
+            </div>
+          </div>
+        </template>
+      </DatePicker>
     </div>
 
     <!-- submit btn -->
@@ -120,16 +129,21 @@
 </template>
 
 <script>
+import { DatePicker } from "v-calendar";
+
 export default {
   name: "Searchbar",
+  components: {
+    DatePicker,
+  },
   props: {
     rentalMethod: {
       type: String,
-      default: "pickup"
+      default: "pickup",
     },
     isSamePickupAndReturnLocation: {
       type: Boolean,
-      default: true
+      default: true,
     },
     location: {
       type: String,
@@ -147,22 +161,37 @@ export default {
       type: String,
     },
   },
-  emits: ['onSearch'],
+  emits: ["onSearch"],
   data() {
     return {
+      range: {
+        start: this.fromTime ? new Date(this.fromTime) : new Date(),
+        end: this.toTime
+          ? new Date(this.toTime)
+          : new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000), // default is 1 week from today
+      },
+      masks: {
+        input: "YYYY-MM-DD h:mm A",
+      },
       searchQuery: {
         rentalMethod: this.rentalMethod,
         isSamePickupAndReturnLocation: this.isSamePickupAndReturnLocation,
         location: this.location,
         pickupLocation: this.pickupLocation,
         returnLocation: this.returnLocation,
-        fromTime: this.fromTime,
-        toTime: this.toTime,
+        fromTime: "",
+        toTime: "",
       },
     };
   },
+  created() {
+    console.log(this.range);
+  },
   methods: {
     handleSubmit() {
+      this.searchQuery.fromTime = this.range.start.toString();
+      this.searchQuery.toTime = this.range.end.toString();
+
       this.$emit("onSearch", this.searchQuery);
     },
   },
