@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <!-- Search bar -->
-    <Searchbar />
+    <Searchbar
+      @onSearch="handleOnSearch"
+    />
 
     <!-- How it works section -->
     <section class="mb-5">
@@ -158,6 +159,15 @@ export default {
   name: "Home",
   components: {
     Searchbar,
+  },
+  created() {
+  },
+  methods: {
+    handleOnSearch(searchQuery) {
+      // write to localStorage for search page
+      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+      this.$router.push({ name: "Search" });
+    }
   },
 };
 </script>

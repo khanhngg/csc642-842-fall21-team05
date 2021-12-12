@@ -16,6 +16,8 @@ import NotFound from "../views/NotFound.vue";
 import DeliveryReport from "../views/DeliveryReport.vue";
 import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
 import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
+import ReservationReview from "../views/ReservationReview.vue";
+import ReservationResult from "../views/ReservationResult.vue";
 
 const routes = [
   {
@@ -108,6 +110,17 @@ const routes = [
     path: "/emailreservation/canceled",
     name: "EmailReservationCanceled",
     component: EmailReservationCanceled,
+  },
+  {
+    path: "/reservation/review",
+    name: "ReservationReview",
+    component: ReservationReview,
+  },
+  {
+    // TODO - get url by id
+    path: "/reservation/result",
+    name: "ReservationResult",
+    component: ReservationResult,
   },
 ];
 
