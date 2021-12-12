@@ -4,7 +4,7 @@ import About from "../views/About.vue";
 import Search from "../views/Search.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
-import MyCurrentRentals from "../views/MyCurrentRentals.vue";
+import MyRentals from "../views/MyRentals.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
@@ -50,9 +50,9 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/mycurrentrentals",
-    name: "MyCurrentRentals",
-    component: MyCurrentRentals,
+    path: "/myrentals",
+    name: "MyRentals",
+    component: MyRentals,
   },
   {
     path: "/addform",

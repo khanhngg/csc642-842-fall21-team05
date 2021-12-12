@@ -7,7 +7,7 @@
     <router-link class="flex-sm-fill text-sm-center nav-link border border-dark" :to="{ name: 'Profile' }">Profile</router-link>
     <!-- TODO, route to PAYMENT TAB -->
     <router-link class="flex-sm-fill text-sm-center nav-link border border-dark" :to="{ name: 'PaymentForm' }">Manage Payments</router-link>
-    <router-link class="flex-sm-fill text-sm-center nav-link active" :to="{ name: 'MyCurrentRentals' }">My Rentals</router-link>
+    <router-link class="flex-sm-fill text-sm-center nav-link active" :to="{ name: 'MyRentals' }">My Rentals</router-link>
   </nav>
 
 

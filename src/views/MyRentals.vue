@@ -2,14 +2,29 @@
   <!-- Menu Tab Bar -->
   <Tabsbar />
 
-  <!-- Rental Menu Current - Past -->
-  <div class="container rentals-container border border-dark">
-      <nav>
+  <!-- Rental Menu Tab: Current and Past -->
+  <!-- <div class="container rentals-container border border-dark"> -->
+      <nav class="mt-5 pe-0">
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-currentRentals-tab" data-bs-toggle="tab" data-bs-target="#nav-currentRentals" type="button" role="tab" aria-controls="nav-currentRentals" aria-selected="true">Current</button>
-              <button class="nav-link" id="nav-pastRentals-tab" data-bs-toggle="tab" data-bs-target="#nav-pastRentals" type="button" role="tab" aria-controls="nav-pastRentals" aria-selected="false">Past</button>
-          </div>
+              <button class="nav-link active w-25 border-bottom-0" id="nav-currentRentals-tab" data-bs-toggle="tab" data-bs-target="#nav-currentRentals" type="button" role="tab" aria-controls="nav-currentRentals" aria-selected="true">Current</button>
+              <button class="nav-link me-auto w-25 border-bottom-0" id="nav-pastRentals-tab" data-bs-toggle="tab" data-bs-target="#nav-pastRentals" type="button" role="tab" aria-controls="nav-pastRentals" aria-selected="false">Past</button>
+              <div class="btn-group btn-sm pe-0">
+                  <button class="btn btn-secondary-theme pe-5" type="button">
+                      Sort By
+                  </button>
+                  <button class="btn btn-primary-theme dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="visually-hidden">Sort By Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Pickup Date</a></li>
+                      <li><a class="dropdown-item" href="#">Return Date</a></li>
+                  </ul>
+            </div> 
+          </div>      
       </nav>
+
+    <div class="container rentals-container bg-light">  
+
       <div class="tab-content" id="nav-tabContent">
           <!-- Current Rentals Tab -->
         <div class="tab-pane fade show active" id="nav-currentRentals" role="tabpanel" aria-labelledby="nav-currentRentals-tab">
@@ -18,10 +33,10 @@
             <!-- <CarRentals :carRentals="carRentals" /> -->
 
              <!-- List of Rentals -->
-            <div class="card row rental-info border border-dark mx-auto mb-3">
+            <div class="card row rental-info border-0 bg-light mx-auto">
                 <!-- testing data -->
-                <div v-for="carRental in carRentals" :key="carRental.id" v-show="carRental.status">
-                <div class="card-head row row-1 g-2 border border-primary">
+                <div v-for="carRental in carRentals" :key="carRental.id" v-show="carRental.status" class="card mb-3">
+                <div class="card-head row row-1 g-2 mt-1 mb-2">
                     <div class="col-md-8">
                         <p class="card-title fw-bold">Reservation Confirmed</p>
                         <p class="card-subtitle">Confirmation Number:
@@ -41,7 +56,7 @@
                 </div> <!-- close row-1 -->
 
 
-                <div class="card-body row row-2 border border-dark m-auto">
+                <div class="card-body row row-2 m-auto">
                 <!-- Date & Time -->
                 <div class="col-sm-12  col-md 4 col-lg-3">
                     <p class="card-title fw-bold">Pickup</p>
@@ -69,7 +84,7 @@
                         </button>
                     </p>
                     <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
+                        <div class="card card-body border-0 bg-light">
                             <p class="card-title fw-bold">Pickup</p>
                             <!-- <p class="card-text"><i class="fas fa-map-marker-alt"></i> 1600 Holloway Ave, San Francisco, CA 94132</p> -->
                             <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ carRental.pickupLocation }}</p>
@@ -112,10 +127,10 @@
 
 
              <!-- List of Rentals -->
-            <div class="card row rental-info border border-dark mx-auto">
+            <div class="card row rental-info border-0 bg-light mx-auto">
                 <!-- testing data -->
-                <div v-for="carRental in carRentals" :key="carRental.id" v-show="!carRental.status">
-                <div class="card-head row row-1 g-2 border border-primary">
+                <div v-for="carRental in carRentals" :key="carRental.id" v-show="!carRental.status" class="card mb-3">
+                <div class="card-head row row-1 g-2 mt-1 mb-2">
                     <div class="col-md-8">
                         <p class="card-title fw-bold">Reservation Confirmed</p>
                         <p class="card-subtitle">Confirmation Number:
@@ -135,7 +150,7 @@
                 </div> <!-- close row-1 -->
 
 
-                <div class="card-body row row-2 border border-dark m-auto">
+                <div class="card-body row row-2 m-auto">
                 <!-- Date & Time -->
                 <div class="col-sm-12  col-md 4 col-lg-3">
                     <p class="card-title fw-bold">Pickup</p>
@@ -163,7 +178,7 @@
                         </button>
                     </p>
                     <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
+                        <div class="card card-body border-0 bg-light">
                             <p class="card-title fw-bold">Pickup</p>
                             <!-- <p class="card-text"><i class="fas fa-map-marker-alt"></i> 1600 Holloway Ave, San Francisco, CA 94132</p> -->
                             <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ carRental.pickupLocation }}</p>
@@ -320,9 +335,13 @@ export default {
 </script>
 
 <style scoped>
-.rentals-container {
-    margin-top: 100px;
+/* .rentals-container {
+    background-color: #f4f4f4;
 }
+
+.rental-info {
+    background-color: #f4f4f4;
+} */
 
 .btn-cancel, .btn-edit {
     width: 100px;
@@ -355,6 +374,7 @@ export default {
 
 .nav-tabs .nav-link.active {
     color: var(--main-theme-color);
+    background-color: #f8f9fa;
 }
 
 .nav-tabs .nav-link:hover {
