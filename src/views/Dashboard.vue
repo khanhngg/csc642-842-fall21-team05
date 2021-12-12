@@ -59,10 +59,10 @@
         <section class="col-9 pe-0">
           <div v-for="car in filteredList" :key="car.id" class="card mb-3">
             <div class="row g-0">
-              <div class="col-md-4">
+              <div class="col-md-4 p-2">
                 <img
                   :src="`/csc642-842-fall21-team05/img/${car.image}`"
-                  class="img-fluid rounded-start"
+                  class="img-fluid rounded"
                   alt="Car Image"
                 />
               </div>
