@@ -20,6 +20,8 @@ import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
 import ReservationReview from "../views/ReservationReview.vue";
 import ReservationResult from "../views/ReservationResult.vue";
 import Payments from "../views/PaymentTab.vue";
+import Edit from "../views/Edit.vue";
+import EditSummary from "../views/EditSummary.vue";
 
 const routes = [
   {
@@ -56,12 +58,12 @@ const routes = [
     component: MyRentals,
   },
   {
-    path: "/addform",
+    path: "/add/new",
     name: "AddForm",
     component: AddForm,
   },
   {
-    path: "/addsummary",
+    path: "/add/summary",
     name: "AddSummary",
     component: AddSummary,
   },
@@ -133,6 +135,16 @@ const routes = [
     path: "/payments",
     name: "Payments",
     component: Payments,
+  },
+  {
+    path: "/edit/:id",
+    name: "Edit",
+    component: Edit,
+  },
+  {
+    path: "/edit/summary/:id",
+    name: "EditSummary",
+    component: EditSummary,
   },
 ];
 
