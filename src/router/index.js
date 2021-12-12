@@ -14,6 +14,7 @@ import SignUpForm_2 from "../views/SignUpForm_2.vue";
 import SignUpResult from "../views/SignUpResult.vue";
 import NotFound from "../views/NotFound.vue";
 import DeliveryReport from "../views/DeliveryReport.vue";
+import Payments from "../views/PaymentTab.vue";
 
 const routes = [
   {
@@ -96,6 +97,11 @@ const routes = [
     path: "/delivery",
     name: "DeliveryReport",
     component: DeliveryReport,
+  },
+  {
+    path: "/payments",
+    name: "Payments",
+    component: Payments,
   },
 ];
 

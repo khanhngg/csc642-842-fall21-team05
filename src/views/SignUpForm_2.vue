@@ -414,15 +414,23 @@ export default {
         this.cardNumError = "Card number Invalid: Not 16 Numbers";
         overallError = true;
       }
+      else{
+         document.getElementById("user-card").style.borderColor = "black";
+          this.cardNumError = "";
+      }
       if (expirationMonth == "") {
         document.getElementById("card-month").style.borderColor = "red";
         error = 1;
         overallError = true;
+      }else{
+        document.getElementById("card-month").style.borderColor = "black";
       }
       if (expirationYear == "") {
         document.getElementById("card-year").style.borderColor = "red";
         error = 1;
         overallError = true;
+      }else{
+         document.getElementById("card-year").style.borderColor = "black";
       }
       this.cardExpirError =
         error > 0 ? "You must fill out both Expiration Date Fields!" : "";
@@ -431,16 +439,14 @@ export default {
         this.cardCodeError = "Security Code Invalid: not a 3 digit code!";
         overallError = true;
       }
+      else{
+          document.getElementById("card-code").style.borderColor = "black";
+          this.cardCodeError = "";
+      }
       if (overallError) {
         return false;
       } else {
-        document.getElementById("user-card").style.borderColor = "black";
-        document.getElementById("card-month").style.borderColor = "black";
-        document.getElementById("card-year").style.borderColor = "black";
-        document.getElementById("card-code").style.borderColor = "black";
-        this.cardNumError = "";
-        this.cardExpirError = "";
-        this.cardCodeError = "";
+        return true;
       }
     },
     goBackButton() {

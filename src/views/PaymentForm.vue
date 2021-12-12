@@ -10,25 +10,24 @@
           <h2>
             <span class="section-title"> Personal Information </span><br />
             <div class="row mb-3">
-              <span class="field-title">* Name:</span><br />
+              <span class="field-title">Name *</span><br />
               <div class="col-sm-10">
                 <input
-                  v-model="name"
+                  v-model="cardInfo.nameOnCard"
                   placeholder="Enter Name"
                   id="name"
                   required
                 />
               </div>
               <div class="error-messages" v-if="nameError">{{ nameError }}</div>
-              <br />
             </div>
           </h2>
 
           <h2>
             <span class="section-title"> Billing Address </span><br />
-            <span class="field-title">* Street Address:</span><br />
+            <span class="field-title"> Street Address *</span><br />
             <input
-              v-model="userStreet"
+              v-model="signUpUser.address.streetAddress"
               placeholder="Enter bulding number and street"
               id="user-street"
               class="address"
@@ -40,7 +39,7 @@
             <br />
             <span class="field-title"> Apt/Suite Number:</span><br />
             <input
-              v-model="userAptNum"
+              v-model="signUpUser.address.apartmentNumber"
               placeholder="Enter Apt number "
               id="user-aptNum"
               class="address"
@@ -49,9 +48,9 @@
               {{ aptNumError }}
             </div>
             <br />
-            <span class="field-title">* City:</span><br />
+            <span class="field-title"> City *</span><br />
             <input
-              v-model="userCity"
+              v-model="signUpUser.address.city"
               placeholder="Enter City"
               id="user-city"
               class="address"
@@ -60,7 +59,11 @@
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
             <label for="state" class="field-title">State *</label><br />
-            <select v-model="userState" id="user-state" class="address">
+            <select
+              v-model="signUpUser.address.state"
+              id="user-state"
+              class="address"
+            >
               <option value="">Select State</option>
               <option v-for="state in states" :key="state" :value="state">
                 {{ state }}
@@ -68,9 +71,9 @@
             </select>
             <div class="error-messages" v-if="stateError">{{ stateError }}</div>
             <br />
-            <span class="field-title">* ZipCode:</span><br />
+            <span class="field-title"> ZipCode *</span><br />
             <input
-              v-model="userZipCode"
+              v-model="signUpUser.address.zip"
               placeholder="Enter ZipCode"
               id="user-zipcode"
               class="address"
@@ -80,22 +83,28 @@
               {{ zipcodeError }}
             </div>
             <br />
-            <br />
           </h2>
 
           <h2>
             <span class="section-title"> Payment Information </span><br />
-            <span class="field-title">* Card Number: </span><br />
+            <span class="field-title">Card Number * </span><br />
             <input
-              v-model="cardNum"
+              v-model="cardInfo.cardNumber"
               placeholder="Enter card number"
               id="user-card"
               class="payment"
               required
             />
+            <div class="error-messages" v-if="cardNumError">
+              {{ cardNumError }}
+            </div>
             <br />
-            <span class="field-title">* Expiration Date: </span><br />
-            <select v-model="cardMonth" id="card-month" class="expiration">
+            <span class="field-title">Expiration Date * </span><br />
+            <select
+              v-model="cardInfo.expiration.month"
+              id="card-month"
+              class="expiration"
+            >
               <option disabled value="">Month</option>
               <option>01</option>
               <option>02</option>
@@ -111,7 +120,11 @@
               <option>12</option>
             </select>
             <span> </span>
-            <select v-model="cardYear" id="card-year" class="expiration">
+            <select
+              v-model="cardInfo.expiration.year"
+              id="card-year"
+              class="expiration"
+            >
               <option disabled value="">Year</option>
               <option>2022</option>
               <option>2023</option>
@@ -125,21 +138,25 @@
               <option>2031</option>
               <option>2032</option>
             </select>
-            <br /><br />
+            <div class="error-messages" v-if="cardExpirError">
+              {{ cardExpirError }}
+            </div>
+            <br />
             <div class="col-12">
-              <span class="field-title">* Security Code:</span><br />
+              <span class="field-title">Security Code *</span><br />
               <input
-                v-model="cardCode"
+                v-model="cardInfo.securityCode"
                 placeholder="Enter 3 Digit Security Code"
+                id="card-code"
                 required
               />
+              <div class="error-messages" v-if="cardCodeError">
+                {{ cardCodeError }}
+              </div>
               <br />
 
-              <input type="checkbox" v-model="defaultPay" />
+              <input type="checkbox" v-model="cardInfo.isDefault" />
               <label class="checkboxText"> Set as Default Payment </label>
-              <div class="error-messages" v-if="termsError">
-                {{ termsError }}
-              </div>
               <br />
             </div>
           </h2>
@@ -193,19 +210,40 @@ export default {
       title: "Update Payment Form",
 
       //Data field variables
-      name: "",
+      signUpUser: {
+        userType: "",
 
-      userStreet: "",
-      userAptNum: "",
-      userCity: "",
-      userState: "",
-      userZipCode: "",
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
+        },
+        email: "",
+        phone: "",
+        password: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        payments: [],
+        skip: false,
+      },
+      cardInfo: {
+        nameOnCard: "",
+        cardNumber: "",
+        expiration: {
+          month: "",
+          year: "",
+        },
 
-      cardNum: "",
-      cardMonth: "",
-      cardYear: "",
-      cardCode: "",
-      defaultPay: "",
+        securityCode: "",
+        isDefault: false,
+      },
       states: [
         "Alabama",
         "Alaska",
@@ -268,14 +306,16 @@ export default {
       zipcodeError: "",
 
       cardNumError: "",
+      cardExpirError: "",
+      cardCodeError: "",
     };
   },
   methods: {
     nameValidation: function () {
-      var name = this.name;
+      var name = this.cardInfo.nameOnCard;
 
       if (name == "" || name.length > 40) {
-        document.getElementById("firstname").style.borderColor = "red";
+        document.getElementById("name").style.borderColor = "red";
         this.nameError =
           name == ""
             ? "You must enter your name displayed on the card!"
@@ -336,14 +376,14 @@ export default {
         document.getElementById("user-state").style.borderColor = "black";
       }
 
-      if (/[a-zA-Z]/.test(this.userZipCode)) {
+      if (/[a-zA-Z]/.test(zip)) {
         document.getElementById("user-zipcode").style.borderColor = "red";
         this.zipcodeError = "The ZipCode cannot contain letter/s!";
-      } else if (zip.length > 5 || zip.length == 0) {
+      } else if (zip.length != 5) {
         document.getElementById("user-zipcode").style.borderColor = "red";
         this.zipcodeError =
           zip.length > 5
-            ? "ZipCode entry too long, must to be 5 characters!"
+            ? "ZipCode Entry Invalid: Must be 5 Numbers long"
             : "You must fill out the ZipCode textbox!";
         invalid = 1;
       } else {
@@ -355,53 +395,95 @@ export default {
         return false;
       }
 
-      this.streetError = "";
-      this.cityError = "";
-      this.stateError = "";
-      this.zipcodeError = "";
-
       return true;
     },
     paymentValidation: function () {
       var cardNum = this.cardInfo.cardNumber;
-      //var expirationMonth = this.cardInfo.expiration.month;
-      // var expirationYear = this.cardInfo.expiration.year;
-      // var code = this.cardInfo.securityCode;
+      var expirationMonth = this.cardInfo.expiration.month;
+      var expirationYear = this.cardInfo.expiration.year;
+      var code = this.cardInfo.securityCode;
+      var error = 0;
+      var overallError = false;
 
-      if (cardNum.length == 0) {
+      if (cardNum.length != 16) {
         document.getElementById("user-card").style.borderColor = "red";
+        this.cardNumError = "Card number Invalid: Not 16 Numbers";
+        overallError = true;
+      }
+      else{
+         document.getElementById("user-card").style.borderColor = "black";
+          this.cardNumError = "";
+      }
+      if (expirationMonth == "") {
+        document.getElementById("card-month").style.borderColor = "red";
+        error = 1;
+        overallError = true;
+      }else{
+        document.getElementById("card-month").style.borderColor = "black";
+      }
+      if (expirationYear == "") {
+        document.getElementById("card-year").style.borderColor = "red";
+        error = 1;
+        overallError = true;
+      }else{
+         document.getElementById("card-year").style.borderColor = "black";
+      }
+      this.cardExpirError =
+        error > 0 ? "You must fill out both Expiration Date Fields!" : "";
+      if (code.length != 3) {
+        document.getElementById("card-code").style.borderColor = "red";
+        this.cardCodeError = "Security Code Invalid: not a 3 digit code!";
+        overallError = true;
+      }
+      else{
+          document.getElementById("card-code").style.borderColor = "black";
+          this.cardCodeError = "";
+      }
+      if (overallError) {
+        return false;
+      } else {
+        return true;
       }
     },
     goBackButton() {
       this.$router.go(-1);
     },
     persist() {
-      localStorage.name = this.name;
+      // check if list of users exist, if not create
+      var users = JSON.parse(localStorage.getItem("users"));
+      if (!users) {
+        users = [];
+      }
 
-      localStorage.userStreet = this.userStreet;
-      localStorage.userAptNum = this.userAptNum;
-      localStorage.userCity = this.userCity;
-      localStorage.userState = this.userState;
-      localStorage.userZipCode = this.userZipCode;
+      // add this new sign up user
+      this.signUpUser.payments.push(this.cardInfo);
+      users.push(this.signUpUser);
 
-      localStorage.cardNum = this.cardNum;
-      localStorage.cardMonth = this.cardMonth;
-      localStorage.cardYear = this.cardYear;
-      localStorage.cardCode = this.cardCode;
+      // write list of users to localStorage
+      localStorage.setItem("users", JSON.stringify(users));
 
-      localStorage.defaultPay = this.defaultPay;
+      // set logged in user
+      localStorage.setItem("loggedInUser", JSON.stringify(this.signUpUser));
 
+      // remove the sign up user
+      localStorage.removeItem("signUpUser");
+
+      // go to result page
       this.$router.push({ name: "PaymentFormResult" });
     },
     submitButton: function () {
       var allValid;
       var goAhead = 0;
-      alert("CLICKED");
+
       allValid = this.nameValidation();
       if (allValid == false) {
         goAhead = 1;
       }
       allValid = this.addressValidation();
+      if (allValid == false) {
+        goAhead = 1;
+      }
+      allValid = this.paymentValidation();
       if (allValid == false) {
         goAhead = 1;
       }
@@ -513,7 +595,6 @@ h2 {
 }
 
 .form {
-  font-family: sans-serif;
   font-size: 37%;
   padding: 20px 30px;
   margin-top: 1em;
@@ -549,107 +630,4 @@ h2 {
   cursor: pointer;
   text-align: center;
 }
-
-/** CODE TO RESUSE:
-
- <span class = "section-title">* Chose preferred title:</span>
-          <br/>
-          <select v-model="userTitle" id="user-title" required>
-            <option disabled value="">Please select one</option>
-            <option>Student</option>
-            <option>Professor</option>
-            <option>Retired</option>
-            <option>Staff</option>
-            <option>None</option>
-          </select>
-          <div class="error-messages" v-if="userTitleError">{{userTitleError}}</div><br/>
-          <br/>
-
-          <span class = "section-title"> Select Height: </span><br/>
-          <select v-model="userFeet" id="user-feet" class = "height">
-            <option disabled value="">Please select feet</option>
-            <option>1 feet</option>
-            <option>2 feet</option>
-            <option>3 feet</option>
-            <option>4 feet</option>
-            <option>5 feet</option>
-            <option>6 feet</option>
-            <option>7 feet</option>
-            <option>8 feet or over</option>
-          </select>
-          <span>  </span>
-          <select v-model="userInches" id="user-inches"  class = "height">
-            <option disabled value="">Please select inches</option>
-            <option>1 inch</option>
-            <option>2 inches</option>
-            <option>3 inches</option>
-            <option>4 inches</option>
-            <option>5 inches</option>
-            <option>6 inches</option>
-            <option>7 inches</option>
-            <option>8 inches</option>
-            <option>9 inches</option>
-            <option>10 inches</option>
-            <option>11 inches</option>
-          </select>
-          <br/><br/>
-
-          <span class = "section-title">Phone Number: </span><br/>
-          <label class="hint-text">Please don't use letters</label><br/>
-          <input v-model="userPhone" placeholder="123-456-7891" id="user-phone" class="phone" /> 
-          <div class="error-messages" v-if="phoneError">{{phoneError}}</div><br/>
-          <br/>
-          
-          <span class = "section-title">* Address: </span><br/>
-          <input v-model="userStreet" placeholder="Enter bulding number and street" id="user-street" class="address" required />
-          <div class="error-messages" v-if="streetError">{{streetError}}</div><br/>
-
-          <input v-model="userAptNum" placeholder="Optional: Enter Apt number " id="user-aptNum" class="address" />
-          <div class="error-messages" v-if="aptNumError">{{aptNumError}}</div><br/>
-          
-          <input v-model="userCity" placeholder="Enter City" id="user-city" class="address" required />
-          <div class="error-messages" v-if="cityError">{{cityError}}</div><br/>
-          
-          <input v-model="userState" placeholder="Enter State" id="user-state" class="address" required/>
-          <div class="error-messages" v-if="stateError">{{stateError}}</div><br/>
-    
-          <input v-model="userZipCode" placeholder="Enter ZipCode" id="user-zipcode" class="address" required/>
-          <div class="error-messages" v-if="zipcodeError">{{zipcodeError}}</div><br/>
-          <br/>
-
-          <span class = "section-title"> Additional Services: </span><br/>
-          <label class="hint-text">Select all that apply to you</label><br/>
-          <input type="checkbox" id="email" value="email" v-model="additional">
-          <label class = "checkboxText" for="email">Email</label><br/>
-          <input type="checkbox" id="phone" value="phone" v-model="additional">
-          <label class = "checkboxText" for="phone">Phone</label><br/>
-          <input type="checkbox" id="facebook" value="facebook" v-model="additional">
-          <label class = "checkboxText" for="facebook">Facebook</label><br/>
-          <input type="checkbox" id="tweeter" value="tweeter" v-model="additional">
-          <label class = "checkboxText" for="tweeter">Tweeter</label><br/>
-          <input type="checkbox" id="surface_mail" value="surface_mail" v-model="additional">
-          <label class = "checkboxText" for="surface_mail">Surface Mail</label><br/>
-          <input type="checkbox" id="personal_visit" value="personal_visit" v-model="additional">
-          <label class = "checkboxText" for="personal_visit">Personal Visit</label><br/>
-          <br>  
-
-          <span class = "section-title"> Budget: </span><br/>
-          <select v-model="userBudget" id="user-budget" required>
-            <option disabled value="">Please select one</option>
-            <option>less that 50$</option>
-            <option>50$ - 100$</option>
-            <option>Over 100$</option>
-          </select><br/><br/>
-         
-          <span class = "section-title">* Email: </span><br/>
-          <input v-model="userEmail" placeholder="Enter Email" id="user-email" required/>
-          <div class="error-messages" v-if="emailError">{{emailError}}</div><br/>
-          <br />
-          
-          <div class = "terms">
-              <input type="checkbox" v-model="terms" required>
-              <label class = "checkboxText"> Accept terms and Conditions </label>
-              <div class="error-messages" v-if="termsError">{{termsError}}</div><br/>
-          </div> 
-*/
 </style>

@@ -171,6 +171,18 @@ export default {
     onGoToHomepage() {
       this.$router.push({ name: "Home" });
     },
+    formatePhone() {
+      return true;
+    },
+    formatPassword() {
+      alert("inFormatPass");
+      var password = this.signUpUser.password;
+      var passLength = password.length;
+      for (let i = 0; i < passLength; i++) {
+        this.censoredPassword += "*";
+      }
+      return true;
+    },
   },
   created() {
     // parse local storage to get logged in user data
@@ -179,18 +191,6 @@ export default {
       this.signUpUser = user;
       this.cardInfo = user.payments[0];
     }
-  },
-  formatePhone() {
-    return true;
-  },
-  formatPassword() {
-    alert("inFormatPass");
-    var password = this.signUpUser.password;
-    var passLength = password.length;
-    for (let i = 0; i < passLength; i++) {
-      this.censoredPassword += "*";
-    }
-    return true;
   },
 };
 </script>

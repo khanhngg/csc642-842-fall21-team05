@@ -97,7 +97,7 @@
           <h2>
             <span class="section-title"> Contact Information </span><br />
 
-            <span class="field-title">* Email: </span><br />
+            <span class="field-title"> Email * </span><br />
             <input
               v-model="signUpUser.email"
               placeholder="Enter Email"
