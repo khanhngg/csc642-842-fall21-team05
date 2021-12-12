@@ -53,7 +53,7 @@
         </div>
         <br />
 
-        <div class="field-title">
+        <div class="field-title" v-if="signUpUser.skip == false">
           <label class="input-title">Address:</label>
           <label class="input">
             {{ signUpUser.address.streetAddress }}
@@ -65,16 +65,16 @@
         </div>
         <br />
 
-        <div class="field-title">
+        <div class="field-title" v-if="signUpUser.skip == false">
           <label class="input-title">Card Information:</label>
         </div>
 
-        <div class="field-title">
+        <div class="field-title" v-if="signUpUser.skip == false">
           <label class="input-title">&emsp;Card Number:</label>
           <label class="input">{{ cardInfo.cardNumber }}</label>
         </div>
         <br />
-        <div class="field-title">
+        <div class="field-title" v-if="signUpUser.skip == false">
           <label class="input-title">&emsp;Expiration Date:</label>
           <label class="input"
             >{{ cardInfo.expiration.month }} /
@@ -82,7 +82,7 @@
           >
         </div>
         <br />
-        <div class="field-title">
+        <div class="field-title" v-if="signUpUser.skip == false">
           <label class="input-title">&emsp;Security Code:</label>
           <label class="input">{{ cardInfo.securityCode }}</label>
         </div>
@@ -146,6 +146,7 @@ export default {
           zip: "",
         },
         payments: [],
+        skip: false,
       },
       cardInfo: {
         cardNumber: "",

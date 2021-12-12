@@ -288,19 +288,16 @@ export default {
       return true;
     },
     addressValidation: function () {
-      var street = this.userStreet;
-      var aptNum = this.userAptNum;
-      var city = this.userCity;
-      var state = this.userState;
-      var zip = this.userZipCode;
+      var street = this.signUpUser.address.streetAddress;
+      var aptNum = this.signUpUser.address.apartmentNumber;
+      var city = this.signUpUser.address.city;
+      var state = this.signUpUser.address.state;
+      var zip = this.signUpUser.address.zipCode;
       var invalid = 0;
 
-      if (street.length > 40 || street.length == 0) {
+      if (street.length > 40 || street == "") {
         document.getElementById("user-street").style.borderColor = "red";
-        this.streetError =
-          street.length > 40
-            ? "Street address too long, must to be less than 40 characters!"
-            : "You must fill out the street address!";
+        this.streetError = "You must fill out the street address!";
         invalid = 1;
       } else {
         this.streetError = "";
@@ -360,12 +357,20 @@ export default {
 
       this.streetError = "";
       this.cityError = "";
-
+      this.stateError = "";
       this.zipcodeError = "";
 
-      document.getElementById("user-street").style.borderColor = "black";
-
       return true;
+    },
+    paymentValidation: function () {
+      var cardNum = this.cardInfo.cardNumber;
+      //var expirationMonth = this.cardInfo.expiration.month;
+      // var expirationYear = this.cardInfo.expiration.year;
+      // var code = this.cardInfo.securityCode;
+
+      if (cardNum.length == 0) {
+        document.getElementById("user-card").style.borderColor = "red";
+      }
     },
     goBackButton() {
       this.$router.go(-1);

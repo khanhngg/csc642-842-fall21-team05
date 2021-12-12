@@ -19,7 +19,7 @@
         <div id="v-model-select" class="form">
           <h2>
             <span class="section-title"> Billing Address </span><br />
-            <span class="field-title">* Street Address:</span><br />
+            <span class="field-title"> Street Address *</span><br />
             <input
               v-model="signUpUser.address.streetAddress"
               placeholder="Enter bulding number and street"
@@ -31,7 +31,7 @@
               {{ streetError }}
             </div>
             <br />
-            <span class="field-title"> Apt/Suite Number:</span><br />
+            <span class="field-title"> Apt/Suite Number </span><br />
             <input
               v-model="signUpUser.address.apartmentNumber"
               placeholder="Enter Apt number "
@@ -42,7 +42,7 @@
               {{ aptNumError }}
             </div>
             <br />
-            <span class="field-title">* City:</span><br />
+            <span class="field-title"> City *</span><br />
             <input
               v-model="signUpUser.address.city"
               placeholder="Enter City"
@@ -52,7 +52,7 @@
             />
             <div class="error-messages" v-if="cityError">{{ cityError }}</div>
             <br />
-            <label for="state" class="field-title">*State:</label><br />
+            <label for="state" class="field-title">State *</label><br />
             <select
               v-model="signUpUser.address.state"
               id="user-state"
@@ -69,7 +69,7 @@
             </select>
             <div class="error-messages" v-if="stateError">{{ stateError }}</div>
             <br />
-            <span class="field-title">* ZipCode:</span><br />
+            <span class="field-title">ZipCode *</span><br />
             <input
               v-model="signUpUser.address.zip"
               placeholder="Enter ZipCode"
@@ -86,7 +86,7 @@
 
           <h2>
             <span class="section-title"> Payment Information </span><br />
-            <span class="field-title">* Card Number: </span><br />
+            <span class="field-title">Card Number * </span><br />
             <input
               v-model="cardInfo.cardNumber"
               placeholder="Enter card number"
@@ -94,8 +94,11 @@
               class="payment"
               required
             />
+            <div class="error-messages" v-if="cardNumError">
+              {{ cardNumError }}
+            </div>
             <br />
-            <span class="field-title">* Expiration Date: </span><br />
+            <span class="field-title">Expiration Date * </span><br />
             <select
               v-model="cardInfo.expiration.month"
               id="card-month"
@@ -134,21 +137,25 @@
               <option>2031</option>
               <option>2032</option>
             </select>
-            <br /><br />
+            <div class="error-messages" v-if="cardExpirError">
+              {{ cardExpirError }}
+            </div>
+            <br />
             <div class="col-12">
-              <span class="field-title">* Security Code:</span><br />
+              <span class="field-title">Security Code *</span><br />
               <input
                 v-model="cardInfo.securityCode"
                 placeholder="Enter 3 Digit Security Code"
+                id="card-code"
                 required
               />
+              <div class="error-messages" v-if="cardCodeError">
+                {{ cardCodeError }}
+              </div>
               <br />
 
               <input type="checkbox" v-model="cardInfo.isDefault" />
               <label class="checkboxText"> Set as Default Payment </label>
-              <div class="error-messages" v-if="termsError">
-                {{ termsError }}
-              </div>
               <br />
             </div>
           </h2>
@@ -162,6 +169,16 @@
           v-on:click="onSubmit()"
         >
           Submit
+        </button>
+      </div>
+      <div class="skip-button">
+        <button
+          class="btn btn-primary-theme"
+          type="submit"
+          id="skipBtn"
+          v-on:click="onSkip()"
+        >
+          Skip
         </button>
       </div>
       <div class="clear-button">
@@ -220,6 +237,7 @@ export default {
           zip: "",
         },
         payments: [],
+        skip: false,
       },
       cardInfo: {
         cardNumber: "",
@@ -296,6 +314,8 @@ export default {
       zipcodeError: "",
 
       cardNumError: "",
+      cardExpirError: "",
+      cardCodeError: "",
     };
   },
   created() {
@@ -383,12 +403,44 @@ export default {
     },
     paymentValidation: function () {
       var cardNum = this.cardInfo.cardNumber;
-      //var expirationMonth = this.cardInfo.expiration.month;
-      // var expirationYear = this.cardInfo.expiration.year;
-      // var code = this.cardInfo.securityCode;
+      var expirationMonth = this.cardInfo.expiration.month;
+      var expirationYear = this.cardInfo.expiration.year;
+      var code = this.cardInfo.securityCode;
+      var error = 0;
+      var overallError = false;
 
-      if (cardNum.length == 0) {
+      if (cardNum.length != 16) {
         document.getElementById("user-card").style.borderColor = "red";
+        this.cardNumError = "Card number Invalid: Not 16 Numbers";
+        overallError = true;
+      }
+      if (expirationMonth == "") {
+        document.getElementById("card-month").style.borderColor = "red";
+        error = 1;
+        overallError = true;
+      }
+      if (expirationYear == "") {
+        document.getElementById("card-year").style.borderColor = "red";
+        error = 1;
+        overallError = true;
+      }
+      this.cardExpirError =
+        error > 0 ? "You must fill out both Expiration Date Fields!" : "";
+      if (code.length != 3) {
+        document.getElementById("card-code").style.borderColor = "red";
+        this.cardCodeError = "Security Code Invalid: not a 3 digit code!";
+        overallError = true;
+      }
+      if (overallError) {
+        return false;
+      } else {
+        document.getElementById("user-card").style.borderColor = "black";
+        document.getElementById("card-month").style.borderColor = "black";
+        document.getElementById("card-year").style.borderColor = "black";
+        document.getElementById("card-code").style.borderColor = "black";
+        this.cardNumError = "";
+        this.cardExpirError = "";
+        this.cardCodeError = "";
       }
     },
     goBackButton() {
@@ -420,14 +472,15 @@ export default {
     onSubmit() {
       var allValid;
       var goAhead = 0;
+      this.signUpUser.skip = false;
 
       allValid = this.addressValidation();
       if (allValid == false) {
         goAhead = 1;
       }
-      
+
       allValid = this.paymentValidation();
-       if (allValid == false) {
+      if (allValid == false) {
         goAhead = 1;
       }
 
@@ -438,6 +491,11 @@ export default {
         this.overallError =
           "You must fix the highlighted fields before continuing!";
       }
+    },
+    onSkip() {
+      this.overallError = "";
+      this.signUpUser.skip = true;
+      this.persist();
     },
   },
   components: {},
@@ -510,6 +568,11 @@ h2 {
   margin-right: 15%;
   text-align: left;
   padding: 3%;
+}
+#skipBtn {
+  background-color: white;
+  border-color: #7678ed;
+  color: #7678ed;
 }
 #clearBtn {
   background-color: grey;
