@@ -203,18 +203,16 @@ export default {
         fromTime: "",
         toTime: "",
       },
-      selectedCar: {
-
-      }
+      selectedCar: {},
     };
   },
   created() {
     // TODO - get cars from localstorage or json
     // calculate duration based on searchQuery
-    console.log('in search created...')
-    var searchQuery = JSON.parse(localStorage.getItem("searchQuery"))
-    console.log(searchQuery)
-    this.searchQuery = searchQuery
+    console.log("in search created...");
+    var searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
+    console.log(searchQuery);
+    this.searchQuery = searchQuery;
   },
   methods: {
     getTotalPrice(carId) {
@@ -223,17 +221,16 @@ export default {
     },
     handleOnSearch(searchQuery) {
       // write to localStorage for search page
-      this.searchQuery = searchQuery
-      localStorage.setItem("searchQuery", JSON.stringify(searchQuery))
+      this.searchQuery = searchQuery;
+      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
 
       // TODO - update list of cars?
-      
     },
     onSubmit(carId) {
-      console.log(carId)
+      console.log(carId);
 
       // write to localStorage
-      // localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+      localStorage.setItem("searchQuery", JSON.stringify(this.searchQuery));
       this.$router.push({ name: "ReservationReview" });
     },
   },
