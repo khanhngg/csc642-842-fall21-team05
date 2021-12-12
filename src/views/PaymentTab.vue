@@ -1,40 +1,36 @@
 <template>
   <h1>
-       {{ title }}
-      <h2>
-
-      </h2>
-        <div class="add">
-        <button
-          class="btn btn-primary-theme"
-          type="submit"
-          v-on:click="addPaymentButton()"
-        >
-          Add Payment
-        </button>
-      </div>
+    {{ title }}
+    <h2></h2>
+    <div class="add">
+      <button
+        class="btn btn-primary-theme"
+        type="submit"
+        v-on:click="addPaymentButton()"
+      >
+        Add Payment
+      </button>
+    </div>
   </h1>
 </template>
 
 <script>
 export default {
-  name: 'My Payments',
-  data(){
-    return{
-      title: "Payments",      
-        
+  name: "My Payments",
+  data() {
+    return {
+      title: "Payments",
     };
   },
   methods: {
-    addPaymentButton(){
-        this.$router.push({ name: "PaymentForm" });
+    addPaymentButton() {
+      this.$router.push({ name: "PaymentForm" });
     },
-  }, 
-}
+  },
+};
 </script>
 
 <style>
-
 body {
   height: 100%;
   width: 100%;
@@ -52,7 +48,7 @@ h1 {
   padding: 77px 30px;
 }
 h2 {
-  background-color: rgb(240, 239, 239);;
+  background-color: rgb(240, 239, 239);
   margin-left: 5%;
   margin-right: 5%;
   text-align: left;

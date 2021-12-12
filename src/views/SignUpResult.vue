@@ -1,4 +1,5 @@
 <template>
+<h1>
   <div class="container form-container">
     <h1 class="text-center fw-bold">Create an Account</h1>
     <h4 class="text-center fw-bold">Account Created!</h4>

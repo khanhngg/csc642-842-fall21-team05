@@ -1,39 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div class="form">
-    <h1>
-      &emsp;{{ title }}
-      <div class="progress">
-        <div
-          class="progress-bar progress-bar-success"
-          role="progressbar"
-          aria-valuenow="50"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          style="width: 50%"
-        >
-          50% Percent Complete
-        </div>
-      </div>
-      <label class="hint-text"> &nbsp; * Required Fields </label><br />
-      <form>
-        <div id="v-model-select" class="form">
-          <h2>
-            <span class="section-title"> Billing Address </span><br />
-            <span class="field-title"> Street Address *</span><br />
-            <input
-              v-model="signUpUser.address.streetAddress"
-              placeholder="Enter bulding number and street"
-              id="user-street"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="streetError">
-              {{ streetError }}
-            </div>
-            <br />
-            <span class="field-title"> Apt/Suite Number </span><br />
-=======
   <div class="container form-container">
     <!-- Title -->
     <h1 class="text-center fw-bold">Create an Account</h1>
@@ -60,82 +25,12 @@
         <div class="col-12 mb-3">
           <label class="form-label">Apartment/Suite Number</label>
           <div class="col-md-5">
->>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
             <input
               type="text"
               class="form-control"
               placeholder="20A"
               v-model="signUpUser.address.apartmentNumber"
             />
-<<<<<<< HEAD
-            <div class="error-messages" v-if="aptNumError">
-              {{ aptNumError }}
-            </div>
-            <br />
-            <span class="field-title"> City *</span><br />
-            <input
-              v-model="signUpUser.address.city"
-              placeholder="Enter City"
-              id="user-city"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="cityError">{{ cityError }}</div>
-            <br />
-            <label for="state" class="field-title">State *</label><br />
-            <select
-              v-model="signUpUser.address.state"
-              id="user-state"
-              class="address"
-            >
-              <option value="">Select State</option>
-              <option
-                v-for="userState in states"
-                :key="userState"
-                :value="userState"
-              >
-                {{ userState }}
-              </option>
-            </select>
-            <div class="error-messages" v-if="stateError">{{ stateError }}</div>
-            <br />
-            <span class="field-title">ZipCode *</span><br />
-            <input
-              v-model="signUpUser.address.zip"
-              placeholder="Enter ZipCode"
-              id="user-zipcode"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="zipcodeError">
-              {{ zipcodeError }}
-            </div>
-            <br />
-            <br />
-          </h2>
-
-          <h2>
-            <span class="section-title"> Payment Information </span><br />
-            <span class="field-title">Card Number * </span><br />
-            <input
-              v-model="cardInfo.cardNumber"
-              placeholder="Enter card number"
-              id="user-card"
-              class="payment"
-              required
-            />
-            <div class="error-messages" v-if="cardNumError">
-              {{ cardNumError }}
-            </div>
-            <br />
-            <span class="field-title">Expiration Date * </span><br />
-            <select
-              v-model="cardInfo.expiration.month"
-              id="card-month"
-              class="expiration"
-            >
-              <option disabled value="">Month</option>
-=======
           </div>
         </div>
 
@@ -205,7 +100,6 @@
             <div class="form-text">Month *</div>
             <select v-model="cardInfo.expiration.month" class="form-select">
               <option value="">Select month...</option>
->>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
               <option>01</option>
               <option>02</option>
               <option>03</option>
@@ -236,30 +130,6 @@
               <option>2031</option>
               <option>2032</option>
             </select>
-<<<<<<< HEAD
-            <div class="error-messages" v-if="cardExpirError">
-              {{ cardExpirError }}
-            </div>
-            <br />
-            <div class="col-12">
-              <span class="field-title">Security Code *</span><br />
-              <input
-                v-model="cardInfo.securityCode"
-                placeholder="Enter 3 Digit Security Code"
-                id="card-code"
-                required
-              />
-              <div class="error-messages" v-if="cardCodeError">
-                {{ cardCodeError }}
-              </div>
-              <br />
-
-              <input type="checkbox" v-model="cardInfo.isDefault" />
-              <label class="checkboxText"> Set as Default Payment </label>
-              <br />
-            </div>
-          </h2>
-=======
           </div>
         </div>
 
@@ -285,7 +155,6 @@
               Set as default payment
             </label>
           </div>
->>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
         </div>
       </section>
 
@@ -298,22 +167,6 @@
         >
           Back
         </button>
-<<<<<<< HEAD
-      </div>
-      <div class="skip-button">
-        <button
-          class="btn btn-primary-theme"
-          type="submit"
-          id="skipBtn"
-          v-on:click="onSkip()"
-        >
-          Skip
-        </button>
-      </div>
-      <div class="clear-button">
-=======
-
->>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
         <button
           class="btn btn-primary-theme fw-bold text-uppercase w-25"
           type="button"
@@ -322,12 +175,7 @@
           Submit
         </button>
       </div>
-<<<<<<< HEAD
-      <div class="error-messages" v-if="overallError">{{ overallError }}</div>
-    </h1>
-=======
     </form>
->>>>>>> 8761c9243b2cb6a9655cf36fc43879c55a00cc96
   </div>
 </template>
 
