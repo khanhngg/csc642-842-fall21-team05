@@ -4,9 +4,22 @@ import About from "../views/About.vue";
 import Search from "../views/Search.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
+import MyRentals from "../views/MyRentals.vue";
 import AddForm from "../views/AddForm.vue";
 import AddSummary from "../views/AddSummary.vue";
 import Dashboard from "../views/Dashboard.vue";
+import PaymentForm from "../views/PaymentForm.vue";
+import PaymentFormResult from "../views/PaymentFormResult.vue";
+import SignUpForm_1 from "../views/SignUpForm_1.vue";
+import SignUpForm_2 from "../views/SignUpForm_2.vue";
+import SignUpResult from "../views/SignUpResult.vue";
+import NotFound from "../views/NotFound.vue";
+import DeliveryReport from "../views/DeliveryReport.vue";
+import EmailReservationConfirmed from "../views/EmailReservationConfirmed.vue";
+import EmailReservationCanceled from "../views/EmailReservationCanceled.vue";
+import ReservationReview from "../views/ReservationReview.vue";
+import ReservationResult from "../views/ReservationResult.vue";
+import Payments from "../views/PaymentTab.vue";
 import Edit from "../views/Edit.vue";
 import EditSummary from "../views/EditSummary.vue";
 
@@ -40,12 +53,17 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/addform",
+    path: "/myrentals",
+    name: "MyRentals",
+    component: MyRentals,
+  },
+  {
+    path: "/add/new",
     name: "AddForm",
     component: AddForm,
   },
   {
-    path: "/addsummary",
+    path: "/add/summary",
     name: "AddSummary",
     component: AddSummary,
   },
@@ -54,13 +72,77 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
   },
+  //Update Payment Form
   {
-    path: "/addform/:id",
+    path: "/paymentform",
+    name: "PaymentForm",
+    component: PaymentForm,
+  },
+  //Result of Payment Form
+  {
+    path: "/paymentformresult",
+    name: "PaymentFormResult",
+    component: PaymentFormResult,
+  },
+  {
+    path: "/signup/info",
+    name: "SignUpForm_1",
+    component: SignUpForm_1,
+  },
+  {
+    path: "/signup/payments",
+    name: "SignUpForm_2",
+    component: SignUpForm_2,
+  },
+  {
+    path: "/signup/result",
+    name: "SignUpResult",
+    component: SignUpResult,
+  },
+  //404 page
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound,
+  },
+  {
+    path: "/delivery",
+    name: "DeliveryReport",
+    component: DeliveryReport,
+  },
+  {
+    path: "/emailreservation/confirmed",
+    name: "EmailReservationConfirmed",
+    component: EmailReservationConfirmed,
+  },
+  {
+    path: "/emailreservation/canceled",
+    name: "EmailReservationCanceled",
+    component: EmailReservationCanceled,
+  },
+  {
+    path: "/reservation/review",
+    name: "ReservationReview",
+    component: ReservationReview,
+  },
+  {
+    // TODO - get url by id
+    path: "/reservation/result",
+    name: "ReservationResult",
+    component: ReservationResult,
+  },
+  {
+    path: "/payments",
+    name: "Payments",
+    component: Payments,
+  },
+  {
+    path: "/edit/:id",
     name: "Edit",
     component: Edit,
   },
   {
-    path: "/addsummary/:id",
+    path: "/edit/summary/:id",
     name: "EditSummary",
     component: EditSummary,
   },
