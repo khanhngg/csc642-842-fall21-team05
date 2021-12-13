@@ -60,9 +60,9 @@
         </div>
       </div>
       <!-- TODO route to summary page -->
-      <div class="col-sm-12 col-lg-11 p-2 my-2 d-flex justify-content-end">
+      <div class="col-sm-12 col-lg-11 py-2 my-2 d-flex justify-content-end">
         <button
-          class="btn btn-primary-theme fw-bold text-uppercase w-25"
+          class="btn btn-primary-theme fw-bold text-uppercase w-25 px-2"
           type="submit"
           @click="$router.push('/reservation/summary/guest')"
         >

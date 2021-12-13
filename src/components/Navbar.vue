@@ -47,7 +47,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'About' }"
+            <router-link class="nav-link" :to="{ name: 'ReservationsLookUp' }"
               >Reservations</router-link
             >
           </li>
