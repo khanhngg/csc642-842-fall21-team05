@@ -171,31 +171,6 @@
               :to="{ name: 'Search' }"
               >modify reservation</router-link
             >
-            <!-- <button
-              class="
-                btn btn-secondary-theme
-                me-md-2
-                text-uppercase
-                fw-bold
-                px-lg-4
-              "
-              type="button"
-              
-            >
-              cancel reservation
-            </button> -->
-
-            <!-- <button
-              class="
-                btn btn-primary-theme
-                text-uppercase 
-                fw-bold 
-                px-lg-4
-              "
-              type="button"
-            >
-              modify reservation
-            </button> -->
           </div>
         </div>
       </div>

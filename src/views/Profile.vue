@@ -13,7 +13,7 @@
         <button
           class="btn btn-primary-theme btn-lg fw-bold"
           type="submit"
-          @click="$router.push('/')"
+          @click="$router.push('/profile/edit')"
         >
           EDIT
         </button>

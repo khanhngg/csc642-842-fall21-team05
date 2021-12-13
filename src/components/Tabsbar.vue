@@ -10,7 +10,6 @@
       ]"
       >Profile</router-link
     >
-    <!-- TODO, route to PAYMENT TAB -->
     <router-link
       class="flex-sm-fill text-sm-center nav-link"
       :to="{ name: 'Payments' }"

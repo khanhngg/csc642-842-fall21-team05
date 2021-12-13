@@ -93,7 +93,7 @@
                 <button
                   class="btn btn-secondary-theme btn-cancel fw-bold me-md-2"
                   type="button"
-                  @click="$router.push('/')"
+                  @click="$router.push('/reservation/summary/loggedin')"
                 >
                   CANCEL
                 </button>
@@ -102,7 +102,7 @@
                 <button
                   class="btn btn-primary-theme btn-edit fw-bold"
                   type="button"
-                  @click="$router.push('/')"
+                  @click="$router.push('/reservation/summary/loggedin')"
                 >
                   EDIT
                 </button>
