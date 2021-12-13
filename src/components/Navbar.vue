@@ -34,13 +34,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- TODO - move this to opens up under LOGO on mobile -->
       <!-- Nav links -->
       <div
         class="collapse navbar-collapse justify-content-end"
         id="navbarSupportedContent"
       >
-        <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
+        <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-baseline">
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'About' }"
               >About</router-link
@@ -51,76 +50,91 @@
               >Reservations</router-link
             >
           </li>
-        </ul>
-      </div>
-
-      <!-- User dropdown -->
-      <div v-if="isLoggedIn" class="btn-group">
-        <a
-          href="#"
-          class="d-block link-dark text-decoration-none dropdown-toggle"
-          id="dropdownUser2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <span style="font-size: 32px; color: #2c3e50">
-            <i class="fas fa-user-circle"></i>
-          </span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <div v-if="isUserTypeAdmin()">
-            <li>
-              <router-link class="dropdown-item" :to="{ name: 'Dashboard' }">
-                Dashboard
-              </router-link>
-            </li>
-            <li>
-              <router-link class="dropdown-item" :to="{ name: 'AddForm' }">
-                Add a Car
-              </router-link>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-          </div>
-          <div v-else-if="isUserTypeDelivery()">
-            <li>
-              <router-link
-                class="dropdown-item"
-                :to="{ name: 'DeliveryReport' }"
+          <li class="nav-item">
+            <!-- User dropdown -->
+            <div v-if="isLoggedIn" class="btn-group">
+              <a
+                href="#"
+                class="d-block link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                My Deliveries
-              </router-link>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-          </div>
-          <li>
-            <router-link class="dropdown-item" :to="{ name: 'Profile' }">
-              Profile
-            </router-link>
-          </li>
-          <li>
-            <router-link class="dropdown-item" :to="{ name: 'Payments' }">
-              Payments
-            </router-link>
-          </li>
-          <li>
-            <router-link class="dropdown-item" :to="{ name: 'MyRentals' }">
-              My Rentals
-            </router-link>
-          </li>
-          <li><hr class="dropdown-divider" /></li>
-          <li>
-            <a class="dropdown-item" @click.prevent="onSignOut">Sign out</a>
+                <span style="font-size: 32px; color: #2c3e50">
+                  <i class="fas fa-user-circle"></i>
+                </span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <div v-if="isUserTypeAdmin()">
+                  <li>
+                    <router-link
+                      class="dropdown-item"
+                      :to="{ name: 'Dashboard' }"
+                    >
+                      Dashboard
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link
+                      class="dropdown-item"
+                      :to="{ name: 'AddForm' }"
+                    >
+                      Add a Car
+                    </router-link>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                </div>
+                <div v-else-if="isUserTypeDelivery()">
+                  <li>
+                    <router-link
+                      class="dropdown-item"
+                      :to="{ name: 'DeliveryReport' }"
+                    >
+                      My Deliveries
+                    </router-link>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                </div>
+                <li>
+                  <router-link class="dropdown-item" :to="{ name: 'Profile' }">
+                    Profile
+                  </router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" :to="{ name: 'Payments' }">
+                    Payments
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    class="dropdown-item"
+                    :to="{ name: 'MyRentals' }"
+                  >
+                    My Rentals
+                  </router-link>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" @click.prevent="onSignOut"
+                    >Sign out</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div v-else>
+              <button
+                class="btn btn-primary-theme fw-bold"
+                @click.prevent="onLogIn"
+              >
+                Log In
+              </button>
+            </div>
           </li>
         </ul>
-      </div>
-      <div v-else>
-        <button class="btn btn-primary-theme fw-bold" @click.prevent="onLogIn">
-          Log In
-        </button>
       </div>
     </div>
   </nav>

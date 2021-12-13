@@ -11,7 +11,9 @@
         border-top
       "
     >
-      <p class="col-md-4 mb-0 fw-bold">CarToGo, SFSU CSC 642-842</p>
+      <p class="mb-0 fw-bold">
+        CarToGo, HCI Class SFSU CS department Fall 2021 Team 5
+      </p>
       <div class="d-none d-md-inline">
         <ul class="nav col justify-content-end">
           <li class="nav-item">
@@ -28,9 +30,6 @@
       <ul class="nav col-12 d-block d-md-none">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">How It Works</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-muted">About</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">Terms & Conditions</a>

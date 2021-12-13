@@ -2,7 +2,7 @@
   <section class="review-container container mb-5">
     <div class="row">
       <!-- Left panel: user info form -->
-      <div class="col-8">
+      <div class="col-7">
         <!-- Log in -->
         <section v-if="!isLoggedIn" class="form-section mb-3">
           <div v-if="showLogIn" class="row">
@@ -49,13 +49,13 @@
             </div>
           </div>
           <div v-else class="row">
-            <div class="row">
-              <h6 class="col-11 text-uppercase fw-bold section-header-inactive">
+            <div class="d-flex justify-content-between">
+              <h6 class="text-uppercase fw-bold section-header-inactive">
                 Account Information
               </h6>
               <button
                 type="button"
-                class="col-1 btn btn-secondary-theme fw-bold text-uppercase"
+                class="btn btn-secondary-theme fw-bold text-uppercase"
                 @click.prevent="onEditLogIn"
               >
                 Edit
@@ -95,7 +95,7 @@
             </div>
             <div class="col-sm-6 mb-3">
               <label class="form-label">Age *</label>
-              <select class="form-select">
+              <select v-model="age" class="form-select">
                 <option value="">Select driver's age...</option>
                 <option value="25OrOlder">25+</option>
                 <option value="lessThan25">Less than 25</option>
@@ -114,13 +114,13 @@
             </div>
           </div>
           <div v-else class="row">
-            <div class="row">
-              <h6 class="col-11 text-uppercase fw-bold section-header-inactive">
+            <div class="d-flex justify-content-between">
+              <h6 class="text-uppercase fw-bold section-header-inactive">
                 Basic Info
               </h6>
               <button
                 type="button"
-                class="col-1 btn btn-secondary-theme fw-bold text-uppercase"
+                class="btn btn-secondary-theme fw-bold text-uppercase"
                 @click.prevent="onEditBasicInfo"
               >
                 Edit
@@ -174,13 +174,13 @@
             </div>
           </div>
           <div v-else class="row">
-            <div class="row">
-              <h6 class="col-11 text-uppercase fw-bold section-header-inactive">
+            <div class="d-flex justify-content-between">
+              <h6 class="text-uppercase fw-bold section-header-inactive">
                 Contact Info
               </h6>
               <button
                 type="button"
-                class="col-1 btn btn-secondary-theme fw-bold text-uppercase"
+                class="btn btn-secondary-theme fw-bold text-uppercase"
                 @click.prevent="onEditContactInfo"
               >
                 Edit
@@ -301,13 +301,13 @@
             </div>
           </div>
           <div v-else class="row">
-            <div class="row">
-              <h6 class="col-11 text-uppercase fw-bold section-header-inactive">
+            <div class="d-flex justify-content-between">
+              <h6 class="text-uppercase fw-bold section-header-inactive">
                 Payment Info
               </h6>
               <button
                 type="button"
-                class="col-1 btn btn-secondary-theme fw-bold text-uppercase"
+                class="btn btn-secondary-theme fw-bold text-uppercase"
                 @click.prevent="onEditPaymentInfo"
               >
                 Edit
@@ -423,13 +423,13 @@
             </p>
           </div>
           <div v-else class="row">
-            <div class="row">
-              <h6 class="col-11 text-uppercase fw-bold section-header-inactive">
+            <div class="d-flex justify-content-between">
+              <h6 class="text-uppercase fw-bold section-header-inactive">
                 Billing Address
               </h6>
               <button
                 type="button"
-                class="col-1 btn btn-secondary-theme fw-bold text-uppercase"
+                class="btn btn-secondary-theme fw-bold text-uppercase"
                 @click.prevent="onEditBillingAddress"
               >
                 Edit
@@ -453,8 +453,79 @@
       </div>
 
       <!-- Right panel: car reservation details -->
-      <section class="col-4 form-section">
-        <h4 class="text-uppercase fw-bold">Reservation Info</h4>
+      <section class="col-5 form-section">
+        <h4 class="text-uppercase fw-bold mb-4">Reservation Info</h4>
+
+        <!-- Location/time info -->
+        <div class="row card-body-1 ps-0 pb-4 mb-4 border-bottom">
+          <!-- PICKUP -->
+          <div class="col-12 mb-4">
+            <p class="card-subtitle fw-bolder">Pickup</p>
+            <p class="card-text mt-2 mb-2">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ searchQuery.location }}
+            </p>
+            <p class="card-text">
+              <i class="far fa-calendar-alt"></i>
+              {{ getFormattedDate(searchQuery.fromTime) }}
+            </p>
+          </div>
+          <!-- RETURN -->
+          <div class="col-12">
+            <p class="card-subtitle fw-bolder">Return</p>
+            <p class="card-text mt-2 mb-2">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ searchQuery.location }}
+            </p>
+            <p class="card-text">
+              <i class="far fa-calendar-alt"></i>
+              {{ getFormattedDate(searchQuery.toTime) }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Vehicle info -->
+        <div class="row card-body-2 mt-4 pb-4 mb-4 border-bottom">
+          <div class="card-subtitle fw-bolder mb-2">Vehicle</div>
+          <div class="col-sm-12 col-lg-6">
+            <p class="card-text fw-medium mb-0">{{ selectedCar.type }}</p>
+            <p class="card-text fw-medium text-uppercase mb-1">
+              {{ selectedCar.make }} {{ selectedCar.model }}
+            </p>
+            <p class="card-text mb-1">
+              {{ selectedCar.seat }} seats
+              <i class="mx-2 fas fa-circle" style="font-size: 7px"></i>
+              {{ selectedCar.suitcase }} suitcases
+            </p>
+            <p class="card-text fw-light mb-0">
+              <small><i class="fas fa-leaf"></i></small>
+              <small> Eco-friendly</small>
+            </p>
+            <p class="card-text fw-light">
+              <small><i class="fas fa-hand-sparkles"></i></small>
+              <small> Enhanced cleaning</small>
+            </p>
+          </div>
+          <!-- Vehicle Image -->
+          <div class="col-sm-12 col-md-8 col-lg-5">
+            <img
+              :src="`/csc642-842-fall21-team05/img/${selectedCar.image}`"
+              class="img-fluid rounded"
+              alt="Car Image"
+            />
+          </div>
+        </div>
+
+        <!-- Total price -->
+        <div class="row card-body-2 mt-4 pb-4 mb-4">
+          <h4 class="card-subtitle fw-bold mb-2 text-uppercase">Total</h4>
+          <div class="d-flex align-items-baseline justify-content-between">
+            <p class="card-text mb-0">
+              <small>${{ selectedCar.price }} x {{ this.duration }} days</small>
+            </p>
+            <p class="card-text mb-0 fs-5 fw-bold">${{ this.total }}</p>
+          </div>
+        </div>
       </section>
     </div>
   </section>
@@ -507,6 +578,10 @@ export default {
         securityCode: "",
       },
       states: states,
+      selectedCar: {},
+      searchQuery: {},
+      duration: 0,
+      total: 0,
     };
   },
   created() {
@@ -528,13 +603,31 @@ export default {
     }
 
     // get the selected car + date + location
+    var searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
+    if (searchQuery) {
+      this.searchQuery = searchQuery;
+      this.duration = this.getDuration(
+        this.searchQuery.fromTime,
+        this.searchQuery.toTime
+      );
+    }
+
+    var selectedCar = JSON.parse(localStorage.getItem("selectedCar"));
+    if (selectedCar) {
+      this.selectedCar = selectedCar;
+      this.total = selectedCar.price * this.duration;
+    }
   },
   methods: {
     onSubmit() {
       // save to carRentals
 
       // redirect to result page
-      this.$router.push({ name: "ReservationResult" });
+      if (this.isLoggedIn) {
+        this.$router.push({ name: "ReservationSummaryLoggedin" });
+      } else {
+        this.$router.push({ name: "ReservationSummaryGuest" });
+      }
     },
     onLogIn() {
       // get users
@@ -630,6 +723,24 @@ export default {
     },
     getReadableAge(age) {
       return age == "25OrOlder" ? "25+" : "Less than 25";
+    },
+    getFormattedDate(dateTime) {
+      return new Date(dateTime).toLocaleString("en-us", {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+    },
+    getDuration(fromTime, toTime) {
+      var from = new Date(fromTime);
+      var to = new Date(toTime);
+      const diffTime = Math.abs(to - from);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays;
     },
   },
 };
