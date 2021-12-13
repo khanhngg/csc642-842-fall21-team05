@@ -5,17 +5,18 @@
     <!-- How it works section -->
     <section class="mb-5">
       <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-          <h1>
-            Rent a car today, <br />
-            so you can travel more <br />
-            & worry less
-          </h1>
+        <div class="col-12 col-md-7 mb-3">
+          <h1 class="fw-bold mb-4">Rent a car your way</h1>
+          <h3 class="fw-normal">
+            Flexible <span class="fw-bold">pickup</span>. Or get them
+            <span class="fw-bold">delivered</span>.
+          </h3>
+          <h3 class="mb-4 fw-normal">Travel more. Worry less.</h3>
           <button type="button" class="btn btn-primary-theme fw-bold">
             How it works
           </button>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-5">
           <img
             src="../assets/hero-image.jpg"
             class="img-fluid rounded"

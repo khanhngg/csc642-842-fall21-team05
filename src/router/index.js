@@ -75,6 +75,16 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
   },
+  {
+    path: "/payments/:id",
+    name: "EditPayment",
+    component: PaymentForm,
+  },
+  {
+    path: "/payments/new",
+    name: "AddPayment",
+    component: PaymentForm,
+  },
   //Update Payment Form
   {
     path: "/paymentform",
@@ -113,16 +123,6 @@ const routes = [
     name: "DeliveryReport",
     component: DeliveryReport,
   },
-  // {
-  //   path: "/emailreservation/confirmed",
-  //   name: "EmailReservationConfirmed",
-  //   component: EmailReservationConfirmed,
-  // },
-  // {
-  //   path: "/emailreservation/canceled",
-  //   name: "EmailReservationCanceled",
-  //   component: EmailReservationCanceled,
-  // },
   {
     path: "/emailreservation/confirmed",
     name: "EmailReservationConfirmed",

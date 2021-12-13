@@ -1,111 +1,105 @@
 <template>
-  <div class="form">
-    <h1>
-      &emsp;{{ title }}
-      <form>
-        <div id="v-model-select" class="form">
-          <label class="hint-text"
-            >Astriks(*) - Input in Field is Required</label
-          ><br />
-          <h2>
-            <span class="section-title"> Personal Information </span><br />
-            <div class="row mb-3">
-              <span class="field-title">Name *</span><br />
-              <div class="col-sm-10">
-                <input
-                  v-model="cardInfo.nameOnCard"
-                  placeholder="Enter Name"
-                  id="name"
-                  required
-                />
-              </div>
-              <div class="error-messages" v-if="nameError">{{ nameError }}</div>
-            </div>
-          </h2>
+  <div class="container form-container">
+    <!-- Title -->
+    <h1 v-if="id" class="fw-bold">Update Payment Method</h1>
+    <h1 v-else class="fw-bold">Add Payment Method</h1>
+    <p class="form-text fw-bold fst-italic mb-4">
+      Required fields are marked with *
+    </p>
 
-          <h2>
-            <span class="section-title"> Billing Address </span><br />
-            <span class="field-title"> Street Address *</span><br />
-            <input
-              v-model="signUpUser.address.streetAddress"
-              placeholder="Enter bulding number and street"
-              id="user-street"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="streetError">
-              {{ streetError }}
-            </div>
-            <br />
-            <span class="field-title"> Apt/Suite Number:</span><br />
-            <input
-              v-model="signUpUser.address.apartmentNumber"
-              placeholder="Enter Apt number "
-              id="user-aptNum"
-              class="address"
-            />
-            <div class="error-messages" v-if="aptNumError">
-              {{ aptNumError }}
-            </div>
-            <br />
-            <span class="field-title"> City *</span><br />
-            <input
-              v-model="signUpUser.address.city"
-              placeholder="Enter City"
-              id="user-city"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="cityError">{{ cityError }}</div>
-            <br />
-            <label for="state" class="field-title">State *</label><br />
-            <select
-              v-model="signUpUser.address.state"
-              id="user-state"
-              class="address"
-            >
-              <option value="">Select State</option>
-              <option v-for="state in states" :key="state" :value="state">
-                {{ state }}
-              </option>
-            </select>
-            <div class="error-messages" v-if="stateError">{{ stateError }}</div>
-            <br />
-            <span class="field-title"> ZipCode *</span><br />
-            <input
-              v-model="signUpUser.address.zip"
-              placeholder="Enter ZipCode"
-              id="user-zipcode"
-              class="address"
-              required
-            />
-            <div class="error-messages" v-if="zipcodeError">
-              {{ zipcodeError }}
-            </div>
-            <br />
-          </h2>
+    <!-- Form -->
+    <form class="g-3" novalidate>
+      <section class="row form-section mb-4">
+        <!-- Address -->
+        <h4 class="fw-bold mb-3">Billing Address</h4>
+        <div class="col-12 mb-3">
+          <label class="form-label">Street Address *</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="123 Main St"
+            v-model="loggedInUser.address.streetAddress"
+          />
+        </div>
 
-          <h2>
-            <span class="section-title"> Payment Information </span><br />
-            <span class="field-title">Card Number * </span><br />
+        <div class="col-12 mb-3">
+          <label class="form-label">Apartment/Suite Number</label>
+          <div class="col-md-5">
             <input
-              v-model="cardInfo.cardNumber"
-              placeholder="Enter card number"
-              id="user-card"
-              class="payment"
-              required
+              type="text"
+              class="form-control"
+              placeholder="20A"
+              v-model="loggedInUser.address.apartmentNumber"
             />
-            <div class="error-messages" v-if="cardNumError">
-              {{ cardNumError }}
-            </div>
-            <br />
-            <span class="field-title">Expiration Date * </span><br />
-            <select
-              v-model="cardInfo.expiration.month"
-              id="card-month"
-              class="expiration"
-            >
-              <option disabled value="">Month</option>
+          </div>
+        </div>
+
+        <div class="col-md-5 mb-3">
+          <label class="form-label">City *</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter city name"
+            v-model="loggedInUser.address.city"
+          />
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="state" class="form-label">State *</label>
+          <select
+            class="form-select"
+            id="state"
+            v-model="loggedInUser.address.state"
+          >
+            <option value="">Select state...</option>
+            <option v-for="state in states" :key="state" :value="state">
+              {{ state }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="zip" class="form-label">Zip *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="zip"
+            placeholder="12345"
+            v-model="loggedInUser.address.zip"
+          />
+        </div>
+      </section>
+
+      <section class="row form-section mb-4">
+        <!-- Card info -->
+        <h4 class="fw-bold mb-3">Card Information</h4>
+        <div class="col-12 mb-3">
+          <label class="form-label">Name on Card *</label>
+          <input
+            v-model="cardInfo.nameOnCard"
+            type="text"
+            class="form-control"
+            placeholder="Enter the name on card"
+            required
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Card Number *</label>
+          <input
+            v-model="cardInfo.cardNumber"
+            type="text"
+            class="form-control"
+            placeholder="Enter the card number"
+          />
+        </div>
+
+        <div class="row mb-3 pe-0">
+          <label class="form-label mb-0">Expiration Date</label>
+          <div class="col-12 col-md-4 mb-1 mt-0">
+            <div class="form-text">Month *</div>
+            <select v-model="cardInfo.expiration.month" class="form-select">
+              <option value="">Select month...</option>
               <option>01</option>
               <option>02</option>
               <option>03</option>
@@ -119,13 +113,11 @@
               <option>11</option>
               <option>12</option>
             </select>
-            <span> </span>
-            <select
-              v-model="cardInfo.expiration.year"
-              id="card-year"
-              class="expiration"
-            >
-              <option disabled value="">Year</option>
+          </div>
+          <div class="col-12 col-md-4 mt-0">
+            <div class="form-text">Year *</div>
+            <select v-model="cardInfo.expiration.year" class="form-select">
+              <option value="">Select year...</option>
               <option>2022</option>
               <option>2023</option>
               <option>2024</option>
@@ -138,81 +130,66 @@
               <option>2031</option>
               <option>2032</option>
             </select>
-            <div class="error-messages" v-if="cardExpirError">
-              {{ cardExpirError }}
-            </div>
-            <br />
-            <div class="col-12">
-              <span class="field-title">Security Code *</span><br />
-              <input
-                v-model="cardInfo.securityCode"
-                placeholder="Enter 3 Digit Security Code"
-                id="card-code"
-                required
-              />
-              <div class="error-messages" v-if="cardCodeError">
-                {{ cardCodeError }}
-              </div>
-              <br />
-
-              <input type="checkbox" v-model="cardInfo.isDefault" />
-              <label class="checkboxText"> Set as Default Payment </label>
-              <br />
-            </div>
-          </h2>
+          </div>
         </div>
-      </form>
 
-      <div class="submit">
+        <div class="col-12 col-md-4 mb-3">
+          <label class="form-label">Security Code *</label>
+          <input
+            v-model="cardInfo.securityCode"
+            type="text"
+            class="form-control"
+            placeholder="Enter security code"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              v-model="cardInfo.isDefault"
+              id="isDefault"
+            />
+            <label class="form-check-label mb-0" for="isDefault">
+              Set as default payment
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Button -->
+      <div class="d-flex justify-content-between">
         <button
-          class="btn btn-primary-theme"
-          type="submit"
-          v-on:click="submitButton()"
+          class="btn btn-secondary-theme fw-bold text-uppercase w-25"
+          type="button"
+          @click.prevent="onBack"
+        >
+          Back
+        </button>
+
+        <button
+          class="btn btn-primary-theme fw-bold text-uppercase w-25"
+          type="button"
+          @click.prevent="onSubmit"
         >
           Submit
         </button>
       </div>
-      <div class="col-12">
-        <button
-          class="btn btn-primary-theme"
-          type="back"
-          id="backBtn"
-          v-on:click="goBackButton()"
-        >
-          Back
-        </button>
-        <div class="error-messages" v-if="overallError">{{ overallError }}</div>
-        <br />
-      </div>
-    </h1>
+    </form>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-//<label class="form-label">Contact Information: </label><br/><br/>
-//<label class="form-label">Additional Information: </label><br/><br/>
-/*
-          <span> - </span>
-
-          <input v-model="userPhone_2" placeholder="567" id="user-phone_2" class="phone"/>
-          <span> - </span>
-          <input v-model="userPhone_3" placeholder="891" id="user-phone_3" class="phone"/>
-
-          @keypress = "atPressed"
-*/
+import states from "../data/states.json";
 
 export default {
   name: "PaymentForm",
   data() {
     return {
-      //Page Variables
-      title: "Update Payment Form",
-
-      //Data field variables
-      signUpUser: {
-        userType: "",
-
+      id: this.$route.params.id,
+      isLoggedIn: false,
+      loggedInUser: {
         firstName: "",
         lastName: "",
         dateOfBirth: {
@@ -231,7 +208,6 @@ export default {
           zip: "",
         },
         payments: [],
-        skip: false,
       },
       cardInfo: {
         nameOnCard: "",
@@ -240,392 +216,58 @@ export default {
           month: "",
           year: "",
         },
-
         securityCode: "",
         isDefault: false,
       },
-      states: [
-        "Alabama",
-        "Alaska",
-        "Arizona",
-        "Arkansas",
-        "California",
-        "Colorado",
-        "Connecticut",
-        "Delaware",
-        "Florida",
-        "Georgia",
-        "Hawaii",
-        "Idaho",
-        "Illinois",
-        "Indiana",
-        "Iowa",
-        "Kansas",
-        "Kentucky",
-        "Louisiana",
-        "Maine",
-        "Maryland",
-        "Massachusetts",
-        "Michigan",
-        "Minnesota",
-        "Mississippi",
-        "Missouri",
-        "Montana",
-        "Nebraska",
-        "Nevada",
-        "New Hampshire",
-        "New Jersey",
-        "New Mexico",
-        "New York",
-        "North Carolina",
-        "North Dakota",
-        "Ohio",
-        "Oklahoma",
-        "Oregon",
-        "Pennsylvania",
-        "Rhode Island",
-        "South Carolina",
-        "South Dakota",
-        "Tennessee",
-        "Texas",
-        "Utah",
-        "Vermont",
-        "Virginia",
-        "Washington",
-        "West Virginia",
-        "Wisconsin",
-        "Wyoming",
-      ],
-      //ERROR MESSAGES
-      nameError: "",
-
-      streetError: "",
-      aptNumError: "",
-      cityError: "",
-      stateError: "",
-      zipcodeError: "",
-
-      cardNumError: "",
-      cardExpirError: "",
-      cardCodeError: "",
+      states: states,
     };
   },
+  created() {
+    // parse local storage to get sign up user data
+    var user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      this.isLoggedIn = true;
+      this.loggedInUser = user;
+      this.payments = this.loggedInUser.payments;
+      if (this.id) {
+        this.cardInfo = this.payments.find(
+          (payment) => payment.cardNumber == this.id
+        );
+      }
+    } else {
+      this.isLoggedIn = false;
+      this.$router.push({ name: "SignUpForm_1" });
+    }
+  },
   methods: {
-    nameValidation: function () {
-      var name = this.cardInfo.nameOnCard;
-
-      if (name == "" || name.length > 40) {
-        document.getElementById("name").style.borderColor = "red";
-        this.nameError =
-          name == ""
-            ? "You must enter your name displayed on the card!"
-            : "Name is too long, must be 40 characters or less";
-        return false;
-      }
-
-      this.nameError = "";
-      document.getElementById("name").style.borderColor = "black";
-      return true;
-    },
-    addressValidation: function () {
-      var street = this.signUpUser.address.streetAddress;
-      var aptNum = this.signUpUser.address.apartmentNumber;
-      var city = this.signUpUser.address.city;
-      var state = this.signUpUser.address.state;
-      var zip = this.signUpUser.address.zipCode;
-      var invalid = 0;
-
-      if (street.length > 40 || street == "") {
-        document.getElementById("user-street").style.borderColor = "red";
-        this.streetError = "You must fill out the street address!";
-        invalid = 1;
-      } else {
-        this.streetError = "";
-        document.getElementById("user-street").style.borderColor = "black";
-      }
-
-      if (aptNum.length > 40) {
-        document.getElementById("user-aptNum").style.borderColor = "red";
-        this.aptNumError =
-          "Apt Number is too long, must to be less than 40 characters!";
-        invalid = 1;
-      } else {
-        this.aptNumError = "";
-        document.getElementById("user-aptNum").style.borderColor = "black";
-      }
-      if (city.length > 40 || city.length == 0) {
-        document.getElementById("user-city").style.borderColor = "red";
-        this.cityError =
-          city.length > 40
-            ? "City input too long, must to be less than 40 characters!"
-            : "You must fill out the City textbox!";
-        invalid = 1;
-      } else {
-        this.cityError = "";
-        document.getElementById("user-city").style.borderColor = "black";
-      }
-      if (state.length > 40 || state.length == 0) {
-        document.getElementById("user-state").style.borderColor = "red";
-        this.stateError =
-          state.length > 40
-            ? "State entry too long, must to be less than 40 characters!"
-            : "You must fill out the State textbox!";
-        invalid = 1;
-      } else {
-        this.stateError = "";
-        document.getElementById("user-state").style.borderColor = "black";
-      }
-
-      if (/[a-zA-Z]/.test(zip)) {
-        document.getElementById("user-zipcode").style.borderColor = "red";
-        this.zipcodeError = "The ZipCode cannot contain letter/s!";
-      } else if (zip.length != 5) {
-        document.getElementById("user-zipcode").style.borderColor = "red";
-        this.zipcodeError =
-          zip.length > 5
-            ? "ZipCode Entry Invalid: Must be 5 Numbers long"
-            : "You must fill out the ZipCode textbox!";
-        invalid = 1;
-      } else {
-        this.zipcodeError = "";
-        document.getElementById("user-zipcode").style.borderColor = "black";
-      }
-
-      if (invalid == 1) {
-        return false;
-      }
-
-      return true;
-    },
-    paymentValidation: function () {
-      var cardNum = this.cardInfo.cardNumber;
-      var expirationMonth = this.cardInfo.expiration.month;
-      var expirationYear = this.cardInfo.expiration.year;
-      var code = this.cardInfo.securityCode;
-      var error = 0;
-      var overallError = false;
-
-      if (cardNum.length != 16) {
-        document.getElementById("user-card").style.borderColor = "red";
-        this.cardNumError = "Card number Invalid: Not 16 Numbers";
-        overallError = true;
-      } else {
-        document.getElementById("user-card").style.borderColor = "black";
-        this.cardNumError = "";
-      }
-      if (expirationMonth == "") {
-        document.getElementById("card-month").style.borderColor = "red";
-        error = 1;
-        overallError = true;
-      } else {
-        document.getElementById("card-month").style.borderColor = "black";
-      }
-      if (expirationYear == "") {
-        document.getElementById("card-year").style.borderColor = "red";
-        error = 1;
-        overallError = true;
-      } else {
-        document.getElementById("card-year").style.borderColor = "black";
-      }
-      this.cardExpirError =
-        error > 0 ? "You must fill out both Expiration Date Fields!" : "";
-      if (code.length != 3) {
-        document.getElementById("card-code").style.borderColor = "red";
-        this.cardCodeError = "Security Code Invalid: not a 3 digit code!";
-        overallError = true;
-      } else {
-        document.getElementById("card-code").style.borderColor = "black";
-        this.cardCodeError = "";
-      }
-      if (overallError) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    goBackButton() {
+    onBack() {
       this.$router.go(-1);
     },
-    persist() {
-      // check if list of users exist, if not create
+    onSubmit() {
       var users = JSON.parse(localStorage.getItem("users"));
-      if (!users) {
-        users = [];
+
+      if (this.id) {
+        // update payment
+        this.payments[this.payments.indexOf(this.cardInfo)] = this.cardInfo;
+      } else {
+        // add payment
+        this.loggedInUser.payments.push(this.cardInfo);
       }
 
-      // add this new sign up user
-      this.signUpUser.payments.push(this.cardInfo);
-      users.push(this.signUpUser);
+      // save the changes for this user
+      users[users.indexOf(this.loggedInUser)] = this.loggedInUser;
 
       // write list of users to localStorage
       localStorage.setItem("users", JSON.stringify(users));
 
       // set logged in user
-      localStorage.setItem("loggedInUser", JSON.stringify(this.signUpUser));
+      localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
 
-      // remove the sign up user
-      localStorage.removeItem("signUpUser");
-
-      // go to result page
-      this.$router.push({ name: "PaymentFormResult" });
-    },
-    submitButton: function () {
-      var allValid;
-      var goAhead = 0;
-
-      allValid = this.nameValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-      allValid = this.addressValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-      allValid = this.paymentValidation();
-      if (allValid == false) {
-        goAhead = 1;
-      }
-
-      if (goAhead === 0) {
-        this.overallError = "";
-        this.persist();
-      } else {
-        this.overallError =
-          "You must fix the highlighted fields before continuing!";
-      }
+      // go to result page TODO----
+      this.$router.push({ name: "Payments" });
     },
   },
-  components: {},
 };
 </script>
 
-<style scoped>
-/*Input styles*/
-input {
-  border: 2px solid;
-  border-radius: 4px;
-  background-color: rgb(250, 248, 248);
-  font-size: 14px;
-  margin: 0.25rem;
-  padding: 5px 10px;
-  transition: background-color 0.5s ease-out;
-}
-
-input[id="user-street"] {
-  width: 375px;
-}
-input[id="user-city"] {
-  width: 250px;
-}
-input[class="phone"] {
-  width: 20%;
-  text-align: center;
-  padding: 3px;
-}
-
-.checkboxText {
-  font-size: 80%;
-}
-input[id="agree"] {
-  margin-right: 60%;
-}
-input[type="checkbox"] {
-  cursor: pointer;
-}
-select {
-  border: 2px solid;
-  border-radius: 4px;
-  border-color: grey;
-  background-color: rgb(250, 248, 248);
-  font-size: 14px;
-  margin: 0.25rem;
-  padding: 5px 10px;
-  transition: background-color 0.5s ease-out;
-}
-
-/*Page style*/
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  background-color: #7678ed;
-  text-align: center;
-}
-body > div {
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
-}
-
-h2 {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 2%;
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: left;
-  padding: 3%;
-}
-#clearBtn {
-  background-color: grey;
-}
-#backBtn {
-  color: black;
-  background-color: white;
-  border-color: black;
-}
-/*Class Styles*/
-.field-title {
-  font-size: 75%;
-}
-.section-title {
-  font-size: 100%;
-}
-
-.terms-agree {
-  font-size: 16px;
-  text-align: left;
-}
-
-.hint-text {
-  font-size: 14px;
-  color: rgb(95, 95, 95);
-}
-
-.form {
-  font-size: 37%;
-  padding: 20px 30px;
-  margin-top: 1em;
-  margin-bottom: 5%;
-  user-select: none;
-  overflow-x: auto;
-}
-
-.error-messages {
-  font-size: 16px;
-  color: rgb(180, 12, 12);
-}
-
-.btn-primary-theme {
-  float: right;
-  margin-right: 20%;
-
-  width: 10%;
-}
-
-.clear-button {
-  float: left;
-  margin-left: 20%;
-  color: white;
-  display: block;
-  width: 10%;
-  border: none;
-  background-color: grey;
-  color: white;
-  border-color: gray;
-  padding: 1% 1%;
-  font-size: 60%;
-  cursor: pointer;
-  text-align: center;
-}
-</style>
+<style scoped></style>
