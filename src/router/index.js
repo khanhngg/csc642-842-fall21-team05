@@ -113,14 +113,30 @@ const routes = [
     name: "DeliveryReport",
     component: DeliveryReport,
   },
+  // {
+  //   path: "/emailreservation/confirmed",
+  //   name: "EmailReservationConfirmed",
+  //   component: EmailReservationConfirmed,
+  // },
+  // {
+  //   path: "/emailreservation/canceled",
+  //   name: "EmailReservationCanceled",
+  //   component: EmailReservationCanceled,
+  // },
   {
     path: "/emailreservation/confirmed",
     name: "EmailReservationConfirmed",
+    meta: {
+      layout: "no-navbar-footer",
+    },
     component: EmailReservationConfirmed,
   },
   {
     path: "/emailreservation/canceled",
     name: "EmailReservationCanceled",
+    meta: {
+      layout: "no-navbar-footer",
+    },
     component: EmailReservationCanceled,
   },
   {
