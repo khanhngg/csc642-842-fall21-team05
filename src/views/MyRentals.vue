@@ -1,6 +1,6 @@
 <template>
   <!-- Menu Tab Bar -->
-  <Tabsbar activeTab="MyRentals"/>
+  <Tabsbar activeTab="MyRentals" />
 
   <!-- Rental Menu Tab: Current and Past -->
   <nav class="mt-5 pe-0">

@@ -102,7 +102,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="dropdown-item" :to="{ name: 'Profile' }">
+            <router-link class="dropdown-item" :to="{ name: 'Payments' }">
               Payments
             </router-link>
           </li>
