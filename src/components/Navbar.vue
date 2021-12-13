@@ -5,21 +5,13 @@
       <router-link class="navbar-brand fw-bold" to="/">CarToGo</router-link>
 
       <!-- Search Bar -->
-      <form v-if="hasSearch" class="w-50 d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <router-link
-          :to="{ name: 'Search' }"
-          tag="button"
-          class="btn btn-outline-success"
-          type="submit"
-          >Search</router-link
-        >
-      </form>
+      <Searchbar
+        v-if="hasSearch"
+        :isSmall="true"
+        :showToggle="false"
+        :showModeSwitch="false"
+        @onSearch="handleOnSearch"
+      />
 
       <!-- Hamburger menu on mobile -->
       <button
@@ -141,7 +133,12 @@
 </template>
 
 <script>
+import Searchbar from "@/components/Searchbar";
+
 export default {
+  components: {
+    Searchbar,
+  },
   props: {
     hasSearch: {
       type: Boolean,
@@ -206,6 +203,13 @@ export default {
     },
     isUserTypeDelivery() {
       return this.loggedInUser && this.loggedInUser.userType == "delivery";
+    },
+    handleOnSearch(searchQuery) {
+      // write to localStorage for search page
+      console.log("on search in navbar");
+
+      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+      this.$router.push({ name: "Search" });
     },
   },
 };
