@@ -619,7 +619,6 @@ export default {
       if (!files.length) return;
       this.createImage(files[0]);
       this.car.image = files[0].name;
-      console.log(files[0].name);
     },
     createImage(file) {
       var reader = new FileReader();

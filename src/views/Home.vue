@@ -40,7 +40,7 @@
             <div class="card-body">
               <h5 class="card-title fw-bold">Subaru Outback</h5>
               <p class="card-text fs-2 text-accent fw-bold">
-                $30/day
+                $20/day
                 <span
                   class="fs-6 fw-normal text-muted text-decoration-line-through"
                   >$40/day</span
@@ -52,12 +52,12 @@
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img
-              src="../assets/deal-image-1.jpg"
+              src="../assets/car-1.jpg"
               class="card-img-top"
               alt="deal image 1"
             />
             <div class="card-body">
-              <h5 class="card-title fw-bold">Subaru Outback</h5>
+              <h5 class="card-title fw-bold">Toyota TRD</h5>
               <p class="card-text fs-2 text-accent fw-bold">
                 $30/day
                 <span
@@ -71,17 +71,17 @@
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img
-              src="../assets/deal-image-1.jpg"
+              src="../assets/car-2.jpg"
               class="card-img-top"
               alt="deal image 1"
             />
             <div class="card-body">
-              <h5 class="card-title fw-bold">Subaru Outback</h5>
+              <h5 class="card-title fw-bold">Jeep Compass</h5>
               <p class="card-text fs-2 text-accent fw-bold">
-                $30/day
+                $64/day
                 <span
                   class="fs-6 fw-normal text-muted text-decoration-line-through"
-                  >$40/day</span
+                  >$90/day</span
                 >
               </p>
             </div>
@@ -90,17 +90,17 @@
         <div class="col-12 col-md-6 col-lg-3 mb-3">
           <div class="card text-decoration-none" href="#">
             <img
-              src="../assets/deal-image-1.jpg"
+              src="../assets/car-3.jpg"
               class="card-img-top"
               alt="deal image 1"
             />
             <div class="card-body">
-              <h5 class="card-title fw-bold">Subaru Outback</h5>
+              <h5 class="card-title fw-bold">Tesla X</h5>
               <p class="card-text fs-2 text-accent fw-bold">
-                $30/day
+                $72/day
                 <span
                   class="fs-6 fw-normal text-muted text-decoration-line-through"
-                  >$40/day</span
+                  >$84/day</span
                 >
               </p>
             </div>
@@ -178,5 +178,9 @@ export default {
 .icon-container {
   width: 60px;
   height: 60px;
+}
+
+.card-img-top {
+  min-height: 214px;
 }
 </style>
