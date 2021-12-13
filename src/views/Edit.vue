@@ -487,6 +487,7 @@ export default {
         image: "",
         price: "",
         description: "",
+        addtime: "",
       },
       cars: [],
     };

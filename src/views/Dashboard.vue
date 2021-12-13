@@ -34,6 +34,18 @@
             </form>
             <h5 class="fw-bold mt-5">Filters</h5>
             <div class="col-3 mb-3">
+              <select class="form-select" v-model="searchtime">
+                <option value="">Filter By Added Time</option>
+                <option
+                  v-for="year in years.slice().reverse()"
+                  :key="year"
+                  :value="year"
+                >
+                  {{ year }}
+                </option>
+              </select>
+            </div>
+            <div class="col-3 mb-3">
               <select class="form-select" v-model="searchmake">
                 <option value="">Filter By Make</option>
                 <option value="Toyota">Toyota</option>
@@ -68,6 +80,10 @@
               </div>
               <div class="col-md-5">
                 <div class="card-body">
+
+                  <!-- Test addtime -->
+                  <p class="card-title fw-bold fs-6">Car time: {{ car.addtime }}</p>
+
                   <p class="card-title fw-bold fs-6">Car ID: {{ car.id }}</p>
                   <p class="card-title fw-bold fs-6">{{ car.type }}</p>
                   <p class="card-title text-uppercase fw-medium fs-5">
@@ -134,11 +150,13 @@ export default {
         image: "",
         price: "",
         description: "",
+        addtime: "",
       },
       cars: carsData,
       search: "",
       searchmake: "",
       searchprice: "",
+      searchtime: "",
     };
   },
   computed: {
@@ -146,12 +164,20 @@ export default {
       return this.cars.filter((car) => {
         return (
           car.id.toString().includes(this.search) &&
+          //car.addtime.toString().includes(this.searchtime.toString()) && 
           car.make.toLowerCase().includes(this.searchmake.toLowerCase()) &&
           car.price
             .toString()
             .includes(this.findPrice(car.price, this.searchprice))
         );
       });
+    },
+    years() {
+      const year = new Date().getFullYear();
+      return Array.from(
+        { length: year - 2009 },
+        (value, index) => 2010 + index
+      );
     },
   },
   methods: {

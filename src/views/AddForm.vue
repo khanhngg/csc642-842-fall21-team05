@@ -490,6 +490,7 @@ export default {
         image: "", //generate random image in assets
         price: "",
         description: "",
+        addtime: "",
       },
       cars: carsData,
     };
@@ -618,6 +619,9 @@ export default {
           this.car.id = lastCar.id + 1;
         } else {
           this.card.id = 0;
+        }
+        if (!this.car.addtime) {
+          this.car.addtime = new Date().getFullYear();
         }
         this.cars.push(this.car);
         localStorage.setItem("cars", JSON.stringify(this.cars));
