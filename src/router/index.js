@@ -26,6 +26,7 @@ import ReservationSummaryGuest from "../views/ReservationSummaryGuest.vue";
 import ReservationSummaryLoggedin from "../views/ReservationSummaryLoggedin.vue";
 import ReservationSummaryLoggedinCanceled from "../views/ReservationSummaryLoggedinCanceled.vue";
 import ProfileEdit from "../views/ProfileEdit.vue";
+import ReservationsLookUp from "../views/ReservationsLookUp.vue";
 
 const routes = [
   {
@@ -185,6 +186,11 @@ const routes = [
     path: "/profile/edit",
     name: "ProfileEdit",
     component: ProfileEdit,
+  },
+  {
+    path: "/reservations/lookup",
+    name: "ReservationsLookUp",
+    component: ReservationsLookUp,
   },
 ];
 
