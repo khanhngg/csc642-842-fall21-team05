@@ -26,28 +26,26 @@
         <label class="info-label">Name</label>
       </div>
       <div class="col-sm-12 col-lg-7 mb-3">
-          <input class="form-control info-name" type="text">
-            <!-- {{ this.loggedInUser.firstName }} {{ this.loggedInUser.lastName }} -->
+        <input class="form-control info-name" type="text" />
+        <!-- {{ this.loggedInUser.firstName }} {{ this.loggedInUser.lastName }} -->
       </div>
-
-        
 
       <!-- Phone Number -->
       <div class="col-12 mb-1">
         <label for="phone" class="info-label">Phone Number</label>
       </div>
       <div class="col-sm-12 col-lg-4 mb-3">
-          <input class="form-control info-phone" type="text">
-            <!-- {{ this.loggedInUser.phone }} -->
+        <input class="form-control info-phone" type="text" />
+        <!-- {{ this.loggedInUser.phone }} -->
       </div>
-      
+
       <!-- Email -->
       <div class="col-12 mb-1">
         <label for="email" class="info-label">Email:</label>
       </div>
       <div class="col-sm-12 col-lg-8 mb-3">
-        <input class="form-control info-email" type="text" readonly>
-            <!-- {{ this.loggedInUser.email }} -->
+        <input class="form-control info-email" type="text" readonly />
+        <!-- {{ this.loggedInUser.email }} -->
       </div>
 
       <!-- Password -->
@@ -55,29 +53,30 @@
         <label for="password" class="info-label">Password</label>
       </div>
       <div class="row">
-          <div class="col-sm-12 col-lg-7 mb-lg-2">
-           <!-- <input class="form-control info-password" type="text" readonly> -->
-           <p class="info-password border border-1 p-2 rounded-2">****************</p>
-          </div>
+        <div class="col-sm-12 col-lg-7 mb-lg-2">
+          <!-- <input class="form-control info-password" type="text" readonly> -->
+          <p class="info-password border border-1 p-2 rounded-2">
+            ****************
+          </p>
+        </div>
 
-            <!-- TODO, update butto to change password -->
-           <!-- Change Password Button -->
-      <div class="class col-lg-2 mb-3">
+        <!-- TODO, update butto to change password -->
+        <!-- Change Password Button -->
+        <div class="class col-lg-2 mb-3">
           <button
-          class="btn btn-secondary-theme btn-sm fw-bold text-uppercase p-2"
-          type="submit"
-          @click="$router.push('/')"
-        >
-          change
-        </button>
+            class="btn btn-secondary-theme btn-sm fw-bold text-uppercase p-2"
+            type="submit"
+            @click="$router.push('/')"
+          >
+            change
+          </button>
+        </div>
       </div>
-          
-      </div>
-      
+
       <!-- DOB -->
       <label class="info-label mb-0">Date of Birth</label>
       <div class="row">
-          <div class="col-sm-12 col-lg-2 mb-1 mt-0">
+        <div class="col-sm-12 col-lg-2 mb-1 mt-0">
           <div class="form-text">Month *</div>
           <!-- <select class="form-select" v-model="this.loggedInUser.dateOfBirth.month"> -->
           <select class="form-select">
@@ -112,18 +111,26 @@
           </select>
         </div>
       </div>
-        
     </div>
     <!-- close card -->
 
     <!-- Cancel & Save Button -->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button class="btn btn-secondary-theme text-uppercase fw-bold me-md-2 px-5" type="button"
-          @click="$router.push('/profile')">cancel</button>
-  <button class="btn btn-primary-theme text-uppercase fw-bold px-5" type="button" @click="$router.push('/profile')">save</button>
-</div>
-
-
+      <button
+        class="btn btn-secondary-theme text-uppercase fw-bold me-md-2 px-5"
+        type="button"
+        @click="$router.push('/profile')"
+      >
+        cancel
+      </button>
+      <button
+        class="btn btn-primary-theme text-uppercase fw-bold px-5"
+        type="button"
+        @click="$router.push('/profile')"
+      >
+        save
+      </button>
+    </div>
   </div>
   <!-- close profile-container -->
 </template>
@@ -133,9 +140,9 @@ import Tabsbar from "@/components/Tabsbar";
 
 export default {
   name: "ProfileEdit",
-    components: {
-      Tabsbar,
-    },
+  components: {
+    Tabsbar,
+  },
   //   data() {
   //     return {
   //       isLoggedIn: false,
@@ -190,18 +197,16 @@ export default {
 </script>
 
 <style scoped>
-
 .profile-container {
   border-radius: 20px;
 }
 
 .info-label {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .info-password {
-    background-color: #e9ecef;
-    border-color: #e7eaed;
+  background-color: #e9ecef;
+  border-color: #e7eaed;
 }
-
 </style>

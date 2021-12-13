@@ -221,14 +221,14 @@ export default {
     };
   },
   created() {
-    // TODO - get cars from localstorage or json
-    // calculate duration based on searchQuery
-    console.log("in search created...");
     var searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
     if (searchQuery) {
       this.searchQuery = searchQuery;
     }
-    console.log(searchQuery);
+    var selectedCar = JSON.parse(localStorage.getItem("selectedCar"));
+    if (selectedCar) {
+      this.selectedCar = selectedCar;
+    }
   },
   methods: {
     getTotalPrice(carId) {
@@ -243,10 +243,11 @@ export default {
       // TODO - update list of cars?
     },
     onSubmit(carId) {
-      console.log(carId);
+      this.selectedCar = this.cars.find((car) => car.id == carId);
 
       // write to localStorage
       localStorage.setItem("searchQuery", JSON.stringify(this.searchQuery));
+      localStorage.setItem("selectedCar", JSON.stringify(this.selectedCar));
       this.$router.push({ name: "ReservationReview" });
     },
   },

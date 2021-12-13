@@ -184,9 +184,7 @@ export default {
       },
     };
   },
-  created() {
-    console.log(this.range);
-  },
+  created() {},
   methods: {
     handleSubmit() {
       this.searchQuery.fromTime = this.range.start.toString();
