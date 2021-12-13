@@ -63,7 +63,11 @@
     </div>
     <div class="container text-center">
       <h2 class="headline mt-4 mb-4">Our GitHub repository</h2>
-      <a class="btn btn-secondary-theme" href="https://github.com/khanhngg/csc642-842-fall21-team05" target="_blank">
+      <a
+        class="btn btn-secondary-theme"
+        href="https://github.com/khanhngg/csc642-842-fall21-team05"
+        target="_blank"
+      >
         <i class="fab fa-github"></i>
         csc642-842-fall21-team05
       </a>
