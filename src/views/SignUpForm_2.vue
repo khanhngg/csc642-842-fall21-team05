@@ -116,7 +116,7 @@
           </div>
           <div class="col-12 col-md-4 mt-0">
             <div class="form-text">Year *</div>
-            <select v-model="cardInfo.expiration.month" class="form-select">
+            <select v-model="cardInfo.expiration.year" class="form-select">
               <option value="">Select year...</option>
               <option>2022</option>
               <option>2023</option>
@@ -209,6 +209,7 @@ export default {
         payments: [],
       },
       cardInfo: {
+        nameOnCard: "",
         cardNumber: "",
         expiration: {
           month: "",

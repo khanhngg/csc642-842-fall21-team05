@@ -4,20 +4,29 @@
     <router-link
       class="flex-sm-fill text-sm-center nav-link"
       :to="{ name: 'Profile' }"
-      :class="[{ active: activeTab == 'Profile' }, {' border border-dark': activeTab != 'Profile'}]"
+      :class="[
+        { active: activeTab == 'Profile' },
+        { ' border border-dark': activeTab != 'Profile' },
+      ]"
       >Profile</router-link
     >
     <!-- TODO, route to PAYMENT TAB -->
     <router-link
       class="flex-sm-fill text-sm-center nav-link"
       :to="{ name: 'Payments' }"
-      :class="[{ active: activeTab == 'Payments' }, {' border border-dark': activeTab != 'Payments'}]"
+      :class="[
+        { active: activeTab == 'Payments' },
+        { ' border border-dark': activeTab != 'Payments' },
+      ]"
       >Manage Payments</router-link
     >
     <router-link
       class="flex-sm-fill text-sm-center nav-link"
       :to="{ name: 'MyRentals' }"
-      :class="[{ active: activeTab == 'MyRentals' }, {' border border-dark': activeTab != 'MyRentals'}]"
+      :class="[
+        { active: activeTab == 'MyRentals' },
+        { ' border border-dark': activeTab != 'MyRentals' },
+      ]"
       >My Rentals</router-link
     >
   </nav>

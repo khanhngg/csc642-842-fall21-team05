@@ -505,7 +505,7 @@ export default {
         "car-7.06a1e5d1.jpg",
         "car-8.17651f13.jpg",
         "car-9.b312f8a8.jpg",
-        "car-10.71c4e291.jpg"
+        "car-10.71c4e291.jpg",
       ],
     };
   },
@@ -649,8 +649,8 @@ export default {
     },
     createImage(file) {
       var reader = new FileReader();
-      var fileName = file.name.split("jpg")[0]
-      this.car.image = this.carImageUrls.find(url => url.includes(fileName))
+      var fileName = file.name.split("jpg")[0];
+      this.car.image = this.carImageUrls.find((url) => url.includes(fileName));
       reader.readAsDataURL(file);
     },
     removeImage: function () {

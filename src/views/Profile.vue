@@ -1,5 +1,5 @@
 <template>
-  <Tabsbar activeTab="Profile"/>
+  <Tabsbar activeTab="Profile" />
 
   <!-- Profile Container -->
   <div class="container profile-container border border-dark mt-5">
