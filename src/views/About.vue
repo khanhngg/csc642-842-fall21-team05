@@ -18,7 +18,7 @@
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col mb-4">
           <div class="card" style="width: 18rem">
-            <img src="../image/1.gif" alt="Khan" class="card-img-top" />
+            <img src="../image/khan.jpg" alt="Khan" class="card-img-top" />
             <div class="card-body">
               <h4 class="card-title">Khanh Nguyen</h4>
               <h6 class="card-subtitle mb-2 text-muted">Team lead</h6>
@@ -29,7 +29,7 @@
 
         <div class="col mb-4">
           <div class="card" style="width: 18rem">
-            <img src="../image/1.gif" alt="Geng" class="card-img-top" />
+            <img src="../image/han.png" alt="Geng" class="card-img-top" />
             <div class="card-body">
               <h4 class="card-title">Hanwen Geng</h4>
               <h6 class="card-subtitle mb-2 text-muted">Team member</h6>
@@ -40,7 +40,7 @@
 
         <div class="col mb-4">
           <div class="card" style="width: 18rem">
-            <img src="../image/1.gif" alt="Cindy" class="card-img-top" />
+            <img src="../image/cindy.png" alt="Cindy" class="card-img-top" />
             <div class="card-body">
               <h4 class="card-title">Cindy Fung Chan</h4>
               <h6 class="card-subtitle mb-2 text-muted">Team member</h6>
@@ -51,7 +51,7 @@
 
         <div class="col mb-4">
           <div class="card" style="width: 18rem">
-            <img src="../image/1.gif" alt="Bhagdeep" class="card-img-top" />
+            <img src="../image/bsandhu.png" alt="Bhagdeep" class="card-img-top" />
             <div class="card-body">
               <h4 class="card-title">Bhagdeep Sandhu</h4>
               <h6 class="card-subtitle mb-2 text-muted">Team member</h6>
