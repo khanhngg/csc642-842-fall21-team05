@@ -1,6 +1,6 @@
 <template>
   <!-- Menu Tab Bar -->
-  <Tabsbar />
+  <Tabsbar activeTab="MyRentals"/>
 
   <!-- Rental Menu Tab: Current and Past -->
   <nav class="mt-5 pe-0">
@@ -132,20 +132,17 @@
                 <p class="card-text fw-medium text-uppercase mb-lg-5">
                   {{ carRental.carMake }} {{ carRental.carModel }}
                 </p>
-
                 <p class="card-title">
                   <button
                     class="btn btn-more fw-medium px-0"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#collapseExample"
-                    aria-expanded="false"
-                    aria-controls="collapseExample"
+                    :data-bs-target="`#car${carRental.id}`"
                   >
                     More Details
                   </button>
                 </p>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" :id="`car${carRental.id}`">
                   <div class="card card-body border-0 bg-light">
                     <p class="card-title fw-bold">Pickup</p>
                     <p class="card-text">
@@ -270,14 +267,12 @@
                     class="btn btn-more fw-medium px-0"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#collapseExample"
-                    aria-expanded="false"
-                    aria-controls="collapseExample"
+                    :data-bs-target="`#car${carRental.id}`"
                   >
                     More Details
                   </button>
                 </p>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" :id="`car${carRental.id}`">
                   <div class="card card-body border-0 bg-light">
                     <p class="card-title fw-bold">Pickup</p>
                     <p class="card-text">

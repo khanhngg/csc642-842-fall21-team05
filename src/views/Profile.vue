@@ -1,15 +1,17 @@
 <template>
+  <Tabsbar activeTab="Profile"/>
+
   <!-- Profile Container -->
-  <div class="container profile-container border border-dark">
+  <div class="container profile-container border border-dark mt-5">
     <div class="row">
-      <div class="col">
+      <div class="col-6">
         <i class="fas fa-user-circle fa-10x"></i>
       </div>
-      <div class="col-sm-12 col-md-2 text-end mt-3">
+      <div class="col-6 text-end mt-3">
         <!-- TODO -->
         <!-- route link to Edit Profile Page -->
         <button
-          class="btn btn-primary-theme btn-lg"
+          class="btn btn-primary-theme btn-lg fw-bold"
           type="submit"
           @click="$router.push('/')"
         >
@@ -18,90 +20,119 @@
       </div>
     </div>
     <!-- Name -->
-    <div :key="info.id" v-for="info in userInfo" class="info">
-      <div class="row g-2 mt-5 mb-3 fs-2">
-        <div class="col-sm-12 col-lg-5">
-          <label for="name" class="info-label">Name:</label>
-        </div>
-        <div class="col-sm-12 col-lg-7">
-          <p class="info-name">{{ info.firstName }} {{ info.lastName }}</p>
-        </div>
+    <div class="row g-2 mt-5 mb-3 fs-2">
+      <div class="col-sm-12 col-lg-5">
+        <label for="name" class="info-label">Name:</label>
+      </div>
+      <div class="col-sm-12 col-lg-7">
+        <p class="info-name">
+          {{ this.loggedInUser.firstName }} {{ this.loggedInUser.lastName }}
+        </p>
       </div>
     </div>
     <!-- Phone -->
-    <div :key="info.id" v-for="info in userInfo" class="info">
-      <div class="row g-2 mb-3 fs-2">
-        <div class="col-sm-12 col-lg-5">
-          <label for="phone" class="info-label">Phone Number:</label>
-        </div>
-        <div class="col-sm-12 col-lg-7">
-          <p class="info-phone">{{ info.phone }}</p>
-        </div>
+    <div class="row g-2 mb-3 fs-2">
+      <div class="col-sm-12 col-lg-5">
+        <label for="phone" class="info-label">Phone Number:</label>
+      </div>
+      <div class="col-sm-12 col-lg-7">
+        <p class="info-phone">{{ this.loggedInUser.phone }}</p>
       </div>
     </div>
     <!-- Email -->
-    <div :key="info.id" v-for="info in userInfo" class="info">
-      <div class="row g-2 mb-3 fs-2">
-        <div class="col-sm-12 col-lg-5">
-          <label for="email" class="info-label">Email:</label>
-        </div>
-        <div class="col-sm-12 col-lg-7">
-          <p class="info-email">{{ info.email }}</p>
-        </div>
+    <div class="row g-2 mb-3 fs-2">
+      <div class="col-sm-12 col-lg-5">
+        <label for="email" class="info-label">Email:</label>
+      </div>
+      <div class="col-sm-12 col-lg-7">
+        <p class="info-email">{{ this.loggedInUser.email }}</p>
       </div>
     </div>
     <!-- Password -->
-    <div :key="info.id" v-for="info in userInfo" class="info">
-      <div class="row g-2 mb-2 fs-2">
-        <div class="col-sm-12 col-lg-5">
-          <label for="password" class="info-label">Password:</label>
-        </div>
-        <div class="col-sm-12 col-lg-7">
-          <p class="info-password">{{ info.password }}</p>
-        </div>
+    <div class="row g-2 mb-2 fs-2">
+      <div class="col-sm-12 col-lg-5">
+        <label for="password" class="info-label">Password:</label>
+      </div>
+      <div class="col-sm-12 col-lg-7">
+        <p class="info-password">*************</p>
       </div>
     </div>
     <!-- Age -->
-    <div :key="info.id" v-for="info in userInfo" class="info">
-      <div class="row g-2 mb-3 fs-2">
-        <div class="col-sm-12 col-lg-5">
-          <label for="age" class="info-label">Age:</label>
-        </div>
-        <div class="col-sm-12 col-lg-7">
-          <p class="info-age">{{ info.age }}</p>
-        </div>
+    <div class="row g-2 mb-3 fs-2">
+      <div class="col-sm-12 col-lg-5">
+        <label for="age" class="info-label">Age:</label>
+      </div>
+      <div class="col-sm-12 col-lg-7">
+        <p class="info-age">{{ getAgeByDOB() }}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
+import Tabsbar from "@/components/Tabsbar";
+
 export default {
   name: "Profile",
-  components: {},
+  components: {
+    Tabsbar,
+  },
   data() {
     return {
-      userInfo: [
-        {
-          id: 1,
-          firstName: "Joe",
-          lastName: "Doe",
-          phone: "123-456-7890",
-          email: "joedoe@email.com",
-          password: "**********",
-          age: "28",
+      isLoggedIn: false,
+      loggedInUser: {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: {
+          month: "",
+          day: "",
+          year: "",
         },
-      ],
+        email: "",
+        phone: "",
+        password: "",
+        address: {
+          streetAddress: "",
+          apartmentNumber: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
+        payments: [],
+      },
     };
+  },
+  created() {
+    var user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (user) {
+      this.isLoggedIn = true;
+      this.loggedInUser = user;
+    } else {
+      this.isLoggedIn = false;
+      this.$router.push({ name: "SignUpForm_1" });
+    }
+  },
+  methods: {
+    getAgeByDOB() {
+      if (
+        this.isLoggedIn &&
+        this.loggedInUser &&
+        this.loggedInUser.dateOfBirth &&
+        this.loggedInUser.dateOfBirth.year
+      ) {
+        var currentYear = new Date().getFullYear();
+        var age = currentYear - this.loggedInUser.dateOfBirth.year;
+        return age;
+      }
+    },
   },
 };
 </script>
 <style scoped>
 .profile-container {
-  max-width: 1235px;
+  max-width: 950px;
   height: 100%;
   border-radius: 20px;
-  margin-top: 150px;
-  margin-bottom: 50px;
   padding: 45px 40px 20px;
 }
 .info-label {
