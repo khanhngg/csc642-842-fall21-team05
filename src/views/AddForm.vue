@@ -371,7 +371,7 @@
         </div>
 
         <div class="col-12 mb-3">
-          <label for="formFile" class="form-label">Add Pictures of car</label>
+          <label for="formFile" class="form-label">Add a picture of car</label>
           <div v-if="!car.image">
             <p>Select an image</p>
             <input
@@ -493,6 +493,7 @@ export default {
         image: "", //generate random image in assets
         price: "",
         description: "",
+        addtime: "",
       },
       cars: carsData,
       carImageUrls: [
@@ -634,6 +635,11 @@ export default {
         } else {
           this.card.id = 0;
         }
+
+        if (!this.car.addtime) {
+          this.car.addtime = new Date().getFullYear();
+        }
+
         this.cars.push(this.car);
         localStorage.setItem("cars", JSON.stringify(this.cars));
 

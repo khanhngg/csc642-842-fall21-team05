@@ -16,7 +16,6 @@
     </div>
   </div>
   <!-- add edit and delete on each car -->
-  <!-- add pagination -->
   <div class="container">
     <section class="container mb-5">
       <div class="row">
@@ -30,9 +29,20 @@
                 v-model="search"
                 placeholder="Search By Vehicle ID"
               />
-              <!-- <button class="btn btn-primary-theme" @click="SearchID">Search</button> -->
             </form>
             <h5 class="fw-bold mt-5">Filters</h5>
+            <div class="col-3 mb-3">
+              <select class="form-select" v-model="searchtime">
+                <option value="">Filter By Added Time</option>
+                <option
+                  v-for="year in years().slice().reverse()"
+                  :key="year"
+                  :value="year"
+                >
+                  {{ year }}
+                </option>
+              </select>
+            </div>
             <div class="col-3 mb-3">
               <select class="form-select" v-model="searchmake">
                 <option value="">Filter By Make</option>
@@ -45,17 +55,21 @@
             <div class="col-3 mb-3">
               <select class="form-select" v-model="searchprice">
                 <option value="">Filter By Price</option>
-                <option value="0-100">0-100</option>
-                <option value="100-200">100-200</option>
-                <option value="200-300">200-300</option>
-                <option value=">300">>300</option>
+                <option value="0-100">$0-$100</option>
+                <option value="100-200">$100-$200</option>
+                <option value="200-300">$200-$300</option>
+                <option value=">300">$300+</option>
               </select>
             </div>
           </div>
         </section>
 
         <!-- List of cars -->
-        <h6 class="fw-bold text-uppercase">Showing 1-10 out of 50 cars</h6>
+        <h6 v-if="filteredList.length > 0" class="fw-bold text-uppercase">
+          Showing {{ getShowingCount(filteredList.length) }} out of
+          {{ cars.length }} cars
+        </h6>
+        <h6 v-else class="fw-bold text-uppercase">No cars found</h6>
         <section class="col-9 pe-0">
           <div v-for="car in filteredList" :key="car.id" class="card mb-3">
             <div class="row g-0">
@@ -134,9 +148,11 @@ export default {
         image: "",
         price: "",
         description: "",
+        addtime: "",
       },
       cars: carsData,
       search: "",
+      searchtime: "",
       searchmake: "",
       searchprice: "",
     };
@@ -146,6 +162,7 @@ export default {
       return this.cars.filter((car) => {
         return (
           car.id.toString().includes(this.search) &&
+          car.addtime.toString().includes(this.searchtime.toString()) &&
           car.make.toLowerCase().includes(this.searchmake.toLowerCase()) &&
           car.price
             .toString()
@@ -193,6 +210,20 @@ export default {
         } else {
           return -1;
         }
+      }
+    },
+    years() {
+      const year = new Date().getFullYear();
+      return Array.from(
+        { length: year - 2009 },
+        (value, index) => 2010 + index
+      );
+    },
+    getShowingCount(length) {
+      if (length > 1) {
+        return `1-${length}`;
+      } else {
+        return "1";
       }
     },
   },

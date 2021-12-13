@@ -12,7 +12,7 @@
     <section class="mb-4">
       <div class="clearfix">
         <img
-          src="../assets/deal-image-1.jpg"
+          :src="`/csc642-842-fall21-team05/img/${this.car.image}`"
           alt="car image"
           class="float-left mr-2 rounded img-max"
         />
@@ -82,6 +82,7 @@ export default {
         image: "",
         price: "",
         description: "",
+        addtime: "",
       },
       cars: [],
       model: [

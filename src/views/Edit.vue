@@ -367,7 +367,7 @@
         </div>
 
         <div class="col-12 mb-3">
-          <label for="formFile" class="form-label">Add Pictures of car</label>
+          <label for="formFile" class="form-label">Add a picture of car</label>
 
           <div v-if="!car.image">
             <p>Select an image</p>
@@ -385,8 +385,8 @@
                 :src="`/csc642-842-fall21-team05/img/${car.image}`"
               />
             </div>
-            <div>
-              <button class="btn btn-outline-dark" @click="removeImage">
+            <div class="mt-3">
+              <button class="btn btn-secondary-theme" @click="removeImage">
                 Remove image
               </button>
             </div>
@@ -490,6 +490,7 @@ export default {
         image: "",
         price: "",
         description: "",
+        addtime: "",
       },
       cars: [],
     };
