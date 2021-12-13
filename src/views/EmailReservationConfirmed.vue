@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-4">
+  <div class="container my-5">
     <!-- Email Header -->
     <div class="col email-header">
       <label for="emailFrom" class="header-label">From:</label>
