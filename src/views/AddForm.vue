@@ -388,7 +388,7 @@
                 :src="`/csc642-842-fall21-team05/img/${car.image}`"
               />
             </div>
-            <div>
+            <div class="mt-3">
               <button class="btn btn-secondary-theme" @click="removeImage">
                 Remove image
               </button>
@@ -495,6 +495,18 @@ export default {
         description: "",
       },
       cars: carsData,
+      carImageUrls: [
+        "car-1.0ef31e61.jpg",
+        "car-2.4c5654c0.jpg",
+        "car-3.d0bc9c73.jpg",
+        "car-4.1b6f96ef.jpg",
+        "car-5.a180c7a4.jpg",
+        "car-6.37e273a4.jpg",
+        "car-7.06a1e5d1.jpg",
+        "car-8.17651f13.jpg",
+        "car-9.b312f8a8.jpg",
+        "car-10.71c4e291.jpg"
+      ],
     };
   },
 
@@ -637,11 +649,8 @@ export default {
     },
     createImage(file) {
       var reader = new FileReader();
-      var vm = this;
-
-      reader.onload = (e) => {
-        vm.car.image = e.target.result;
-      };
+      var fileName = file.name.split("jpg")[0]
+      this.car.image = this.carImageUrls.find(url => url.includes(fileName))
       reader.readAsDataURL(file);
     },
     removeImage: function () {

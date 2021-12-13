@@ -1,4 +1,6 @@
 <template>
+  <Tabsbar activeTab="Payments"/>
+
   <h1>
     {{ title }}
     <h2></h2>
@@ -15,8 +17,13 @@
 </template>
 
 <script>
+import Tabsbar from "@/components/Tabsbar";
+
 export default {
   name: "My Payments",
+  components: {
+    Tabsbar,
+  },
   data() {
     return {
       title: "Payments",

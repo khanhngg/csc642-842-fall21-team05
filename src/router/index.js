@@ -22,6 +22,9 @@ import ReservationResult from "../views/ReservationResult.vue";
 import Payments from "../views/PaymentTab.vue";
 import Edit from "../views/Edit.vue";
 import EditSummary from "../views/EditSummary.vue";
+import ReservationSummaryGuest from "../views/ReservationSummaryGuest.vue";
+import ReservationSummaryLoggedin from "../views/ReservationSummaryLoggedin.vue";
+import ReservationSummaryLoggedinCanceled from "../views/ReservationSummaryLoggedinCanceled.vue";
 
 const routes = [
   {
@@ -53,7 +56,7 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/myrentals",
+    path: "/my-rentals",
     name: "MyRentals",
     component: MyRentals,
   },
@@ -145,6 +148,21 @@ const routes = [
     path: "/edit/summary/:id",
     name: "EditSummary",
     component: EditSummary,
+  },
+  {
+    path: "/reservation/summary/guest",
+    name: "ReservationSummaryGuest",
+    component: ReservationSummaryGuest,
+  },
+  {
+    path: "/reservation/summary/loggedin",
+    name: "ReservationSummaryLoggedin",
+    component: ReservationSummaryLoggedin,
+  },
+  {
+    path: "/reservation/summary/loggedin/canceled",
+    name: "ReservationSummaryLoggedinCanceled",
+    component: ReservationSummaryLoggedinCanceled,
   },
 ];
 
