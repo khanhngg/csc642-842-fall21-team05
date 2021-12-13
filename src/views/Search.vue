@@ -229,6 +229,7 @@ export default {
     if (selectedCar) {
       this.selectedCar = selectedCar;
     }
+    console.log(this.searchQuery);
   },
   methods: {
     getTotalPrice(carId) {

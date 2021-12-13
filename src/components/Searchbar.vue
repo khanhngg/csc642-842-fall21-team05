@@ -1,6 +1,7 @@
 <template>
   <!-- Pickup/Delivery option -->
-  <div class="mb-2">
+  <div class="mb-2" v-if="showModeSwitch">
+    <label class="fw-bold fs-6 me-3">Choose a Mode:</label>
     <input
       type="radio"
       class="btn-check"
@@ -29,14 +30,18 @@
   </div>
 
   <!-- Search bar -->
-  <div class="d-flex form-control">
+  <div class="d-flex form-control" :class="{ 'small-height': isSmall }">
     <!-- Pickup location -->
     <div
       v-if="searchQuery.isSamePickupAndReturnLocation"
-      class="p-2 flex-grow-1 bd-highlight"
+      class="flex-grow-1"
+      :class="isSmall ? 'p-0' : 'p-2'"
     >
-      <label class="fw-bold">Pickup/Return Location</label>
+      <label class="fw-bold" :class="{ 'small-font': isSmall }">
+        Pickup/Return Location
+      </label>
       <input
+        :class="{ 'small-font small-input': isSmall }"
         v-model="searchQuery.location"
         class="form-control input-no-border me-2"
         type="text"
@@ -46,10 +51,14 @@
 
     <div
       v-if="!searchQuery.isSamePickupAndReturnLocation"
-      class="p-2 flex-grow-1 bd-highlight"
+      class="flex-grow-1"
+      :class="isSmall ? 'p-0' : 'p-2'"
     >
-      <label class="fw-bold">Pickup Location</label>
+      <label class="fw-bold" :class="{ 'small-font': isSmall }">
+        Pickup Location
+      </label>
       <input
+        :class="{ 'small-font small-input': isSmall }"
         v-model="searchQuery.pickupLocation"
         class="form-control input-no-border me-2"
         type="text"
@@ -60,10 +69,14 @@
     <!-- return location -->
     <div
       v-if="!searchQuery.isSamePickupAndReturnLocation"
-      class="p-2 flex-grow-1 bd-highlight"
+      class="flex-grow-1"
+      :class="isSmall ? 'p-0' : 'p-2'"
     >
-      <label class="fw-bold">Return Location</label>
+      <label class="fw-bold" :class="{ 'small-font': isSmall }">
+        Return Location
+      </label>
       <input
+        :class="{ 'small-font small-input': isSmall }"
         v-model="searchQuery.returnLocation"
         class="form-control input-no-border me-2"
         type="text"
@@ -79,8 +92,11 @@
             <!-- from time -->
             <div class="flex-grow-1 me-2">
               <div class="d-flex flex-column">
-                <label class="fw-bold">From</label>
+                <label class="fw-bold" :class="{ 'small-font': isSmall }">
+                  From
+                </label>
                 <input
+                  :class="{ 'small-font small-input': isSmall }"
                   class="flex-grow-1 form-control input-no-border text-center"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
@@ -91,8 +107,11 @@
             <!-- to time -->
             <div class="flex-grow-1">
               <div class="d-flex flex-column">
-                <label class="fw-bold">To</label>
+                <label class="fw-bold" :class="{ 'small-font': isSmall }">
+                  To
+                </label>
                 <input
+                  :class="{ 'small-font small-input': isSmall }"
                   class="flex-grow-1 form-control input-no-border text-center"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
@@ -107,6 +126,7 @@
     <!-- submit btn -->
     <div class="p-2 flex-grow-3 align-self-center text-center">
       <button
+        :class="{ 'small-font': isSmall }"
         class="btn btn-primary-theme fw-bold text-uppercase"
         type="submit"
         @click.prevent="handleSubmit"
@@ -117,7 +137,7 @@
   </div>
 
   <!-- Toggle switch -->
-  <div class="form-check form-switch mt-2 mb-5">
+  <div class="form-check form-switch mt-2 mb-5" v-if="showToggle">
     <input
       class="form-check-input"
       type="checkbox"
@@ -137,6 +157,18 @@ export default {
     DatePicker,
   },
   props: {
+    isSmall: {
+      type: Boolean,
+      default: false,
+    },
+    showModeSwitch: {
+      type: Boolean,
+      default: true,
+    },
+    showToggle: {
+      type: Boolean,
+      default: true,
+    },
     rentalMethod: {
       type: String,
       default: "pickup",
@@ -197,6 +229,21 @@ export default {
 </script>
 
 <style scoped>
+.small-height {
+  height: 3.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.small-font {
+  font-size: 0.7rem;
+}
+
+.small-input {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
 /* Override Bootstrap styles for switches */
 .form-check-input:focus {
   border-color: var(--main-theme-color);
