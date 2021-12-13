@@ -1,5 +1,5 @@
 <template>
-  <!-- <Tabsbar activeTab="Profile" /> -->
+  <Tabsbar activeTab="Profile" />
 
   <h1 class="mt-5 fw-bold">Edit Profile</h1>
   <div class="container profile-container border border-dark py-4">
@@ -129,13 +129,13 @@
 </template>
 
 <script>
-// import Tabsbar from "@/components/Tabsbar";
+import Tabsbar from "@/components/Tabsbar";
 
 export default {
   name: "ProfileEdit",
-  //   components: {
-  //     Tabsbar,
-  //   },
+    components: {
+      Tabsbar,
+    },
   //   data() {
   //     return {
   //       isLoggedIn: false,
