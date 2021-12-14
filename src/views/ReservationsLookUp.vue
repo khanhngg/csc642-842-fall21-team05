@@ -100,7 +100,7 @@
       <div class="col-12 col-md-6 col-lg-3 mb-3">
         <div class="card text-decoration-none" href="#">
           <img
-            src="../assets/deal-image-1.jpg"
+            src="../assets/car-1.jpg"
             class="card-img-top"
             alt="deal image 1"
           />
@@ -119,7 +119,7 @@
       <div class="col-12 col-md-6 col-lg-3 mb-3">
         <div class="card text-decoration-none" href="#">
           <img
-            src="../assets/deal-image-1.jpg"
+            src="../assets/car-2.jpg"
             class="card-img-top"
             alt="deal image 1"
           />
@@ -138,7 +138,7 @@
       <div class="col-12 col-md-6 col-lg-3 mb-3">
         <div class="card text-decoration-none" href="#">
           <img
-            src="../assets/deal-image-1.jpg"
+            src="../assets/car-3.jpg"
             class="card-img-top"
             alt="deal image 1"
           />
@@ -173,4 +173,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.card-img-top {
+  min-height: 214px;
+}
+</style>

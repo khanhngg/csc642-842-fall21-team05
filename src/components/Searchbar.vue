@@ -38,7 +38,9 @@
       :class="isSmall ? 'p-0' : 'p-2'"
     >
       <label class="fw-bold" :class="{ 'small-font': isSmall }">
-        Pickup/Return Location
+        {{
+          searchQuery.rentalMethod == "pickup" ? "Pickup" : "Delivery"
+        }}/Return Location
       </label>
       <input
         :class="{ 'small-font small-input': isSmall }"
@@ -55,7 +57,8 @@
       :class="isSmall ? 'p-0' : 'p-2'"
     >
       <label class="fw-bold" :class="{ 'small-font': isSmall }">
-        Pickup Location
+        {{ searchQuery.rentalMethod == "pickup" ? "Pickup" : "Delivery" }}
+        Location
       </label>
       <input
         :class="{ 'small-font small-input': isSmall }"
@@ -144,7 +147,10 @@
       role="switch"
       v-model="searchQuery.isSamePickupAndReturnLocation"
     />
-    <label class="form-check-label">Same pickup & return location</label>
+    <label class="form-check-label"
+      >Same {{ searchQuery.rentalMethod == "pickup" ? "pickup" : "delivery" }} &
+      return location</label
+    >
   </div>
 </template>
 
