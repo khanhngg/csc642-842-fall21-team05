@@ -30,7 +30,7 @@
   </div>
 
   <!-- Search bar -->
-  <div class="d-flex form-control" :class="{ 'small-height': isSmall }">
+  <div class="d-flex form-control" :class="{ 'small-height w-80': isSmall }">
     <!-- Pickup location -->
     <div
       v-if="searchQuery.isSamePickupAndReturnLocation"
@@ -244,6 +244,11 @@ export default {
   padding-bottom: 0;
   padding-left: 0;
 }
+
+.w-80 {
+  width: 80%;
+}
+
 /* Override Bootstrap styles for switches */
 .form-check-input:focus {
   border-color: var(--main-theme-color);
