@@ -117,14 +117,13 @@
                 </li>
               </ul>
             </div>
-            <div v-else>
-              <button
-                class="btn btn-primary-theme fw-bold"
-                @click.prevent="onLogIn"
-              >
-                Log In
-              </button>
-            </div>
+            <a
+              v-else
+              class="btn btn-primary-theme fw-bold"
+              @click.prevent="onLogIn"
+            >
+              Log In
+            </a>
           </li>
         </ul>
       </div>

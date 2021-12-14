@@ -31,35 +31,37 @@
               />
             </form>
             <h5 class="fw-bold mt-5">Filters</h5>
-            <div class="col-3 mb-3">
-              <select class="form-select" v-model="searchtime">
-                <option value="">Filter By Added Time</option>
-                <option
-                  v-for="year in years().slice().reverse()"
-                  :key="year"
-                  :value="year"
-                >
-                  {{ year }}
-                </option>
-              </select>
-            </div>
-            <div class="col-3 mb-3">
-              <select class="form-select" v-model="searchmake">
-                <option value="">Filter By Make</option>
-                <option value="Toyota">Toyota</option>
-                <option value="Honda">Honda</option>
-                <option value="Porsche">Porsche</option>
-                <option value="Tesla">Tesla</option>
-              </select>
-            </div>
-            <div class="col-3 mb-3">
-              <select class="form-select" v-model="searchprice">
-                <option value="">Filter By Price</option>
-                <option value="0-100">$0-$100</option>
-                <option value="100-200">$100-$200</option>
-                <option value="200-300">$200-$300</option>
-                <option value=">300">$300+</option>
-              </select>
+            <div class="d-flex justify-content-between">
+              <div class="flex-grow-1 mb-3 me-3">
+                <select class="form-select" v-model="searchtime">
+                  <option value="">Filter By Added Year</option>
+                  <option
+                    v-for="year in years().slice().reverse()"
+                    :key="year"
+                    :value="year"
+                  >
+                    {{ year }}
+                  </option>
+                </select>
+              </div>
+              <div class="flex-grow-1 mb-3 me-3">
+                <select class="form-select" v-model="searchmake">
+                  <option value="">Filter By Make</option>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Honda">Honda</option>
+                  <option value="Porsche">Porsche</option>
+                  <option value="Tesla">Tesla</option>
+                </select>
+              </div>
+              <div class="flex-grow-1 mb-3">
+                <select class="form-select" v-model="searchprice">
+                  <option value="">Filter By Price</option>
+                  <option value="0-100">$0-$100</option>
+                  <option value="100-200">$100-$200</option>
+                  <option value="200-300">$200-$300</option>
+                  <option value=">300">$300+</option>
+                </select>
+              </div>
             </div>
           </div>
         </section>
@@ -67,7 +69,7 @@
         <!-- List of cars -->
         <h6 v-if="filteredList.length > 0" class="fw-bold text-uppercase">
           Showing {{ getShowingCount(filteredList.length) }} out of
-          {{ cars.length }} cars
+          {{ filteredList.length }} cars
         </h6>
         <h6 v-else class="fw-bold text-uppercase">No cars found</h6>
         <section class="col-9 pe-0">
