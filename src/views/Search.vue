@@ -95,31 +95,28 @@
 
           <!-- Price Range -->
           <div class="mb-3">
-            <h6 class="fw-bold">Price Range</h6>
-            TODO - slider
-            <div class="form-check">
+            <h6 class="fw-bold mb-3">Price Range</h6>
+            <label class="form-label"><small>Min</small></label>
+            <div class="input-group mb-3">
+              <span class="input-group-text">$</span>
               <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
+                type="number"
+                class="form-control"
+                placeholder="Min"
+                v-model="priceRange[0]"
               />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
             </div>
-            <div class="form-check">
+            <label class="form-label"><small>Max</small></label>
+            <div class="input-group mb-5">
+              <span class="input-group-text">$</span>
               <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked"
-                checked
+                type="number"
+                class="form-control"
+                placeholder="Min"
+                v-model="priceRange[1]"
               />
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
             </div>
+            <Slider v-model="priceRange" :max="1000" />
           </div>
         </div>
       </section>
@@ -197,11 +194,13 @@
 <script>
 import Searchbar from "@/components/Searchbar";
 import carsData from "../data/carsData.json";
+import Slider from "@vueform/slider";
 
 export default {
   name: "Search",
   components: {
     Searchbar,
+    Slider,
   },
   data() {
     return {
@@ -218,6 +217,7 @@ export default {
         toTime: "",
       },
       selectedCar: {},
+      priceRange: [200, 500],
     };
   },
   created() {
@@ -256,3 +256,4 @@ export default {
 </script>
 
 <style scoped></style>
+<style src="@vueform/slider/themes/default.css"></style>
