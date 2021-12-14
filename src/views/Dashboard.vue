@@ -7,6 +7,7 @@
       <div class="col-sm-2 col-12">
         <button
           type="button"
+          id="addButton"
           class="btn btn-primary-theme pull-right text-uppercase fw-bold"
           @click.prevent="onAdd"
         >
@@ -27,6 +28,7 @@
                 class="form-control me-2"
                 type="text"
                 v-model="search"
+                id="searchId"
                 placeholder="Search By Vehicle ID"
               />
             </form>
@@ -45,7 +47,7 @@
                 </select>
               </div>
               <div class="flex-grow-1 mb-3 me-3">
-                <select class="form-select" v-model="searchmake">
+                <select class="form-select" v-model="searchmake" id="searchmake">
                   <option value="">Filter By Make</option>
                   <option value="Toyota">Toyota</option>
                   <option value="Honda">Honda</option>
